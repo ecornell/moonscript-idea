@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="moonscript-idea">
+
+    <!-- Define build properties -->
+
+    <loadfile property="version" srcfile="VERSION">
+        <filterchain>
+            <striplinebreaks/>
+        </filterchain>
+    </loadfile>
+
+    <property file="build.properties"/>
+
+    <!-- Reference the IDEA classpath from the local IDE installation -->
+
+    <path id="ideax.classpath">
+        <fileset dir="${ideax.source}">
+            <include name="lib/*.jar"/>
+            <include name="redist/*.jar"/>
+        </fileset>
+        <fileset dir="${ideax.app}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <!-- Define the java compiler task -->
+
+    <taskdef name="javacIdeax" classname="com.intellij.ant.Javac2">
+        <classpath refid="ideax.classpath"/>
+    </taskdef>
+
+    <!-- Define the jflex compiler task -->
+
+    <taskdef name="jflexIdeax" classname="JFlex.anttask.JFlexTask">
+        <classpath location="${ideax.source}/tools/lexer/jflex-1.4/lib/JFlex.jar"/>
+    </taskdef>
+
+    <!-- Clean up generated files -->
+
+    <target name="clean">
+        <delete dir="target"/>
+    </target>
+
+    <!-- Create target directories -->
+
+    <target name="init" depends="clean">
+        <mkdir dir="target/ideax-classes/META-INF"/>
+        <mkdir dir="target/junit-ideax"/>
+        <mkdir dir="target/test-ideax-classes"/>
+        <mkdir dir="target/test-ideax-reports"/>
+        <mkdir dir="target/junit-maia"/>
+        <mkdir dir="target/moonscript-idea"/>
+        <mkdir dir="target/jar"/>
+    </target>
+
+    <!-- Copy compilation resources -->
+
+    <target name="resources-ideax" depends="init">
+        <copy todir="target/ideax-classes">
+            <fileset dir="resources" excludes="moon-script/**"/>
+        </copy>
+    </target>
+
+    <!-- Generate the tokens from the MoonScript resources for testing the plugin -->
+
+    <target name="generate-original-tokens" depends="init"
+            description="Generate the MoonScript tokens within resources/moonscript-script">
+        <apply executable="/usr/local/bin/node">
+            <arg value="/usr/local/share/npm/bin/moon"/>
+            <arg value="-t"/>
+            <fileset dir="resources/moonscript-script" includes="*.moon"/>
+            <redirector>
+                <outputmapper type="glob" from="*.moonscript" to="resources/moonscript-script/*.tokens"/>
+            </redirector>
+        </apply>
+    </target>
+
+    <!-- Generate the lexer class -->
+
+    <target name="generate-ideax-lexer">
+        <jflexIdeax skeleton="${ideax.source}/tools/lexer/idea-flex.skeleton" nobak="true"
+                    file="src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex"
+                    destdir="src"
+                    charat="true"/>
+    </target>
+
+    <!-- Compile the plugin -->
+
+    <target name="compile-ideax" depends="resources-ideax, generate-ideax-lexer">
+        <javacIdeax srcdir="src" destdir="target/ideax-classes" source="1.5" target="1.5" includeantruntime="yes">
+            <classpath refid="ideax.classpath"/>
+        </javacIdeax>
+        <javacIdeax srcdir="test" destdir="target/test-ideax-classes" source="1.5" target="1.5" includeantruntime="yes">
+            <classpath refid="ideax.classpath"/>
+            <classpath location="target/ideax-classes"/>
+        </javacIdeax>
+    </target>
+
+    <!-- Test the plugin -->
+
+    <target name="test-ideax" depends="compile-ideax">
+        <junit failureproperty="unit-test.fail" forkmode="once" fork="yes" includeantruntime="yes"
+               tempdir="${basedir}/target/junit-ideax" printsummary="yes" showoutput="yes">
+            <classpath location="${basedir}/target/ideax-classes"/>
+            <classpath location="${basedir}/target/test-ideax-classes"/>
+            <classpath refid="ideax.classpath"/>
+            <formatter type="xml"/>
+            <batchtest todir="${basedir}/target/test-ideax-reports" fork="yes">
+                <fileset dir="${basedir}/target/test-ideax-classes" includes="**/*Test.class"/>
+            </batchtest>
+        </junit>
+        <fail if="unit-test.fail" message="Unit test failed. See target/test-ideax-reports for more information."/>
+    </target>
+
+    <!-- Build the jar -->
+
+    <target name="jar" depends="test-ideax" description="Build the plugin jar">
+        <copy file="META-INF/plugin.xml" todir="target/ideax-classes/META-INF">
+            <filterset>
+                <filter token="version" value="${version}"/>
+            </filterset>
+        </copy>
+        <jar destfile="target/jar/moonscipt-idea-${version}.jar" compress="true">
+            <fileset dir="target/ideax-classes"/>
+        </jar>
+    </target>
+
+
+    <!-- Install plugin to IntelliJ IDEA 10 CE -->
+
+    <target name="install-idea-10" depends="jar" description="Install the plugin to IntelliJ IDEA 10 CE">
+        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10CE"/>
+        <delete dir="${user.home}/Library/Application Support/IntelliJIdea10CE" includes="moonscript-idea*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10CE">
+            <fileset dir="${basedir}/target/jar" includes="*.jar"/>
+        </copy>
+    </target>
+
+
+    <!-- Release new version -->
+
+    <target name="release" depends="nothing-to-commit" description="Release a new version">
+        <echo>The current version is: ${version}</echo>
+        <input message="Enter the new version: " addproperty="release"/>
+
+        <antcall target="jar">
+            <param name="version" value="${release}"/>
+        </antcall>
+
+        <input message="Going to release version ${release}. Are you sure? " addproperty="do.release" validargs="y,n"/>
+        <condition property="do.abort">
+            <equals arg1="n" arg2="${do.release}"/>
+        </condition>
+        <fail if="do.abort">Release aborted by user.</fail>
+
+        <echo file="VERSION">${release}</echo>
+
+        <exec executable="git">
+            <arg line="commit VERSION -m 'New release v${release}'"/>
+        </exec>
+        <exec executable="git">
+            <arg line="tag v${release}"/>
+        </exec>
+        <exec executable="git">
+            <arg line="push --tags origin master"/>
+        </exec>
+
+        <echo>Release is done. Please upload target/jar/moonscript-idea-${release}.jar to JetBrains Plugin Repository now.
+        </echo>
+        <exec executable="open">
+            <arg value="http://plugins.intellij.net/plugin/?&amp;id=5920"/>
+        </exec>
+        <echo>---------------------- CHANGELOG ------------------------</echo>
+        <exec executable="git">
+            <arg line="shortlog v${version}..v${release}"/>
+        </exec>
+        <echo>---------------------------------------------------------</echo>
+    </target>
+
+    <target name="nothing-to-commit">
+        <exec executable="git" outputproperty="result">
+            <arg value="status"/>
+        </exec>
+        <condition property="do.abort">
+            <not>
+                <contains substring="nothing to commit" string="${result}"/>
+            </not>
+        </condition>
+        <fail if="do.abort">Uncommited changes. Please commit all changes before release a new version.</fail>
+    </target>
+
+</project>

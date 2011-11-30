@@ -1,0 +1,36 @@
+<idea-plugin version="2">
+    <id>com.8bitmage.moonscript</id>
+    <name>MoonScript-IDEA</name>
+    <description>Plugin for MoonScript language support</description>
+    <version>@version@</version>
+    <vendor logo="/com/eightbitmage/moonscript/images/moonscript-script.png" url="">Elijah Cornell
+    </vendor>
+    <idea-version since-build="9000"/>
+    <depends>com.intellij.modules.xml</depends>
+
+    <application-components>
+        <component>
+            <implementation-class>com.eightbitmage.moonscript.MoonScriptLoader</implementation-class>
+        </component>
+    </application-components>
+
+    <project-components>
+    </project-components>
+
+    <actions>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <lang.syntaxHighlighterFactory key="MoonScript"
+                                       implementationClass="com.eightbitmage.moonscript.highlighter.MoonScriptHighlighterFactory"/>
+        <lang.parserDefinition language="MoonScript"
+                               implementationClass="com.eightbitmage.moonscript.lang.parser.MoonScriptParserDefinition"/>
+        <lang.commenter language="MoonScript"
+                        implementationClass="com.eightbitmage.moonscript.highlighter.MoonScriptCommenter"/>
+        <colorSettingsPage implementation="com.eightbitmage.moonscript.highlighter.MoonScriptColorSettingsPage"/>
+        <lang.braceMatcher language="MoonScript"
+                           implementationClass="com.eightbitmage.moonscript.highlighter.MoonScriptBraceMatcher"/>
+        <lang.fileViewProviderFactory language="MoonScript"
+                                      implementationClass="com.eightbitmage.moonscript.file.MoonScriptFileViewProviderFactory"/>
+    </extensions>
+</idea-plugin>
