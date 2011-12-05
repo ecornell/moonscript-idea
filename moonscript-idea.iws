@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1c818856-9d34-4f8b-ad23-cf0c96d2122d" name="Default" comment="" />
+    <list default="true" id="1c818856-9d34-4f8b-ad23-cf0c96d2122d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moonscript-idea.iws" afterPath="$PROJECT_DIR$/moonscript-idea.iws" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptCommenter.java" afterPath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptCommenter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex" afterPath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" afterPath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" />
+    </list>
     <ignored path="moonscript-idea.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -64,203 +69,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="moonscript.flex" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex">
+      <file leaf-file-name="reserved.coffee" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="221" column="12" selection-start="8007" selection-end="8007" vertical-scroll-proportion="-20.5">
-              <folding>
-                <marker date="1322685846526" expanded="true" signature="57:221" placeholder="..." />
-                <marker date="1322685846526" expanded="true" signature="223:375" placeholder="/**...*/" />
-                <marker date="1322685846526" expanded="true" signature="587:596" placeholder="&lt;~&gt;" />
-                <marker date="1322685846526" expanded="true" signature="603:659" placeholder="/**...*/" />
-                <marker date="1322685846526" expanded="true" signature="687:719" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="723:851" placeholder="/**...*/" />
-                <marker date="1322685846526" expanded="true" signature="896:948" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="952:1062" placeholder="/**...*/" />
-                <marker date="1322685846526" expanded="true" signature="1089:1193" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="1197:1341" placeholder="/**...*/" />
-                <marker date="1322685846526" expanded="true" signature="1384:1561" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="1565:1778" placeholder="/**...*/" />
-                <marker date="1322685846526" expanded="true" signature="1838:1968" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3377:3421" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3454:3542" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3576:3611" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3644:3679" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3713:3749" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3783:3821" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3854:3888" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3921:3957" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="3990:4028" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4061:4097" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4130:4163" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4196:4231" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4264:4299" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4332:4369" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4402:4436" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4469:4502" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4535:4568" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4601:4634" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4667:4703" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4736:4772" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4805:4842" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4875:4910" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="4943:4979" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5012:5051" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5084:5121" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5154:5196" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5230:5265" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5298:5334" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5367:5405" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5438:5484" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5517:5553" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5587:5694" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5728:5835" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5869:5965" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="5999:6093" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6127:6222" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6256:6346" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6380:6503" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6537:6625" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6660:6699" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6732:6776" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6810:6846" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6880:6924" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="6957:6999" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7033:7081" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7114:7160" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7284:7371" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7405:7439" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7472:7508" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7541:7581" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7614:7650" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7684:7719" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7752:7788" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7821:7856" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7889:7924" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="7957:7992" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="8030:8074" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="8030:8074" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="8107:8150" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="8184:8225" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="8258:8300" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="8828:9130" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="9398:9484" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="9518:9606" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="9640:9680" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="9714:9806" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="9840:9928" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="9962:10058" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10092:10186" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10220:10318" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10352:10439" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10473:10561" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10595:10682" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10716:10803" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10837:10924" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="10958:11051" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="11085:11179" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="11452:11535" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="11569:11657" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="11691:11779" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="11813:11913" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="12026:12109" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="12143:12229" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="12263:12351" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="12385:12477" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="12511:12611" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="12645:12738" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="12772:12866" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="13169:13203" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="13237:13330" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="13585:13673" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="13707:13795" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="14269:14366" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="14400:14437" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="14471:14512" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="14546:14630" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="14811:14908" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="14942:15174" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="15179:15191" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="15207:15250" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="15282:15368" placeholder="{...}" />
-                <marker date="1322685846526" expanded="true" signature="15470:15613" placeholder="{...}" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoonScriptBraceMatcher.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptBraceMatcher.java">
+      <file leaf-file-name="reserved.tokens" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.tokens">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="149" selection-start="572" selection-end="572" vertical-scroll-proportion="0.48264983">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MoonScriptSyntaxHighlighter.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MoonScriptHighlighterFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptHighlighterFactory.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="11" column="13" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MoonScriptSyntaxHighlighter.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptSyntaxHighlighter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="252" column="2" selection-start="10007" selection-end="10007" vertical-scroll-proportion="0.0">
+            <state line="21" column="13" selection-start="688" selection-end="688" vertical-scroll-proportion="-2.2454875">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptTokenTypes.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenTypes.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="2" selection-start="3746" selection-end="3746" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptTokenSets.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenSets.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="22" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptElementType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptElementType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="53" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptFileType.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/file/MoonScriptFileType.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="41" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptLexer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptLexer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1362" column="11" selection-start="57336" selection-end="57336" vertical-scroll-proportion="-344.19232">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptFlexLexer.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptFlexLexer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="12" column="13" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -279,7 +121,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/resources/theme/MoonScript.xml" />
         <option value="$PROJECT_DIR$/META-INF/plugin.xml" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptIcons.java" />
         <option value="$PROJECT_DIR$/build.properties" />
@@ -289,12 +130,13 @@
         <option value="$PROJECT_DIR$/build.xml" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptLoader.java" />
         <option value="$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerExampleTestCase.java" />
-        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptLexer.java" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenTypes.java" />
-        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptBraceMatcher.java" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptSyntaxHighlighter.java" />
+        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" />
+        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex" />
+        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptCommenter.java" />
       </list>
     </option>
   </component>
@@ -328,8 +170,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -635,6 +475,10 @@
               <option name="myItemId" value="moon-script" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="tests" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -682,6 +526,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Favorites" />
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="All">
           <PATH>
@@ -850,12 +696,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="org.intellij.lang.jflex.options.JFlexConfigurable" />
+    <property name="options.lastSelected" value="preferences.pluginManager" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
@@ -1007,27 +853,47 @@
     </task>
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39980355" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.67092335" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32907662" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25638506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289855" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25576037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.67092335" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21229947" sideWeight="0.67092335" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2392638" sideWeight="0.671659" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907662" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328341" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1105,234 +971,112 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/functions.coffee">
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/file/MoonScriptFileViewProviderFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="29" selection-start="127" selection-end="127" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/functions.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="220" selection-start="995" selection-end="995" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/heredocs.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="20" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerExampleTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="150" selection-start="3915" selection-end="3915" vertical-scroll-proportion="0.34858045">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="0" selection-start="757" selection-end="757" vertical-scroll-proportion="0.6620795">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="31" column="12" selection-start="945" selection-end="945" vertical-scroll-proportion="0.72397476">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/heredocs.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="59" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0547504">
+        <state line="12" column="13" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/file/MoonScriptFileType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="41" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0">
+        <state line="19" column="41" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/psi/MoonScriptElement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="8" column="17" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptElementType.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/psi/MoonScriptFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="53" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
+        <state line="15" column="13" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptFlexLexer.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptIcons.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+        <state line="12" column="17" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenSets.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptLanguage.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="22" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+        <state line="10" column="13" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenTypes.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="2" selection-start="3746" selection-end="3746" vertical-scroll-proportion="0.0">
+        <state line="14" column="13" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptLexer.java">
+    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1362" column="11" selection-start="57336" selection-end="57336" vertical-scroll-proportion="-344.19232">
+        <state line="10" column="13" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex">
+    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerTestToken.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="221" column="12" selection-start="8007" selection-end="8007" vertical-scroll-proportion="-20.5">
-          <folding>
-            <marker date="1322685846526" expanded="true" signature="57:221" placeholder="..." />
-            <marker date="1322685846526" expanded="true" signature="223:375" placeholder="/**...*/" />
-            <marker date="1322685846526" expanded="true" signature="587:596" placeholder="&lt;~&gt;" />
-            <marker date="1322685846526" expanded="true" signature="603:659" placeholder="/**...*/" />
-            <marker date="1322685846526" expanded="true" signature="687:719" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="723:851" placeholder="/**...*/" />
-            <marker date="1322685846526" expanded="true" signature="896:948" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="952:1062" placeholder="/**...*/" />
-            <marker date="1322685846526" expanded="true" signature="1089:1193" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="1197:1341" placeholder="/**...*/" />
-            <marker date="1322685846526" expanded="true" signature="1384:1561" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="1565:1778" placeholder="/**...*/" />
-            <marker date="1322685846526" expanded="true" signature="1838:1968" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3377:3421" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3454:3542" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3576:3611" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3644:3679" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3713:3749" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3783:3821" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3854:3888" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3921:3957" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="3990:4028" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4061:4097" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4130:4163" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4196:4231" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4264:4299" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4332:4369" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4402:4436" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4469:4502" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4535:4568" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4601:4634" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4667:4703" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4736:4772" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4805:4842" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4875:4910" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="4943:4979" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5012:5051" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5084:5121" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5154:5196" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5230:5265" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5298:5334" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5367:5405" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5438:5484" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5517:5553" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5587:5694" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5728:5835" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5869:5965" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="5999:6093" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6127:6222" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6256:6346" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6380:6503" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6537:6625" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6660:6699" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6732:6776" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6810:6846" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6880:6924" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="6957:6999" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7033:7081" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7114:7160" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7284:7371" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7405:7439" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7472:7508" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7541:7581" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7614:7650" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7684:7719" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7752:7788" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7821:7856" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7889:7924" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="7957:7992" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="8030:8074" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="8030:8074" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="8107:8150" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="8184:8225" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="8258:8300" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="8828:9130" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="9398:9484" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="9518:9606" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="9640:9680" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="9714:9806" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="9840:9928" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="9962:10058" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10092:10186" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10220:10318" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10352:10439" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10473:10561" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10595:10682" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10716:10803" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10837:10924" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="10958:11051" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="11085:11179" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="11452:11535" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="11569:11657" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="11691:11779" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="11813:11913" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="12026:12109" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="12143:12229" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="12263:12351" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="12385:12477" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="12511:12611" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="12645:12738" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="12772:12866" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="13169:13203" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="13237:13330" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="13585:13673" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="13707:13795" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="14269:14366" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="14400:14437" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="14471:14512" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="14546:14630" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="14811:14908" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="14942:15174" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="15179:15191" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="15207:15250" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="15282:15368" placeholder="{...}" />
-            <marker date="1322685846526" expanded="true" signature="15470:15613" placeholder="{...}" />
-          </folding>
+        <state line="10" column="6" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerExampleTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="6" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/bools.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/bools.tokens">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.tokens">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptHighlighterFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptSyntaxHighlighter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="252" column="2" selection-start="10007" selection-end="10007" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptBraceMatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="149" selection-start="572" selection-end="572" vertical-scroll-proportion="0.48264983">
+        <state line="21" column="13" selection-start="688" selection-end="688" vertical-scroll-proportion="-2.2454875">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

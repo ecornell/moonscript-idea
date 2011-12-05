@@ -15,15 +15,15 @@ import org.jetbrains.annotations.Nullable;
 public class MoonScriptCommenter implements CodeDocumentationAwareCommenter {
 
   public String getLineCommentPrefix() {
-    return "#";
+    return "--";
   }
 
   public String getBlockCommentPrefix() {
-    return "###";
+    return "--[[";
   }
 
   public String getBlockCommentSuffix() {
-    return "###";
+    return "--]]";
   }
 
   public String getCommentedBlockCommentPrefix() {

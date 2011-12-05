@@ -109,18 +109,17 @@ NUMBER          = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 FUNCTION        = [_a-zA-Z]([$_a-zA-Z0-9])*?[:]([^\n\r])*?(->|=>)
 OBJECT_KEY      = [_a-zA-Z]([$_a-zA-Z0-9])*[:][^:]
 
-RESERVED        = and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while
-LOGIC           = and|&&|or|\|\||&|\||\^|not
-COMPARE         = ==|\!=|~=|<|>|<=|>=
+/*RESERVED        = and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while*/
+RESERVED        = zzz
+LOGIC           = and|or|\^|not
+COMPARE         = ==|\!=|\~=|<|>|<=|>=
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=
 BOOL            = true|false|nil
-UNARY           = do|\!|not
-QUOTE           = and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while
+UNARY           = do|not
+QUOTE           = xxx
 
 %state YYIDENTIFIER, YYNUMBER, YYJAVASCRIPT
 %state YYDOUBLEQUOTESTRING, YYSINGLEQUOTESTRING
-%state YYDOUBLEQUOTEHEREDOC, YYSINGLEQUOTEHEREDOC
-%state YYREGEX, YYHEREGEX, YYREGEXFLAG, YYREGEXCHARACTERCLASS
 %state YYINTERPOLATION, YYQUOTEPROPERTY, YYCLASSNAME
 
 %%
@@ -209,6 +208,7 @@ QUOTE           = and|break|do|else|elseif|end|false|for|function|if|in|local|ni
                                 return MoonScriptTokenTypes.BRACE_START; }
 
   "."                         { return MoonScriptTokenTypes.DOT; }
+  "\\"                        { return MoonScriptTokenTypes.FUNCTION; }
   ":"                         { return MoonScriptTokenTypes.COLON; }
   ";"                         { return MoonScriptTokenTypes.SEMICOLON; }
   ","                         { return MoonScriptTokenTypes.COMMA; }
@@ -219,8 +219,8 @@ QUOTE           = and|break|do|else|elseif|end|false|for|function|if|in|local|ni
   "%"                         { return MoonScriptTokenTypes.MATH; }
   "/" / [ ]+                  { return MoonScriptTokenTypes.MATH; }
 
-  --\[\[~\]\]                     { return MoonScriptTokenTypes.BLOCK_COMMENT; }
-  (--?)(.*)*[^\n\r]?          { return MoonScriptTokenTypes.LINE_COMMENT; }
+  --\[\[~\]\]                 { return MoonScriptTokenTypes.BLOCK_COMMENT; }
+  (--)(.*)*[^\n\r]?          { return MoonScriptTokenTypes.LINE_COMMENT; }
 
   {TERMINATOR}                { return MoonScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return MoonScriptTokenTypes.WHITE_SPACE; }
@@ -307,6 +307,10 @@ QUOTE           = and|break|do|else|elseif|end|false|for|function|if|in|local|ni
 
   "("                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.PARENTHESIS_START; }
+
+  "\!"                        {  yybegin(YYINITIAL);
+                                return MoonScriptTokenTypes.FUNCTION; }
+
 }
 
 /*****************/
@@ -328,6 +332,9 @@ QUOTE           = and|break|do|else|elseif|end|false|for|function|if|in|local|ni
 
   "("                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.PARENTHESIS_START; }
+
+  "\!"                        {  yybegin(YYINITIAL);
+                                return MoonScriptTokenTypes.FUNCTION; }
 
   {TERMINATOR}                { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.TERMINATOR; }

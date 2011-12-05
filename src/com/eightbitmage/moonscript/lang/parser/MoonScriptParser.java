@@ -32,6 +32,9 @@ public class MoonScriptParser implements PsiParser {
     }
 
     rootMarker.done(root);
+
+    builder.setDebugMode(true);
+
     return builder.getTreeBuilt();
   }
 
