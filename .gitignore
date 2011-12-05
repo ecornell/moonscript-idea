@@ -2,5 +2,5 @@
 target
 out
 src/com/eightbitmage/moonscript/lang/lexer/MoonScriptLexer.java
-moon-brew.iws
+moonscript-idea.iws
 build.properties
