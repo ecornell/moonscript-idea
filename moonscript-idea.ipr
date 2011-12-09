@@ -212,6 +212,9 @@
       </item>
     </group>
   </component>
+  <component name="ProjectDictionaryState">
+    <dictionary name="ecornell" />
+  </component>
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/moonscript-idea.iml" filepath="$PROJECT_DIR$/moonscript-idea.iml" />

@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c818856-9d34-4f8b-ad23-cf0c96d2122d" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moonscript-idea.ipr" afterPath="$PROJECT_DIR$/moonscript-idea.ipr" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/moonscript-idea.iws" afterPath="$PROJECT_DIR$/moonscript-idea.iws" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptCommenter.java" afterPath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptCommenter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex" afterPath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" afterPath="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" />
     </list>
     <ignored path="moonscript-idea.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,39 +67,184 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="reserved.coffee" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.coffee">
+      <file leaf-file-name="moonscript.flex" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="reserved.tokens" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.tokens">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptHighlighterFactory.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptHighlighterFactory.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MoonScriptSyntaxHighlighter.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptSyntaxHighlighter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="13" selection-start="688" selection-end="688" vertical-scroll-proportion="-2.2454875">
+            <state line="15" column="33" selection-start="379" selection-end="379" vertical-scroll-proportion="-2.2527075">
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1323124161124" expanded="false" signature="57:221" placeholder="..." />
+                <marker date="1323124161124" expanded="true" signature="223:375" placeholder="/**...*/" />
+                <marker date="1323124161124" expanded="false" signature="587:596" placeholder="&lt;~&gt;" />
+                <marker date="1323124161124" expanded="true" signature="603:659" placeholder="/**...*/" />
+                <marker date="1323124161124" expanded="true" signature="687:719" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="723:851" placeholder="/**...*/" />
+                <marker date="1323124161124" expanded="true" signature="896:948" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="952:1062" placeholder="/**...*/" />
+                <marker date="1323124161124" expanded="true" signature="1089:1193" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="1197:1341" placeholder="/**...*/" />
+                <marker date="1323124161124" expanded="true" signature="1384:1561" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="1565:1778" placeholder="/**...*/" />
+                <marker date="1323124161124" expanded="true" signature="1838:1968" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3173:3217" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3250:3294" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3250:3338" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3297:3412" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3372:3407" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3440:3475" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3440:3475" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3508:3543" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3578:3614" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3650:3688" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3650:3684" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3717:3751" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3717:3753" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3786:3822" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3786:3824" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3857:3895" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3857:3893" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3926:3962" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3926:3959" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3992:4025" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="3992:4027" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4060:4095" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4060:4095" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4128:4163" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4128:4165" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4198:4235" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4198:4232" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4265:4299" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4265:4298" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4331:4364" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4331:4364" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4397:4430" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4397:4430" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4463:4496" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4463:4499" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4532:4568" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4532:4568" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4601:4637" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4601:4638" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4671:4708" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4671:4706" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4739:4774" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4739:4775" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4808:4844" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4808:4847" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4880:4919" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4880:4917" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4950:4987" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="4950:4992" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5025:5067" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5026:5061" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5094:5129" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5094:5130" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5163:5199" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5163:5201" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5234:5272" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5234:5280" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5313:5359" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5313:5349" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5382:5418" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5445:5568" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5586:5709" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5720:5835" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5850:5961" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="5977:6092" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6101:6216" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6225:6331" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6333:6421" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6384:6491" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6528:6567" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6528:6572" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6605:6649" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6606:6642" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6676:6720" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6753:6795" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6829:6865" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6829:6877" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6910:6956" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6989:7033" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="6990:7032" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7080:7167" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7125:7173" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7200:7246" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7201:7235" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7268:7307" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7340:7451" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7340:7376" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7409:7449" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7482:7518" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7551:7585" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7552:7588" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7620:7660" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7620:7656" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7689:7725" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7689:7724" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7757:7792" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7825:7860" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7825:7860" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7893:7929" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7894:7929" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="7970:8013" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="8047:8088" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="8121:8163" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="8196:8231" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="8203:8247" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="8319:8362" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="8532:8573" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="8652:8694" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9026:9233" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9261:9347" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9381:9469" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9503:9543" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9576:9611" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9702:9739" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9824:9864" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="9877:9994" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10007:10118" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10135:10258" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10267:10377" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10388:10503" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10510:10613" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10631:10735" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10752:10855" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="10873:10982" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11000:11110" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11078:11192" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11297:11340" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11432:11520" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11554:11642" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11606:11700" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11728:11845" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11863:11971" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="11938:11987" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12016:12099" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12133:12210" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12133:12219" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12253:12339" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12253:12341" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12375:12463" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12375:12467" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12501:12593" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12501:12601" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12635:12727" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12725:12727" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12761:12854" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="12888:12982" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="13285:13319" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="13353:13446" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="13701:13789" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="13823:13911" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="14385:14482" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="14516:14553" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="14587:14628" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="14662:14746" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="14927:15024" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="15058:15290" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="15295:15307" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="15323:15366" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="15398:15484" placeholder="{...}" />
+                <marker date="1323124161124" expanded="true" signature="15586:15729" placeholder="{...}" />
               </folding>
             </state>
           </provider>
@@ -115,6 +258,11 @@
     </FindUsagesManager>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <array>
+        <option value="Elijah Cornell" />
+      </array>
+    </option>
     <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
     <option name="UPDATE_CHANGES_POLICY" value="STASH" />
   </component>
@@ -130,13 +278,13 @@
         <option value="$PROJECT_DIR$/build.xml" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptLoader.java" />
         <option value="$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerExampleTestCase.java" />
+        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptLexer.java" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenTypes.java" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptBraceMatcher.java" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptSyntaxHighlighter.java" />
-        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java" />
+        <option value="$PROJECT_DIR$/moonscript-idea.iws" />
         <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex" />
-        <option value="$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptCommenter.java" />
       </list>
     </option>
   </component>
@@ -170,6 +318,171 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope">
+        <subPane subId="All">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="test">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="org">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com.eightbitmage.moonscript">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="lang">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="lexer">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="eightbitmage">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="eightbitmage">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="lang">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="eightbitmage">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="lang">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="lexer">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="src">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="com">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="eightbitmage">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="moonscript">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="highlighter">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -211,6 +524,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="moonscript" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moonscript-idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="moonscript-idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -475,10 +802,6 @@
               <option name="myItemId" value="moon-script" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tests" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -527,190 +850,25 @@
         </subPane>
       </pane>
       <pane id="Favorites" />
-      <pane id="PackagesPane" />
-      <pane id="Scope">
-        <subPane subId="All">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="test">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="org">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="com.eightbitmage.moonscript">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="lang">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="lexer">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="com">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="eightbitmage">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="com">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="eightbitmage">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="lang">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="com">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="eightbitmage">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="lang">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="lexer">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript-idea">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="com">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="eightbitmage">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="moonscript">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="highlighter">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Global Libraries" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="recentsLimit" value="5" />
-    <property name="options.lastSelected" value="preferences.pluginManager" />
+    <property name="options.lastSelected" value="project.propVCSSupport.Confirmation" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
-    <property name="dynamic.classpath" value="false" />
-    <property name="options.searchVisible" value="true" />
     <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
+    <property name="dynamic.classpath" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -853,44 +1011,24 @@
     </task>
     <servers />
   </component>
-  <component name="TodoView" selected-index="0">
-    <todo-panel id="selected-file">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="default-changelist">
-      <are-packages-shown value="false" />
-      <are-modules-shown value="false" />
-      <flatten-packages value="false" />
-      <is-autoscroll-to-source value="false" />
-    </todo-panel>
-  </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="7" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39980355" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Kahlua" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32994652" sideWeight="0.67092335" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3289855" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25576037" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32949308" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.328341" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25638506" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.67092335" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2392638" sideWeight="0.671659" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21226993" sideWeight="0.671659" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.328341" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907662" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32907662" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -923,7 +1061,7 @@
     <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
     <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" />
+    <option name="LAST_COMMIT_MESSAGE" value="IDEA project files" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -936,6 +1074,8 @@
     <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
     <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
+    <MESSAGE value=".git files" />
+    <MESSAGE value="IDEA project files" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -971,114 +1111,286 @@
     </buildFile>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/file/MoonScriptFileViewProviderFactory.java">
+    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/functions.tokens">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="13" selection-start="314" selection-end="314" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="5" column="220" selection-start="995" selection-end="995" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/heredocs.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="20" selection-start="47" selection-end="47" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerExampleTestCase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="113" column="150" selection-start="3915" selection-end="3915" vertical-scroll-proportion="0.34858045">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/file/MoonScriptFileType.java">
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/parser/MoonScriptParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="41" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/psi/MoonScriptElement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="17" selection-start="151" selection-end="151" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/psi/MoonScriptFile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="13" selection-start="381" selection-end="381" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptIcons.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="12" column="17" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptLanguage.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="191" selection-end="191" vertical-scroll-proportion="0.0">
+        <state line="31" column="0" selection-start="757" selection-end="757" vertical-scroll-proportion="0.6620795">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/MoonScriptLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="13" selection-start="456" selection-end="456" vertical-scroll-proportion="0.0">
+        <state line="31" column="12" selection-start="945" selection-end="945" vertical-scroll-proportion="0.72397476">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerTest.java">
+    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/heredocs.tokens">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerTestToken.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="6" selection-start="188" selection-end="188" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/com/eightbitmage/moonscript/MoonScriptLexerExampleTestCase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="6" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/bools.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/bools.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/moon-script/tests/reserved.tokens">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptHighlighterFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="282" selection-end="282" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="2" column="59" selection-start="197" selection-end="197" vertical-scroll-proportion="0.0547504" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptSyntaxHighlighter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="13" selection-start="688" selection-end="688" vertical-scroll-proportion="-2.2454875">
+        <state line="252" column="2" selection-start="10007" selection-end="10007" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="2" selection-start="3746" selection-end="3746" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptTokenSets.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="22" selection-start="189" selection-end="189" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptElementType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="53" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/file/MoonScriptFileType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="41" selection-start="533" selection-end="533" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/MoonScriptFlexLexer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="12" column="13" selection-start="220" selection-end="220" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moonscript-idea.ipr">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/moonscript-idea.iws">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-35.673706">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/highlighter/MoonScriptBraceMatcher.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="149" selection-start="572" selection-end="572" vertical-scroll-proportion="0.5730337">
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/eightbitmage/moonscript/lang/lexer/moonscript.flex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="33" selection-start="379" selection-end="379" vertical-scroll-proportion="-2.2527075">
+          <folding>
+            <marker date="1323124161124" expanded="false" signature="57:221" placeholder="..." />
+            <marker date="1323124161124" expanded="true" signature="223:375" placeholder="/**...*/" />
+            <marker date="1323124161124" expanded="false" signature="587:596" placeholder="&lt;~&gt;" />
+            <marker date="1323124161124" expanded="true" signature="603:659" placeholder="/**...*/" />
+            <marker date="1323124161124" expanded="true" signature="687:719" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="723:851" placeholder="/**...*/" />
+            <marker date="1323124161124" expanded="true" signature="896:948" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="952:1062" placeholder="/**...*/" />
+            <marker date="1323124161124" expanded="true" signature="1089:1193" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="1197:1341" placeholder="/**...*/" />
+            <marker date="1323124161124" expanded="true" signature="1384:1561" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="1565:1778" placeholder="/**...*/" />
+            <marker date="1323124161124" expanded="true" signature="1838:1968" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3173:3217" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3250:3294" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3250:3338" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3297:3412" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3372:3407" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3440:3475" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3440:3475" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3508:3543" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3578:3614" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3650:3688" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3650:3684" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3717:3751" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3717:3753" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3786:3822" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3786:3824" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3857:3895" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3857:3893" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3926:3962" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3926:3959" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3992:4025" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="3992:4027" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4060:4095" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4060:4095" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4128:4163" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4128:4165" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4198:4235" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4198:4232" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4265:4299" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4265:4298" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4331:4364" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4331:4364" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4397:4430" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4397:4430" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4463:4496" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4463:4499" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4532:4568" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4532:4568" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4601:4637" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4601:4638" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4671:4708" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4671:4706" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4739:4774" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4739:4775" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4808:4844" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4808:4847" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4880:4919" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4880:4917" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4950:4987" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="4950:4992" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5025:5067" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5026:5061" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5094:5129" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5094:5130" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5163:5199" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5163:5201" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5234:5272" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5234:5280" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5313:5359" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5313:5349" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5382:5418" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5445:5568" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5586:5709" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5720:5835" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5850:5961" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="5977:6092" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6101:6216" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6225:6331" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6333:6421" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6384:6491" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6528:6567" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6528:6572" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6605:6649" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6606:6642" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6676:6720" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6753:6795" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6829:6865" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6829:6877" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6910:6956" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6989:7033" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="6990:7032" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7080:7167" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7125:7173" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7200:7246" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7201:7235" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7268:7307" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7340:7451" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7340:7376" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7409:7449" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7482:7518" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7551:7585" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7552:7588" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7620:7660" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7620:7656" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7689:7725" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7689:7724" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7757:7792" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7825:7860" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7825:7860" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7893:7929" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7894:7929" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="7970:8013" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="8047:8088" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="8121:8163" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="8196:8231" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="8203:8247" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="8319:8362" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="8532:8573" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="8652:8694" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9026:9233" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9261:9347" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9381:9469" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9503:9543" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9576:9611" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9702:9739" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9824:9864" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="9877:9994" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10007:10118" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10135:10258" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10267:10377" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10388:10503" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10510:10613" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10631:10735" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10752:10855" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="10873:10982" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11000:11110" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11078:11192" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11297:11340" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11432:11520" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11554:11642" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11606:11700" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11728:11845" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11863:11971" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="11938:11987" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12016:12099" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12133:12210" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12133:12219" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12253:12339" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12253:12341" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12375:12463" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12375:12467" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12501:12593" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12501:12601" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12635:12727" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12725:12727" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12761:12854" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="12888:12982" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="13285:13319" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="13353:13446" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="13701:13789" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="13823:13911" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="14385:14482" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="14516:14553" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="14587:14628" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="14662:14746" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="14927:15024" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="15058:15290" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="15295:15307" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="15323:15366" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="15398:15484" placeholder="{...}" />
+            <marker date="1323124161124" expanded="true" signature="15586:15729" placeholder="{...}" />
           </folding>
         </state>
       </provider>
@@ -1140,7 +1452,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
