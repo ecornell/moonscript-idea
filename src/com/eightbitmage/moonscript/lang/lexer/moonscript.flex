@@ -137,28 +137,21 @@ QUOTE           = xxx
   "self"                      { return MoonScriptTokenTypes.SELF; }
 
   "class"                     { return MoonScriptTokenTypes.CLASS; }
-
   "extends"                   { return MoonScriptTokenTypes.EXTENDS; }
-  "try"                       { return MoonScriptTokenTypes.TRY; }
-  "catch"                     { return MoonScriptTokenTypes.CATCH; }
-  "finally"                   { return MoonScriptTokenTypes.FINALLY; }
-  "throw"                     { return MoonScriptTokenTypes.THROW; }
+
   "if"                        { return MoonScriptTokenTypes.IF; }
   "then"                      { return MoonScriptTokenTypes.THEN; }
   "else"                      { return MoonScriptTokenTypes.ELSE; }
-  "unless"                    { return MoonScriptTokenTypes.UNLESS; }
+  "elseif"                    { return MoonScriptTokenTypes.ELSE; }
+
   "for"                       { return MoonScriptTokenTypes.FOR; }
   "in"                        { return MoonScriptTokenTypes.IN; }
-  "of"                        { return MoonScriptTokenTypes.OF; }
-  "by"                        { return MoonScriptTokenTypes.BY; }
+  "when"                      { return MoonScriptTokenTypes.WHEN; }
+
   "while"                     { return MoonScriptTokenTypes.WHILE; }
   "until"                     { return MoonScriptTokenTypes.UNTIL; }
-  "switch"                    { return MoonScriptTokenTypes.SWITCH; }
-  "when"                      { return MoonScriptTokenTypes.WHEN; }
   "break"                     { return MoonScriptTokenTypes.BREAK; }
-  "continue"                  { return MoonScriptTokenTypes.CONTINUE; }
   "return"                    { return MoonScriptTokenTypes.RETURN; }
-  "instanceof"                { return MoonScriptTokenTypes.INSTANCE_OF; }
 
   {BOOL}                      { return MoonScriptTokenTypes.BOOL; }
   {LOGIC}                     { return MoonScriptTokenTypes.LOGIC; }
@@ -193,6 +186,7 @@ QUOTE           = xxx
 
 
   "->"                        { return MoonScriptTokenTypes.FUNCTION; }
+  "!"                         { return MoonScriptTokenTypes.FUNCTION; }
   "=>"                        { return MoonScriptTokenTypes.FUNCTION_BIND; }
 
   "="                         { return MoonScriptTokenTypes.EQUAL; }
@@ -208,6 +202,7 @@ QUOTE           = xxx
                                 return MoonScriptTokenTypes.BRACE_START; }
 
   "."                         { return MoonScriptTokenTypes.DOT; }
+  "#"                         { return MoonScriptTokenTypes.DOT; }
   "\\"                        { return MoonScriptTokenTypes.FUNCTION; }
   ":"                         { return MoonScriptTokenTypes.COLON; }
   ";"                         { return MoonScriptTokenTypes.SEMICOLON; }
@@ -217,10 +212,12 @@ QUOTE           = xxx
   "-"                         { return MoonScriptTokenTypes.MINUS; }
   "*"                         { return MoonScriptTokenTypes.MATH; }
   "%"                         { return MoonScriptTokenTypes.MATH; }
-  "/" / [ ]+                  { return MoonScriptTokenTypes.MATH; }
+  "/"                         { return MoonScriptTokenTypes.MATH; }
 
   --\[\[~\]\]                 { return MoonScriptTokenTypes.BLOCK_COMMENT; }
   (--)(.*)*[^\n\r]?          { return MoonScriptTokenTypes.LINE_COMMENT; }
+
+  (#\!)(.*)*[^\n\r]?          { return MoonScriptTokenTypes.LINE_COMMENT; }
 
   {TERMINATOR}                { return MoonScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return MoonScriptTokenTypes.WHITE_SPACE; }
@@ -247,6 +244,9 @@ QUOTE           = xxx
 
 <YYIDENTIFIER, YYNUMBER> {
   "."                         { yybegin(YYINITIAL);
+                                return MoonScriptTokenTypes.DOT; }
+
+  "\\"                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.DOT; }
 
   ":"                         { yybegin(YYINITIAL);
@@ -284,11 +284,23 @@ QUOTE           = xxx
   "/"                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.MATH; }
 
+  "="                         { yybegin(YYINITIAL);
+                                return MoonScriptTokenTypes.EQUAL; }
+
+  "\!"                        { yybegin(YYINITIAL);
+                                return MoonScriptTokenTypes.FUNCTION; }
+
   {TERMINATOR}                { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.TERMINATOR; }
 
   {WHITE_SPACE}               { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.WHITE_SPACE; }
+
+  \"                          { yybegin(YYDOUBLEQUOTESTRING);
+                                return MoonScriptTokenTypes.STRING_LITERAL; }
+
+  \'                          { yybegin(YYSINGLEQUOTESTRING);
+                                return MoonScriptTokenTypes.STRING_LITERAL; }
 }
 
 /**********************************************************************/
