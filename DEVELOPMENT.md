@@ -9,8 +9,7 @@ MoonScript is developed with [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/
 ### Development setup
 
 * You must have a JDK 1.6 and Ant installed.
-* Download [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/download/index.html) to develop for the IDEA X platform
-and [IntelliJ IDEA 9](http://devnet.jetbrains.net/docs/DOC-1228) to verify the build against the older maia platform.
+* Download [IntelliJ IDEA 10CE](http://www.jetbrains.com/idea/download/index.html) to develop for the IDEA X platform.
 * Fork MoonScript and check your personal repository out.
 * Check out IntelliJ IDEA Community from `git://git.jetbrains.org/idea/community.git`.
 * Go into that directory and build IDEA by just calling `ant` on the command line.

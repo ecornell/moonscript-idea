@@ -102,24 +102,26 @@ import java.util.Stack;
 TERMINATOR      = [\n\r]|\\\n
 WHITE_SPACE     = [ \t]+
 
-IDENTIFIER      = [$_a-z][$_a-zA-Z0-9]*
+IDENTIFIER      = [$_a-z][$_a-zA-Z0-9]?
 CLASS_NAME      = [A-Z][$_a-zA-Z0-9]*
 CONSTANT        = [A-Z][$_A-Z0-9]*
 NUMBER          = (0(x|X)[0-9a-fA-F]+)|(-?[0-9]+(\.[0-9]+)?(e[+\-]?[0-9]+)?)
 FUNCTION        = [_a-zA-Z]([$_a-zA-Z0-9])*?[:]([^\n\r])*?(->|=>)
 OBJECT_KEY      = [_a-zA-Z]([$_a-zA-Z0-9])*[:][^:]
 
-/*RESERVED        = and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while*/
-RESERVED        = zzz
+//RESERVED        = and|break|do|else|elseif|end|false|for|function|if|in|local|nil|not|or|repeat|return|then|true|until|while
+//RESERVED        = zzz
 LOGIC           = and|or|\^|not
 COMPARE         = ==|\!=|\~=|<|>|<=|>=
 COMPOUND_ASSIGN = -=|\+=|\/=|\*=|%=
 BOOL            = true|false|nil
-UNARY           = do|not
-QUOTE           = xxx
+UNARY           = -
+//QUOTE           = xxx
+
+MULTISTR        =   \[=\[|\]=\]
 
 %state YYIDENTIFIER, YYNUMBER, YYJAVASCRIPT
-%state YYDOUBLEQUOTESTRING, YYSINGLEQUOTESTRING
+%state YYDOUBLEQUOTESTRING, YYSINGLEQUOTESTRING, YYMULTISTRING
 %state YYINTERPOLATION, YYQUOTEPROPERTY, YYCLASSNAME
 
 %%
@@ -129,9 +131,9 @@ QUOTE           = xxx
 /*************************************************************************************************/
 
 <YYINITIAL> {
-  {RESERVED}                  { return MoonScriptTokenTypes.ERROR_ELEMENT; }
-  {QUOTE}:                    { yypushback(1);
-                                return MoonScriptTokenTypes.IDENTIFIER; }
+//  {RESERVED}                  { return MoonScriptTokenTypes.ERROR_ELEMENT; }
+//  {QUOTE}:                    { yypushback(1);
+//                                return MoonScriptTokenTypes.IDENTIFIER; }
 
   "@"                         { return MoonScriptTokenTypes.SELF; }
   "self"                      { return MoonScriptTokenTypes.SELF; }
@@ -164,6 +166,9 @@ QUOTE           = xxx
 
   \'                          { yybegin(YYSINGLEQUOTESTRING);
                                 return MoonScriptTokenTypes.STRING_LITERAL; }
+
+//  {MULTISTR}                       { yybegin(YYMULTISTRING);
+//                                return MoonScriptTokenTypes.STRING_LITERAL; }
 
   {IDENTIFIER}                { yybegin(YYIDENTIFIER);
                                 return MoonScriptTokenTypes.IDENTIFIER; }
@@ -215,9 +220,11 @@ QUOTE           = xxx
   "/"                         { return MoonScriptTokenTypes.MATH; }
 
   --\[\[~\]\]                 { return MoonScriptTokenTypes.BLOCK_COMMENT; }
-  (--)(.*)*[^\n\r]?          { return MoonScriptTokenTypes.LINE_COMMENT; }
+  (--)(.*)*[^\n\r]?           { return MoonScriptTokenTypes.LINE_COMMENT; }
 
   (#\!)(.*)*[^\n\r]?          { return MoonScriptTokenTypes.LINE_COMMENT; }
+
+  \[(=)*\[~\](=)*\]                 { return MoonScriptTokenTypes.STRING_LITERAL; }
 
   {TERMINATOR}                { return MoonScriptTokenTypes.TERMINATOR; }
   {WHITE_SPACE}               { return MoonScriptTokenTypes.WHITE_SPACE; }
@@ -225,7 +232,7 @@ QUOTE           = xxx
 
 /*********************************************************************************************************************/
 /* A closing brace pops a state from the stack. If this state is YYINITIAL, then it is a normal BRACE_END, otherwise */
-/* push it back to the steram an let the specific state recognize the special brace type. */
+/* push it back to the stream an let the specific state recognize the special brace type. */
 /*********************************************************************************************************************/
 
 <YYINITIAL, YYIDENTIFIER, YYNUMBER> {
@@ -253,9 +260,6 @@ QUOTE           = xxx
                                 return MoonScriptTokenTypes.COLON; }
 
   ";"                         { return MoonScriptTokenTypes.SEMICOLON; }
-
-  "::"                        { yybegin(YYINITIAL);
-                                return MoonScriptTokenTypes.PROTOTYPE; }
 
   ","                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.COMMA; }
@@ -308,8 +312,8 @@ QUOTE           = xxx
 /**********************************************************************/
 
 <YYIDENTIFIER> {
-  \.{QUOTE} / [^a-zA-Z0-9]    { yybegin(YYQUOTEPROPERTY);
-                                yypushback(yylength()); }
+  //\.{QUOTE} / [^a-zA-Z0-9]    { yybegin(YYQUOTEPROPERTY);
+  //                              yypushback(yylength()); }
 
   "?"                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.EXIST; }
@@ -330,17 +334,14 @@ QUOTE           = xxx
 /*****************/
 
 <YYCLASSNAME> {
-  \.{QUOTE} / [^a-zA-Z0-9]    { yybegin(YYQUOTEPROPERTY);
-                                yypushback(yylength()); }
+//  \.{QUOTE} / [^a-zA-Z0-9]    { yybegin(YYQUOTEPROPERTY);
+//                                yypushback(yylength()); }
 
   "."                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.DOT; }
 
   ","                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.COMMA; }
-
-  "::"                        { yybegin(YYINITIAL);
-                                return MoonScriptTokenTypes.PROTOTYPE; }
 
   "("                         { yybegin(YYINITIAL);
                                 return MoonScriptTokenTypes.PARENTHESIS_START; }
@@ -362,8 +363,8 @@ QUOTE           = xxx
 <YYQUOTEPROPERTY> {
   "."                         { return MoonScriptTokenTypes.DOT; }
 
-  {QUOTE}                     { yybegin(YYINITIAL);
-                                return MoonScriptTokenTypes.IDENTIFIER; }
+//  {QUOTE}                     { yybegin(YYINITIAL);
+//                                return MoonScriptTokenTypes.IDENTIFIER; }
 }
 
 
@@ -383,7 +384,7 @@ QUOTE           = xxx
 /* Escape sequences */
 /********************/
 
-<YYSINGLEQUOTESTRING, YYDOUBLEQUOTESTRING> {
+<YYSINGLEQUOTESTRING, YYDOUBLEQUOTESTRING, YYMULTISTRING> {
   [\\][^\n\r]                 |
   [\\][0-8]{1,3}              |
   [\\]x[0-9a-fA-F]{1,2}       |
@@ -420,13 +421,33 @@ QUOTE           = xxx
                                 }
                               }
 
-
   {TERMINATOR}                { return MoonScriptTokenTypes.TERMINATOR; }
 
   [^]                         { yypushback(yytext().length());
                                 yybegin(YYINITIAL); }
 }
 
+
+/*************************************/
+/* Content of a multi string */
+/*************************************/
+/*
+<YYMULTISTRING> {
+  {MULTISTR}                  { yybegin(YYINITIAL);
+                                return MoonScriptTokenTypes.STRING_LITERAL; }
+
+  [^\n\r\\]+ | !{MULTISTR}    { pushBackAndState("#{", YYINTERPOLATION);
+                                if (yylength() != 0) {
+                                  return MoonScriptTokenTypes.STRING;
+                                }
+                              }
+
+  {TERMINATOR}                { return MoonScriptTokenTypes.TERMINATOR; }
+
+  [^]                         { yypushback(yytext().length());
+                                yybegin(YYINITIAL); }
+}
+ */
 /*******************/
 /* Nothing matched */
 /*******************/

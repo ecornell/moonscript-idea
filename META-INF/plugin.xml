@@ -3,8 +3,7 @@
     <name>MoonScript-IDEA</name>
     <description>Plugin for MoonScript language support</description>
     <version>@version@</version>
-    <vendor logo="/com/eightbitmage/moonscript/images/moonscript-script.png" url="">Elijah Cornell
-    </vendor>
+    <vendor logo="/com/eightbitmage/moonscript/images/moonscript-script.png" url="">Elijah Cornell</vendor>
     <idea-version since-build="9000"/>
     <depends>com.intellij.modules.xml</depends>
 
