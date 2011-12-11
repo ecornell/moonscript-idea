@@ -16,7 +16,7 @@ The plugin can be installed via the JetBrains plugin manager from within your ID
 
 ## MoonScript theme
 
-![MoonScript theme](https://github.com/netzpirat/moon-brew/raw/master/resources/theme/MoonScript.png)
+![MoonScript theme](https://github.com/ecornell/moonscript-idea/raw/master/resources/theme/MoonScript.png)
 
 The [MoonScript theme](
 https://github.com/ecornell/moonscript-idea/raw/master/resources/theme/MoonScript.xml) provides a dark color scheme that
