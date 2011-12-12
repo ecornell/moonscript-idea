@@ -17,8 +17,8 @@
 package com.eightbitmage.moonscript.intentions.style;
 
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaFunctionCallExpression;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonFunctionCallExpression;
 import com.intellij.psi.PsiElement;
 
 /**
@@ -30,12 +30,12 @@ import com.intellij.psi.PsiElement;
 public class StringLibraryCallPredicate implements PsiElementPredicate {
     @Override
     public boolean satisfiedBy(PsiElement element) {
-        if ( ! (element instanceof LuaFunctionCallExpression) )
+        if ( ! (element instanceof MoonFunctionCallExpression) )
             return false;
 
-        LuaFunctionCallExpression call = (LuaFunctionCallExpression) element;
+        MoonFunctionCallExpression call = (MoonFunctionCallExpression) element;
 
-        LuaReferenceElement ref = call.getFunctionNameElement();
+        MoonReferenceElement ref = call.getFunctionNameElement();
         String calledFunc = null;
 
         if (ref != null)

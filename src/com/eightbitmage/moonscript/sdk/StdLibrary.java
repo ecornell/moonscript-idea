@@ -16,8 +16,8 @@
 
 package com.eightbitmage.moonscript.sdk;
 
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
-import com.eightbitmage.moonscript.util.LuaFileUtil;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
+import com.eightbitmage.moonscript.util.MoonFileUtil;
 import com.intellij.openapi.vfs.JarFileSystem;
 import com.intellij.openapi.vfs.VfsUtil;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -37,14 +37,14 @@ public class StdLibrary {
     public static final String LISTING_GENERATOR = "listing";
     
     public static VirtualFile getStdFileLocation() {
-        VirtualFile dir = LuaFileUtil.getPluginVirtualDirectory();
+        VirtualFile dir = MoonFileUtil.getPluginVirtualDirectory();
         if (dir != null) {
             dir = dir.findChild(STDLIBRARY);
 
             if (dir != null) return dir;
         }
 
-        String url = VfsUtil.pathToUrl(PathUtil.getJarPathForClass(LuaPsiFile.class));
+        String url = VfsUtil.pathToUrl(PathUtil.getJarPathForClass(MoonPsiFile.class));
         VirtualFile sdkFile = VirtualFileManager.getInstance().findFileByUrl(url);
         if (sdkFile != null) {
             VirtualFile jarFile = JarFileSystem.getInstance().getJarRootForLocalFile(sdkFile);
@@ -59,7 +59,7 @@ public class StdLibrary {
     }
 
     public static VirtualFile getDebugModuleLocation() {
-        VirtualFile dir = LuaFileUtil.getPluginVirtualDirectory();
+        VirtualFile dir = MoonFileUtil.getPluginVirtualDirectory();
 
         if (dir != null) dir = dir.findChild(DEBUG_LIBRARY);
 
@@ -69,7 +69,7 @@ public class StdLibrary {
     }
 
     public static VirtualFile getListingModuleLocation() {
-        VirtualFile dir = LuaFileUtil.getPluginVirtualDirectory();
+        VirtualFile dir = MoonFileUtil.getPluginVirtualDirectory();
 
         if (dir != null) dir = dir.findChild(LISTING_GENERATOR);
 

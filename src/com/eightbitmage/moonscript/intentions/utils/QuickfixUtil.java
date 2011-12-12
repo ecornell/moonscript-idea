@@ -42,16 +42,16 @@ public class QuickfixUtil {
 //  public static PsiClass findTargetClass(LuaReferenceExpression refExpr) {
 //    final PsiClass psiClass;
 //    if (refExpr.isQualified()) {
-//      LuaExpression qualifier = refExpr.getQualifierExpression();
+//      MoonExpression qualifier = refExpr.getQualifierExpression();
 //      PsiType type = qualifier.getType();
 //      if (!(type instanceof PsiClassType)) return null;
 //
 //      psiClass = ((PsiClassType)type).resolve();
 //    } else {
-//      LuaPsiElement context = PsiTreeUtil.getParentOfType(refExpr, LuaTypeDefinition.class, LuaPsiFileBase.class);
+//      MoonPsiElement context = PsiTreeUtil.getParentOfType(refExpr, LuaTypeDefinition.class, MoonPsiFileBase.class);
 //      if (context instanceof LuaTypeDefinition) {
 //        return (PsiClass)context;
-//      } else if (context instanceof LuaPsiFileBase) return ((LuaPsiFileBase)context).getScriptClass();
+//      } else if (context instanceof MoonPsiFileBase) return ((MoonPsiFileBase)context).getScriptClass();
 //      return null;
 //    }
 //    return psiClass;
@@ -60,12 +60,12 @@ public class QuickfixUtil {
 //  public static boolean isStaticCall(LuaReferenceExpression refExpr) {
 //
 //    //todo: look more carefully
-//    LuaExpression qualifierExpression = refExpr.getQualifierExpression();
+//    MoonExpression qualifierExpression = refExpr.getQualifierExpression();
 //
 //    if (!(qualifierExpression instanceof LuaReferenceExpression)) return false;
 //
 //    LuaReferenceExpression referenceExpression = (LuaReferenceExpression)qualifierExpression;
-//    LuaPsiElement resolvedElement = ResolveUtil.resolveProperty(referenceExpression, referenceExpression.getName());
+//    MoonPsiElement resolvedElement = ResolveUtil.resolveProperty(referenceExpression, referenceExpression.getName());
 //
 //    if (resolvedElement == null) return false;
 //    if (resolvedElement instanceof PsiClass) return true;
@@ -134,7 +134,7 @@ public class QuickfixUtil {
 //  }
 //
 //  public static boolean isCall(LuaReferenceExpression referenceExpression) {
-//    return referenceExpression.getParent() instanceof LuaFunctionCallStatement;
+//    return referenceExpression.getParent() instanceof MoonFunctionCallStatement;
 //  }
 //
 //  public static String[] getArgumentsTypes(List<MyPair> listOfPairs) {

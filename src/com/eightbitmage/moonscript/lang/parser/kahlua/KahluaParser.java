@@ -15,9 +15,9 @@
  */
 package com.eightbitmage.moonscript.lang.parser.kahlua;
 
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.parser.LuaElementTypes;
-import com.eightbitmage.moonscript.lang.parser.LuaPsiBuilder;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.parser.MoonElementTypes;
+import com.eightbitmage.moonscript.lang.parser.MoonPsiBuilder;
 import com.intellij.diagnostic.PluginException;
 import com.intellij.lang.ASTNode;
 import com.intellij.lang.PsiBuilder;
@@ -33,7 +33,7 @@ import java.io.IOException;
 import java.io.Reader;
 
 
-public class KahluaParser implements PsiParser, LuaElementTypes {
+public class KahluaParser implements PsiParser, MoonElementTypes {
 
     public int nCcalls = 0;
 
@@ -73,7 +73,7 @@ public class KahluaParser implements PsiParser, LuaElementTypes {
     private static final int MAX_INT = Integer.MAX_VALUE - 2;
     //private static final int UCHAR_MAX = 255; // TO DO, convert to unicode CHAR_MAX?
     private static final int LUAI_MAXCCALLS = 200;
-    private LuaPsiBuilder builder = null;
+    private MoonPsiBuilder builder = null;
   
 
 
@@ -664,7 +664,7 @@ public class KahluaParser implements PsiParser, LuaElementTypes {
         PsiBuilder.Marker mark = builder.mark();
         this.parlist();
 
-        mark.done(LuaElementTypes.PARAMETER_LIST);
+        mark.done(MoonElementTypes.PARAMETER_LIST);
 
         this.checknext(RPAREN);
 
@@ -1668,7 +1668,7 @@ short primaryexp_org(ExpDesc v) {
         boolean isCompound = (info & PRI_COMP) != 0;
         boolean isComplete = !isassign;
         if (isassign)  {// need to see if it is a complete assignment statement
-            while(t != ASSIGN && !builder.eof() && !LuaTokenTypes.KEYWORDS.contains(t))
+            while(t != ASSIGN && !builder.eof() && !MoonTokenTypes.KEYWORDS.contains(t))
                 next();
 
             if (t == ASSIGN)
@@ -1835,7 +1835,7 @@ short primaryexp_org(ExpDesc v) {
 
     }
 
-    private void cleanAfterError(LuaPsiBuilder builder) {
+    private void cleanAfterError(MoonPsiBuilder builder) {
         int i = 0;
         PsiBuilder.Marker em = builder.mark();
         while (!builder.eof() && !(END.equals(builder.getTokenType())) ) {
@@ -1864,7 +1864,7 @@ short primaryexp_org(ExpDesc v) {
     @Override
     public ASTNode parse(IElementType root, PsiBuilder builder) {
 
-        final LuaPsiBuilder psiBuilder = new LuaPsiBuilder(builder);
+        final MoonPsiBuilder psiBuilder = new MoonPsiBuilder(builder);
         try {
             final PsiBuilder.Marker rootMarker = psiBuilder.mark();
 

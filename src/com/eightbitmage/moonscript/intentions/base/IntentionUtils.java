@@ -15,9 +15,9 @@
  */
 package com.eightbitmage.moonscript.intentions.base;
 
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElementFactory;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaStatementElement;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonStatementElement;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NonNls;
 import org.jetbrains.annotations.NotNull;
@@ -29,24 +29,24 @@ import org.jetbrains.annotations.NotNull;
  */
 public class IntentionUtils {
 
-    public static LuaExpression replaceExpression(@NotNull String newExpression,
-                                         @NotNull LuaExpression expression) throws IncorrectOperationException {
-        final LuaPsiElementFactory factory = LuaPsiElementFactory.getInstance(expression.getProject());
-        final LuaExpression newCall = factory.createExpressionFromText(newExpression);
-        return (LuaExpression) expression.replaceWithExpression(newCall, true);
+    public static MoonExpression replaceExpression(@NotNull String newExpression,
+                                         @NotNull MoonExpression expression) throws IncorrectOperationException {
+        final MoonPsiElementFactory factory = MoonPsiElementFactory.getInstance(expression.getProject());
+        final MoonExpression newCall = factory.createExpressionFromText(newExpression);
+        return (MoonExpression) expression.replaceWithExpression(newCall, true);
     }
 
-    public static LuaStatementElement replaceStatement(@NonNls @NotNull String newStatement,
-                                                       @NonNls @NotNull LuaStatementElement statement) throws
+    public static MoonStatementElement replaceStatement(@NonNls @NotNull String newStatement,
+                                                       @NonNls @NotNull MoonStatementElement statement) throws
             IncorrectOperationException {
-        final LuaPsiElementFactory factory = LuaPsiElementFactory.getInstance(statement.getProject());
-        final LuaStatementElement newCall = (LuaStatementElement) factory.createStatementFromText(newStatement);
+        final MoonPsiElementFactory factory = MoonPsiElementFactory.getInstance(statement.getProject());
+        final MoonStatementElement newCall = (MoonStatementElement) factory.createStatementFromText(newStatement);
         return statement.replaceWithStatement(newCall);
     }
 
 //  public static void createTemplateForMethod(PsiType[] argTypes,
 //                                             ChooseTypeExpression[] paramTypesExpressions,
-//                                             LuaFunctionDefinitionStatement method,
+//                                             MoonFunctionDefinitionStatement method,
 //                                             GrMemberOwner owner,
 //                                             TypeConstraint[] constraints, boolean isConstructor) {
 //

@@ -15,32 +15,32 @@
  */
 package com.eightbitmage.moonscript.editor.inspections.utils;
 
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaConditionalExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaUnaryExpression;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonConditionalExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonUnaryExpression;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 
 public class BoolUtils {
 
-  public static boolean isNegation(@NotNull LuaExpression exp) {
-    if (!(exp instanceof LuaUnaryExpression)) {
+  public static boolean isNegation(@NotNull MoonExpression exp) {
+    if (!(exp instanceof MoonUnaryExpression)) {
       return false;
     }
-    final LuaUnaryExpression prefixExp = (LuaUnaryExpression) exp;
+    final MoonUnaryExpression prefixExp = (MoonUnaryExpression) exp;
     final IElementType sign = prefixExp.getOperationTokenType();
-    return LuaTokenTypes.NOT.equals(sign);
+    return MoonTokenTypes.NOT.equals(sign);
   }
 
-  public static boolean isTrue(LuaConditionalExpression condition) {
+  public static boolean isTrue(MoonConditionalExpression condition) {
     if (condition == null) {
       return false;
     }
     return "true".equals(condition.getText());
   }
 
-  public static boolean isFalse(LuaConditionalExpression condition) {
+  public static boolean isFalse(MoonConditionalExpression condition) {
     if (condition == null) {
       return false;
     }

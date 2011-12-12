@@ -15,50 +15,50 @@
  */
 package com.eightbitmage.moonscript.editor.inspections.metrics;
 
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElement;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElement;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.eightbitmage.moonscript.lang.psi.statements.*;
 import org.jetbrains.annotations.NotNull;
 
 
-class CyclomaticComplexityVisitor extends LuaElementVisitor {
+class CyclomaticComplexityVisitor extends MoonElementVisitor {
   private int complexity = 1;
 
-  public void visitElement(LuaPsiElement GrElement) {
+  public void visitElement(MoonPsiElement grElement) {
     int oldComplexity = 0;
-    if (GrElement instanceof LuaFunctionDefinitionStatement) {
+    if (grElement instanceof MoonFunctionDefinitionStatement) {
       oldComplexity = complexity;
     }
-    super.visitElement(GrElement);
+    super.visitElement(grElement);
 
-    if (GrElement instanceof LuaFunctionDefinitionStatement) {
+    if (grElement instanceof MoonFunctionDefinitionStatement) {
       complexity = oldComplexity;
     }
   }
 
-  public void visitNumericForStatement(@NotNull LuaNumericForStatement statement) {
+  public void visitNumericForStatement(@NotNull MoonNumericForStatement statement) {
     super.visitNumericForStatement(statement);
     complexity++;
   }
 
-  public void visitGenericForStatement(@NotNull LuaGenericForStatement statement) {
+  public void visitGenericForStatement(@NotNull MoonGenericForStatement statement) {
     super.visitGenericForStatement(statement);
     complexity++;
   }
     
-  public void visitIfThenStatement(@NotNull LuaIfThenStatement statement) {
+  public void visitIfThenStatement(@NotNull MoonIfThenStatement statement) {
     super.visitIfThenStatement(statement);
     complexity++;
 
     complexity += statement.getElseIfConditions().length;
   }
 
-//  public void visitConditionalExpression(LuaConditionalExpression expression) {
+//  public void visitConditionalExpression(MoonConditionalExpression expression) {
 //    super.visitConditionalExpression(expression);
 //    complexity++;
 //  }
 
-  public void visitWhileStatement(@NotNull LuaWhileStatement statement) {
+  public void visitWhileStatement(@NotNull MoonWhileStatement statement) {
     super.visitWhileStatement(statement);
     complexity++;
   }

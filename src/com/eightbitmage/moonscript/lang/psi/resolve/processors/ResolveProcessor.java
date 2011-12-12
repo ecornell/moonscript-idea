@@ -17,8 +17,8 @@
 package com.eightbitmage.moonscript.lang.psi.resolve.processors;
 
 
-import com.eightbitmage.moonscript.lang.psi.resolve.LuaResolveResult;
-import com.eightbitmage.moonscript.lang.psi.resolve.LuaResolveResultImpl;
+import com.eightbitmage.moonscript.lang.psi.resolve.MoonResolveResult;
+import com.eightbitmage.moonscript.lang.psi.resolve.MoonResolveResultImpl;
 import com.intellij.psi.scope.PsiScopeProcessor;
 
 import java.util.HashSet;
@@ -28,22 +28,22 @@ import java.util.Set;
  * @author ilyas
  */
 public abstract class ResolveProcessor implements PsiScopeProcessor/*, NameHint, ElementClassHint*/ {
-  protected static final LuaResolveResult[] EMPTY_SET = new LuaResolveResultImpl[0];
-  protected Set<LuaResolveResult> myCandidates = new HashSet<LuaResolveResult>();
+  protected static final MoonResolveResult[] EMPTY_SET = new MoonResolveResultImpl[0];
+  protected Set<MoonResolveResult> myCandidates = new HashSet<MoonResolveResult>();
   protected final String myName;
 
   public ResolveProcessor(String myName) {
     this.myName = myName;
   }
 
-  public LuaResolveResult[] getCandidates() {
+  public MoonResolveResult[] getCandidates() {
     if (!hasCandidates())
         return EMPTY_SET;
 
-    return myCandidates.toArray(new LuaResolveResult[myCandidates.size()]);
+    return myCandidates.toArray(new MoonResolveResult[myCandidates.size()]);
   }
 
-  public void addCandidate(LuaResolveResult candidate) {
+  public void addCandidate(MoonResolveResult candidate) {
       myCandidates.add(candidate);
   }
 //  public <T> T getHint(Class<T> hintClass) {

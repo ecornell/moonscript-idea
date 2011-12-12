@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.editor.inspections;
 
-import com.eightbitmage.moonscript.lang.psi.statements.LuaStatementElement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonStatementElement;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInsight.daemon.HighlightDisplayKey;
 import com.intellij.codeInsight.daemon.impl.actions.SuppressByCommentFix;
@@ -101,7 +101,7 @@ public abstract class AbstractInspection extends LocalInspectionTool implements 
 
     public SuppressIntentionAction[] getSuppressActions(@Nullable PsiElement element) {
        return new  SuppressIntentionAction[] {
-               new SuppressByCommentFix(HighlightDisplayKey.find(getShortName()), LuaStatementElement.class)
+               new SuppressByCommentFix(HighlightDisplayKey.find(getShortName()), MoonStatementElement.class)
        };
     }
 
@@ -118,7 +118,7 @@ public abstract class AbstractInspection extends LocalInspectionTool implements 
     return ApplicationManager.getApplication().runReadAction(new Computable<PsiElement>() {
       @Nullable
       public PsiElement compute() {
-        final PsiElement statement = getStatementToolSuppressedIn(place, toolId, LuaStatementElement.class);
+        final PsiElement statement = getStatementToolSuppressedIn(place, toolId, MoonStatementElement.class);
         if (statement != null) {
           return statement;
         }

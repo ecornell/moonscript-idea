@@ -16,14 +16,18 @@
 package com.eightbitmage.moonscript.editor.inspections.usage;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
+import com.eightbitmage.moonscript.lang.psi.MoonControlFlowOwner;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.Instruction;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.ReadWriteVariableInstruction;
 import com.eightbitmage.moonscript.lang.psi.dataFlow.DFAEngine;
 import com.eightbitmage.moonscript.lang.psi.dataFlow.reachingDefs.ReachingDefinitionsDfaInstance;
 import com.eightbitmage.moonscript.lang.psi.dataFlow.reachingDefs.ReachingDefinitionsSemilattice;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaAssignmentStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaBlock;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonAssignmentStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonBlock;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonParameter;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonSymbol;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.openapi.diagnostic.Logger;
@@ -36,13 +40,9 @@ import com.intellij.psi.search.LocalSearchScope;
 import com.intellij.psi.search.searches.ReferencesSearch;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.intellij.util.Processor;
-import com.eightbitmage.moonscript.lang.psi.LuaControlFlowOwner;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElement;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaLocal;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaParameter;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaSymbol;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElement;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonLocal;
 import gnu.trove.TIntHashSet;
 import gnu.trove.TIntObjectHashMap;
 import gnu.trove.TIntProcedure;
@@ -88,9 +88,9 @@ public class UnusedDefInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+        return new MoonElementVisitor() {
 //            @Override
-//            public void visitBlock(LuaBlock e) {
+//            public void visitBlock(MoonBlock e) {
 //                super.visitBlock(e);
 //
 //                check(e, holder);
@@ -100,13 +100,13 @@ public class UnusedDefInspection extends AbstractInspection {
             public void visitFile(PsiFile file) {
                 super.visitFile(file);
 
-                check((LuaControlFlowOwner) file, holder);
+                check((MoonControlFlowOwner) file, holder);
             }
         };
     }    
 
 
-  protected void check(final LuaControlFlowOwner owner, final ProblemsHolder problemsHolder) {
+  protected void check(final MoonControlFlowOwner owner, final ProblemsHolder problemsHolder) {
     final Instruction[] flow = owner.getControlFlow();
     final ReachingDefinitionsDfaInstance dfaInstance = new ReachingDefinitionsDfaInstance(flow);
     final ReachingDefinitionsSemilattice lattice = new ReachingDefinitionsSemilattice();
@@ -151,17 +151,17 @@ public class UnusedDefInspection extends AbstractInspection {
         if (element == null) return true;
         PsiElement toHighlight = null;
         if (isLocalAssignment(element)) {
-          if (element instanceof LuaReferenceElement) {
+          if (element instanceof MoonReferenceElement) {
             PsiElement parent = element.getParent();
-            if (parent instanceof LuaReferenceElement) {
-              toHighlight = ((LuaAssignmentStatement)parent).getLeftExprs();
+            if (parent instanceof MoonReferenceElement) {
+              toHighlight = ((MoonAssignmentStatement)parent).getLeftExprs();
             }
 //            if (parent instanceof GrPostfixExpression) {
 //              toHighlight = parent;
 //            }
           }
-          else if (element instanceof LuaSymbol) {
-            toHighlight = ((LuaSymbol)element);//.getNamedElement();
+          else if (element instanceof MoonSymbol) {
+            toHighlight = ((MoonSymbol)element);//.getNamedElement();
           }
           if (toHighlight == null) toHighlight = element;
           problemsHolder.registerProblem(toHighlight, "Unused Assignment",
@@ -173,16 +173,16 @@ public class UnusedDefInspection extends AbstractInspection {
   }
 
   private boolean isUsedInToplevelFlowOnly(PsiElement element) {
-    LuaSymbol var = null;
-    if (element instanceof LuaSymbol) {
-      var = (LuaSymbol) element;
-    } else if (element instanceof LuaReferenceElement) {
-      final PsiElement resolved = ((LuaReferenceElement) element).resolve();
-      if (resolved instanceof LuaSymbol) var = (LuaSymbol) resolved;
+    MoonSymbol var = null;
+    if (element instanceof MoonSymbol) {
+      var = (MoonSymbol) element;
+    } else if (element instanceof MoonReferenceElement) {
+      final PsiElement resolved = ((MoonReferenceElement) element).resolve();
+      if (resolved instanceof MoonSymbol) var = (MoonSymbol) resolved;
     }
 
     if (var != null) {
-      final LuaPsiElement scope = getScope(var);
+      final MoonPsiElement scope = getScope(var);
       if (scope == null) {
         PsiFile file = var.getContainingFile();
         log.error(file == null ? "no file???" : DebugUtil.psiToString(file, true, false));
@@ -198,24 +198,24 @@ public class UnusedDefInspection extends AbstractInspection {
     return true;
   }
 
-  private LuaPsiElement getScope(PsiElement var) {
-    return PsiTreeUtil.getParentOfType(var, LuaBlock.class, LuaPsiFile.class);
+  private MoonPsiElement getScope(PsiElement var) {
+    return PsiTreeUtil.getParentOfType(var, MoonBlock.class, MoonPsiFile.class);
   }
 
   private boolean isLocalAssignment(PsiElement element) {
-    if (element instanceof LuaSymbol) {
-      return isLocalVariable((LuaSymbol) element, false);
-    } else if (element instanceof LuaReferenceElement) {
-      final PsiElement resolved = ((LuaReferenceElement) element).resolve();
-      return resolved instanceof LuaSymbol && isLocalVariable((LuaSymbol) resolved, true);
+    if (element instanceof MoonSymbol) {
+      return isLocalVariable((MoonSymbol) element, false);
+    } else if (element instanceof MoonReferenceElement) {
+      final PsiElement resolved = ((MoonReferenceElement) element).resolve();
+      return resolved instanceof MoonSymbol && isLocalVariable((MoonSymbol) resolved, true);
     }
 
     return false;
   }
 
-  private boolean isLocalVariable(LuaSymbol var, boolean parametersAllowed) {
-    if (var instanceof LuaLocal) return true;
-    else if (var instanceof LuaParameter && !parametersAllowed) return false;
+  private boolean isLocalVariable(MoonSymbol var, boolean parametersAllowed) {
+    if (var instanceof MoonLocal) return true;
+    else if (var instanceof MoonParameter && !parametersAllowed) return false;
 
     return false;
   }

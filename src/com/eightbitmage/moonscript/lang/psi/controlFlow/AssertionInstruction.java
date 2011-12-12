@@ -16,13 +16,13 @@
 package com.eightbitmage.moonscript.lang.psi.controlFlow;
 
 import com.eightbitmage.moonscript.lang.psi.controlFlow.impl.InstructionImpl;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
 
 
 public class AssertionInstruction extends InstructionImpl {
   private final boolean myNegate;
 
-  public AssertionInstruction(int num, LuaExpression assertion, boolean negate) {
+  public AssertionInstruction(int num, MoonExpression assertion, boolean negate) {
     super(assertion, num);
     myNegate = negate;
   }

@@ -16,17 +16,17 @@
 package com.eightbitmage.moonscript.editor.inspections.unassignedVariable;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaGlobal;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.MoonControlFlowOwner;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonGlobal;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiFile;
-import com.eightbitmage.moonscript.lang.psi.LuaControlFlowOwner;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.ControlFlowUtil;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.Instruction;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.ReadWriteVariableInstruction;
@@ -69,9 +69,9 @@ public class UnassignedVariableAccessInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+        return new MoonElementVisitor() {
             //            @Override
-            //            public void visitBlock(LuaBlock e) {
+            //            public void visitBlock(MoonBlock e) {
             //                super.visitBlock(e);
             //
             //                check(e, holder);
@@ -80,23 +80,23 @@ public class UnassignedVariableAccessInspection extends AbstractInspection {
             @Override
             public void visitFile(PsiFile file) {
                 super.visitFile(file);
-                if (! (file instanceof LuaPsiFile))
+                if (! (file instanceof MoonPsiFile))
                     return;
 
-                check((LuaControlFlowOwner) file, holder);
+                check((MoonControlFlowOwner) file, holder);
             }
         };
     }
 
 
-    protected void check(LuaControlFlowOwner owner, ProblemsHolder problemsHolder) {
+    protected void check(MoonControlFlowOwner owner, ProblemsHolder problemsHolder) {
         Instruction[] flow = owner.getControlFlow();
         ReadWriteVariableInstruction[] reads = ControlFlowUtil.getReadsWithoutPriorWrites(flow);
         for (ReadWriteVariableInstruction read : reads) {
             PsiElement element = read.getElement();
-            if (element instanceof LuaReferenceElement) {
-                if (((LuaReferenceElement) element).getElement() instanceof LuaGlobal)
-                    if (((LuaReferenceElement) element).multiResolve(false).length == 0) {
+            if (element instanceof MoonReferenceElement) {
+                if (((MoonReferenceElement) element).getElement() instanceof MoonGlobal)
+                    if (((MoonReferenceElement) element).multiResolve(false).length == 0) {
                         problemsHolder.registerProblem(element, "Unassigned variable usage",
                                 ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
                     }

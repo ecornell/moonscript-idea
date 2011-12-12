@@ -16,14 +16,14 @@
 
 package com.eightbitmage.moonscript.intentions.style;
 
-import com.eightbitmage.moonscript.intentions.LuaIntentionsBundle;
+import com.eightbitmage.moonscript.intentions.MoonIntentionsBundle;
 import com.eightbitmage.moonscript.intentions.base.MutablyNamedIntention;
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpressionList;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaFunctionCallExpression;
-import com.eightbitmage.moonscript.lang.psi.impl.expressions.LuaStringLiteralExpressionImpl;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonFunctionCallExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpressionList;
+import com.eightbitmage.moonscript.lang.psi.impl.expressions.MoonStringLiteralExpressionImpl;
 import com.intellij.openapi.editor.Document;
 import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
@@ -41,28 +41,28 @@ import java.util.List;
 public class UseStringColonCallIntention extends MutablyNamedIntention {
     @Override
     protected String getTextForElement(PsiElement element) {
-        return LuaIntentionsBundle.message("use.string.colon.call.intention.name");
+        return MoonIntentionsBundle.message("use.string.colon.call.intention.name");
     }
 
     @Override
     protected void processIntention(@NotNull PsiElement element) throws IncorrectOperationException {
-        final LuaFunctionCallExpression call = (LuaFunctionCallExpression) element;
+        final MoonFunctionCallExpression call = (MoonFunctionCallExpression) element;
 
-        final LuaReferenceElement stringfunc = call.getFunctionNameElement();
+        final MoonReferenceElement stringfunc = call.getFunctionNameElement();
 
-        final LuaExpressionList parameters = call.getArgumentList();
+        final MoonExpressionList parameters = call.getArgumentList();
 
         if (parameters == null) return;
 
-        final List<LuaExpression> luaExpressions = parameters.getLuaExpressions();
+        final List<MoonExpression> moonExpressions = parameters.getMoonExpressions();
 
-        if (luaExpressions.size() == 0) return;
+        if (moonExpressions.size() == 0) return;
 
-        LuaExpression stringElem = luaExpressions.get(0);
+        MoonExpression stringElem = moonExpressions.get(0);
 
         StringBuilder newCall = new StringBuilder();
 
-        if (stringElem instanceof LuaStringLiteralExpressionImpl)
+        if (stringElem instanceof MoonStringLiteralExpressionImpl)
             newCall.append('(' ).append(stringElem.getText()).append(')' );
         else newCall.append(stringElem.getText());
 
@@ -70,10 +70,10 @@ public class UseStringColonCallIntention extends MutablyNamedIntention {
                 
         newCall.append(':').append(stringfunc.getName().substring(7)).append('(');
 
-        for (int i = 1, len = luaExpressions.size(); i < len; i++) {
+        for (int i = 1, len = moonExpressions.size(); i < len; i++) {
             if (i>1) newCall.append(',');
             
-            newCall.append(luaExpressions.get(i).getText());
+            newCall.append(moonExpressions.get(i).getText());
         }
 
         newCall.append(')');

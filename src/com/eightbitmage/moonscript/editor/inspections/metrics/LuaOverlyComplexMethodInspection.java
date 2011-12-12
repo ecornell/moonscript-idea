@@ -16,9 +16,9 @@
 package com.eightbitmage.moonscript.editor.inspections.metrics;
 
 
-import com.eightbitmage.moonscript.lang.psi.statements.LuaBlock;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaFunctionDefinitionStatement;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonBlock;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonFunctionDefinitionStatement;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemsHolder;
 import org.jetbrains.annotations.NotNull;
@@ -44,13 +44,13 @@ public class LuaOverlyComplexMethodInspection extends LuaMethodMetricInspection 
   }
 
     @Override
-  public LuaElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-    return new LuaElementVisitor() {
-         public void visitFunctionDef(LuaFunctionDefinitionStatement func) {
+  public MoonElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
+    return new MoonElementVisitor() {
+         public void visitFunctionDef(MoonFunctionDefinitionStatement func) {
               super.visitFunctionDef(func);
               final int limit = getLimit();
               final CyclomaticComplexityVisitor visitor = new CyclomaticComplexityVisitor();
-              final LuaBlock body = func.getBlock();
+              final MoonBlock body = func.getBlock();
               if (body == null) {
                 return;
               }
@@ -65,11 +65,11 @@ public class LuaOverlyComplexMethodInspection extends LuaMethodMetricInspection 
   }
 //
 //  private class Visitor extends BaseInspectionVisitor {
-//    public void visitMethod(LuaFunctionDefinitionStatement func) {
+//    public void visitMethod(MoonFunctionDefinitionStatement func) {
 //      super.visitFunctionDef(func);
 //      final int limit = getLimit();
 //      final CyclomaticComplexityVisitor visitor = new CyclomaticComplexityVisitor();
-//      final LuaBlock body = func.getBlock();
+//      final MoonBlock body = func.getBlock();
 //      if (body == null) {
 //        return;
 //      }

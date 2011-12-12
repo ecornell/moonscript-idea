@@ -16,8 +16,8 @@
 
 package com.eightbitmage.moonscript.editor.inspections.utils;
 
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpressionList;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpressionList;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,9 +27,9 @@ import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpressionList;
  */
 public class ExpressionUtils {
 
-    public static boolean onlyNilExpressions(LuaExpressionList list) {
+    public static boolean onlyNilExpressions(MoonExpressionList list) {
         boolean allNil = true;
-        for (LuaExpression expr : list.getLuaExpressions())
+        for (MoonExpression expr : list.getMoonExpressions())
             if (!expr.getText().equals("nil")) {
                 allNil = false;
                 break;

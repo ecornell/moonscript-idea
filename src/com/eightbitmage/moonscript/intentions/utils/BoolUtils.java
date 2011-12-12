@@ -15,7 +15,7 @@
  */
 package com.eightbitmage.moonscript.intentions.utils;
 
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
 import com.intellij.psi.tree.IElementType;
 import com.eightbitmage.moonscript.lang.psi.expressions.*;
 import org.jetbrains.annotations.NonNls;
@@ -27,16 +27,16 @@ public class BoolUtils {
     super();
   }
 
-  public static boolean isNegated(LuaExpression exp) {
-    LuaExpression ancestor = exp;
-    while (ancestor.getParent() instanceof LuaParenthesizedExpression) {
-      ancestor = (LuaExpression) ancestor.getParent();
+  public static boolean isNegated(MoonExpression exp) {
+    MoonExpression ancestor = exp;
+    while (ancestor.getParent() instanceof MoonParenthesizedExpression) {
+      ancestor = (MoonExpression) ancestor.getParent();
     }
-    if (ancestor.getParent() instanceof LuaUnaryExpression) {
-      final LuaUnaryExpression prefixAncestor =
-          (LuaUnaryExpression) ancestor.getParent();
+    if (ancestor.getParent() instanceof MoonUnaryExpression) {
+      final MoonUnaryExpression prefixAncestor =
+          (MoonUnaryExpression) ancestor.getParent();
       final IElementType sign = prefixAncestor.getOperationTokenType();
-      if (LuaTokenTypes.NOT.equals(sign)) {
+      if (MoonTokenTypes.NOT.equals(sign)) {
         return true;
       }
     }
@@ -44,58 +44,58 @@ public class BoolUtils {
   }
 
   @Nullable
-  public static LuaExpression findNegation(LuaExpression exp) {
-    LuaExpression ancestor = exp;
-    while (ancestor.getParent() instanceof LuaParenthesizedExpression) {
-      ancestor = (LuaExpression) ancestor.getParent();
+  public static MoonExpression findNegation(MoonExpression exp) {
+    MoonExpression ancestor = exp;
+    while (ancestor.getParent() instanceof MoonParenthesizedExpression) {
+      ancestor = (MoonExpression) ancestor.getParent();
     }
-    if (ancestor.getParent() instanceof LuaUnaryExpression) {
-      final LuaUnaryExpression prefixAncestor =
-          (LuaUnaryExpression) ancestor.getParent();
+    if (ancestor.getParent() instanceof MoonUnaryExpression) {
+      final MoonUnaryExpression prefixAncestor =
+          (MoonUnaryExpression) ancestor.getParent();
       final IElementType sign = prefixAncestor.getOperationTokenType();
-      if (LuaTokenTypes.NOT.equals(sign)) {
+      if (MoonTokenTypes.NOT.equals(sign)) {
         return prefixAncestor;
       }
     }
     return null;
   }
 
-  public static boolean isNegation(LuaExpression exp) {
-    if (!(exp instanceof LuaUnaryExpression)) {
+  public static boolean isNegation(MoonExpression exp) {
+    if (!(exp instanceof MoonUnaryExpression)) {
       return false;
     }
-    final LuaUnaryExpression prefixExp = (LuaUnaryExpression) exp;
+    final MoonUnaryExpression prefixExp = (MoonUnaryExpression) exp;
     final IElementType sign = prefixExp.getOperationTokenType();
-    return LuaTokenTypes.NOT.equals(sign);
+    return MoonTokenTypes.NOT.equals(sign);
   }
 
-  public static LuaExpression getNegated(LuaExpression exp) {
-    final LuaUnaryExpression prefixExp = (LuaUnaryExpression) exp;
-    final LuaExpression operand = prefixExp.getOperand();
+  public static MoonExpression getNegated(MoonExpression exp) {
+    final MoonUnaryExpression prefixExp = (MoonUnaryExpression) exp;
+    final MoonExpression operand = prefixExp.getOperand();
     return ParenthesesUtils.stripParentheses(operand);
   }
 
-  public static boolean isBooleanLiteral(LuaExpression exp) {
-    if (exp instanceof LuaLiteralExpression) {
-      final LuaLiteralExpression expression = (LuaLiteralExpression) exp;
+  public static boolean isBooleanLiteral(MoonExpression exp) {
+    if (exp instanceof MoonLiteralExpression) {
+      final MoonLiteralExpression expression = (MoonLiteralExpression) exp;
       @NonNls final String text = expression.getText();
-      return LuaTokenTypes.TRUE.equals(text) || LuaTokenTypes.FALSE.equals(text);
+      return MoonTokenTypes.TRUE.equals(text) || MoonTokenTypes.FALSE.equals(text);
     }
     return false;
   }
 
-  public static String getNegatedExpressionText(LuaExpression condition) {
+  public static String getNegatedExpressionText(MoonExpression condition) {
     if (isNegation(condition)) {
-      final LuaExpression negated = getNegated(condition);
+      final MoonExpression negated = getNegated(condition);
       return negated.getText();
     } else if (ComparisonUtils.isComparison(condition)) {
-      final LuaBinaryExpression binaryExpression =
-          (LuaBinaryExpression) condition;
+      final MoonBinaryExpression binaryExpression =
+          (MoonBinaryExpression) condition;
       final IElementType sign = binaryExpression.getOperationTokenType();
       final String negatedComparison =
           ComparisonUtils.getNegatedComparison(sign);
-      final LuaExpression lhs = binaryExpression.getLeftOperand();
-      final LuaExpression rhs = binaryExpression.getRightOperand();
+      final MoonExpression lhs = binaryExpression.getLeftOperand();
+      final MoonExpression rhs = binaryExpression.getRightOperand();
       assert rhs != null;
       return lhs.getText() + negatedComparison + rhs.getText();
     } else if (ParenthesesUtils.getPrecendence(condition) >

@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.run;
 
-import com.eightbitmage.moonscript.KahLuaInterpreterWindowFactory;
+import com.eightbitmage.moonscript.KahluaInterpreterWindowFactory;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.ExecutionResult;
 import com.intellij.execution.Executor;
@@ -41,10 +41,10 @@ import org.jetbrains.annotations.NotNull;
  */
 
 
-public class KahluaCommandLineState extends LuaCommandLineState {
+public class KahluaCommandLineState extends MoonCommandLineState {
     private static final Logger log = Logger.getInstance("Lua.KahluaCommandLineState");
 
-    public KahluaCommandLineState(LuaRunConfiguration runConfiguration, ExecutionEnvironment env) {
+    public KahluaCommandLineState(MoonRunConfiguration runConfiguration, ExecutionEnvironment env) {
         super(runConfiguration, env);
     }
 
@@ -66,9 +66,9 @@ public class KahluaCommandLineState extends LuaCommandLineState {
             text = FileDocumentManager.getInstance().getDocument(file).getText();
         } else text = "";
 
-        if (KahLuaInterpreterWindowFactory.INSTANCE != null) {
-            KahLuaInterpreterWindowFactory.WINDOW
-                    .activate(KahLuaInterpreterWindowFactory.INSTANCE.getRunnableExecution(text), true);
+        if (KahluaInterpreterWindowFactory.INSTANCE != null) {
+            KahluaInterpreterWindowFactory.WINDOW
+                    .activate(KahluaInterpreterWindowFactory.INSTANCE.getRunnableExecution(text), true);
         }
 
         return new KahluaExecutionResult(console, createActions(console, processHandler, executor));

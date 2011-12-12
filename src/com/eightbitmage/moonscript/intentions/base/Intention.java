@@ -15,11 +15,11 @@
  */
 package com.eightbitmage.moonscript.intentions.base;
 
-import com.eightbitmage.moonscript.intentions.LuaIntentionsBundle;
+import com.eightbitmage.moonscript.intentions.MoonIntentionsBundle;
 import com.eightbitmage.moonscript.intentions.utils.BoolUtils;
 import com.eightbitmage.moonscript.intentions.utils.QuickfixUtil;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElementFactory;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
 import com.intellij.codeInsight.intention.IntentionAction;
 import com.intellij.openapi.editor.CaretModel;
 import com.intellij.openapi.editor.Editor;
@@ -65,11 +65,11 @@ public abstract class Intention implements IntentionAction {
 
   protected static void replaceExpressionWithNegatedExpressionString(
       @NotNull String newExpression,
-      @NotNull LuaExpression expression)
+      @NotNull MoonExpression expression)
       throws IncorrectOperationException {
-    final LuaPsiElementFactory factory = LuaPsiElementFactory.getInstance(expression.getProject());
+    final MoonPsiElementFactory factory = MoonPsiElementFactory.getInstance(expression.getProject());
 
-    LuaExpression expressionToReplace = expression;
+    MoonExpression expressionToReplace = expression;
     final String expString;
     if (BoolUtils.isNegated(expression)) {
       expressionToReplace = BoolUtils.findNegation(expression);
@@ -77,7 +77,7 @@ public abstract class Intention implements IntentionAction {
     } else {
       expString = "not (" + newExpression + ')';
     }
-    final LuaExpression newCall =
+    final MoonExpression newCall =
         factory.createExpressionFromText(expString);
     assert expressionToReplace != null;
     expressionToReplace.replaceWithExpression(newCall, true);
@@ -134,11 +134,11 @@ public abstract class Intention implements IntentionAction {
 
   @NotNull
   public String getText() {
-    return LuaIntentionsBundle.message(getPrefix() + ".name");
+    return MoonIntentionsBundle.message(getPrefix() + ".name");
   }
 
   @NotNull
   public String getFamilyName() {
-    return LuaIntentionsBundle.message(getPrefix() + ".family.name");
+    return MoonIntentionsBundle.message(getPrefix() + ".family.name");
   }
 }

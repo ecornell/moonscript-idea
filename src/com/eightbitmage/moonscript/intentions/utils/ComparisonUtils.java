@@ -15,9 +15,9 @@
  */
 package com.eightbitmage.moonscript.intentions.utils;
 
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaBinaryExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonBinaryExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
 import com.intellij.psi.tree.IElementType;
 
 import java.util.HashMap;
@@ -33,33 +33,33 @@ public class ComparisonUtils {
   }
 
   static {
-    s_comparisonStrings.put(LuaTokenTypes.EQ, "==");
-    s_comparisonStrings.put(LuaTokenTypes.NE, "~=");
-    s_comparisonStrings.put(LuaTokenTypes.GT, ">");
-    s_comparisonStrings.put(LuaTokenTypes.LT, "<");
-    s_comparisonStrings.put(LuaTokenTypes.GE, ">=");
-    s_comparisonStrings.put(LuaTokenTypes.LE, "<=");
+    s_comparisonStrings.put(MoonTokenTypes.EQ, "==");
+    s_comparisonStrings.put(MoonTokenTypes.NE, "~=");
+    s_comparisonStrings.put(MoonTokenTypes.GT, ">");
+    s_comparisonStrings.put(MoonTokenTypes.LT, "<");
+    s_comparisonStrings.put(MoonTokenTypes.GE, ">=");
+    s_comparisonStrings.put(MoonTokenTypes.LE, "<=");
 
-    s_swappedComparisons.put(LuaTokenTypes.EQ, "==");
-    s_swappedComparisons.put(LuaTokenTypes.NE, "~=");
-    s_swappedComparisons.put(LuaTokenTypes.GT, "<");
-    s_swappedComparisons.put(LuaTokenTypes.LT, ">");
-    s_swappedComparisons.put(LuaTokenTypes.GE, "<=");
-    s_swappedComparisons.put(LuaTokenTypes.LE, ">=");
+    s_swappedComparisons.put(MoonTokenTypes.EQ, "==");
+    s_swappedComparisons.put(MoonTokenTypes.NE, "~=");
+    s_swappedComparisons.put(MoonTokenTypes.GT, "<");
+    s_swappedComparisons.put(MoonTokenTypes.LT, ">");
+    s_swappedComparisons.put(MoonTokenTypes.GE, "<=");
+    s_swappedComparisons.put(MoonTokenTypes.LE, ">=");
 
-    s_invertedComparisons.put(LuaTokenTypes.EQ, "~=");
-    s_invertedComparisons.put(LuaTokenTypes.NE, "==");
-    s_invertedComparisons.put(LuaTokenTypes.GT, "<=");
-    s_invertedComparisons.put(LuaTokenTypes.LT, ">=");
-    s_invertedComparisons.put(LuaTokenTypes.GE, "<");
-    s_invertedComparisons.put(LuaTokenTypes.LE, ">");
+    s_invertedComparisons.put(MoonTokenTypes.EQ, "~=");
+    s_invertedComparisons.put(MoonTokenTypes.NE, "==");
+    s_invertedComparisons.put(MoonTokenTypes.GT, "<=");
+    s_invertedComparisons.put(MoonTokenTypes.LT, ">=");
+    s_invertedComparisons.put(MoonTokenTypes.GE, "<");
+    s_invertedComparisons.put(MoonTokenTypes.LE, ">");
   }
 
-  public static boolean isComparison(LuaExpression exp) {
-    if (!(exp instanceof LuaBinaryExpression)) {
+  public static boolean isComparison(MoonExpression exp) {
+    if (!(exp instanceof MoonBinaryExpression)) {
       return false;
     }
-    final LuaBinaryExpression binaryExpression = (LuaBinaryExpression) exp;
+    final MoonBinaryExpression binaryExpression = (MoonBinaryExpression) exp;
     final IElementType sign = binaryExpression.getOperationTokenType();
     return s_comparisonStrings.containsKey(sign);
   }

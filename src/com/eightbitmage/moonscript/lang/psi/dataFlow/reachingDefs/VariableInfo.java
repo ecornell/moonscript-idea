@@ -15,7 +15,7 @@
  */
 package com.eightbitmage.moonscript.lang.psi.dataFlow.reachingDefs;
 
-import com.eightbitmage.moonscript.lang.psi.types.LuaType;
+import com.eightbitmage.moonscript.lang.psi.types.MoonType;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -26,5 +26,5 @@ public interface VariableInfo {
   @NotNull String getName();
 
   @Nullable
-  LuaType getType();
+  MoonType getType();
 }

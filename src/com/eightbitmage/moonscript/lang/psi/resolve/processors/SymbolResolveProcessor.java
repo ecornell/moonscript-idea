@@ -16,12 +16,12 @@
 
 package com.eightbitmage.moonscript.lang.psi.resolve.processors;
 
-import com.eightbitmage.moonscript.lang.luadoc.psi.api.LuaDocSymbolReference;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
-import com.eightbitmage.moonscript.lang.psi.impl.symbols.LuaCompoundReferenceElementImpl;
-import com.eightbitmage.moonscript.lang.psi.resolve.LuaResolveResultImpl;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaGlobal;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaSymbol;
+import com.eightbitmage.moonscript.lang.moondoc.psi.api.MoonDocSymbolReference;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.impl.symbols.MoonCompoundReferenceElementImpl;
+import com.eightbitmage.moonscript.lang.psi.resolve.MoonResolveResultImpl;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonGlobal;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonSymbol;
 import com.intellij.openapi.util.Key;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiReference;
@@ -63,13 +63,13 @@ public class SymbolResolveProcessor extends ResolveProcessor {
 
   public boolean execute(PsiElement element, ResolveState resolveState) {
   
-    if (element instanceof LuaSymbol && !myProcessedElements.contains(element)) {
-      LuaSymbol namedElement = (LuaSymbol) element;
+    if (element instanceof MoonSymbol && !myProcessedElements.contains(element)) {
+      MoonSymbol namedElement = (MoonSymbol) element;
       boolean isAccessible = isAccessible(namedElement);
       if (!filter || isAccessible)
-          myCandidates.add(new LuaResolveResultImpl(namedElement, true));
+          myCandidates.add(new MoonResolveResultImpl(namedElement, true));
       myProcessedElements.add(namedElement);
-      return !filter || !isAccessible || ((PsiReference)myPlace).getElement() instanceof LuaGlobal;
+      return !filter || !isAccessible || ((PsiReference)myPlace).getElement() instanceof MoonGlobal;
     }
 
     return true;
@@ -98,15 +98,15 @@ public class SymbolResolveProcessor extends ResolveProcessor {
 //    return true;
 //  }
 
-    protected boolean isAccessible(LuaSymbol namedElement) {
+    protected boolean isAccessible(MoonSymbol namedElement) {
         if (myName == null) return true;
 
-        if (myPlace instanceof LuaCompoundReferenceElementImpl) {
+        if (myPlace instanceof MoonCompoundReferenceElementImpl) {
             return myName.equals(namedElement.getName());
-        } else if (myPlace instanceof LuaDocSymbolReference) {
+        } else if (myPlace instanceof MoonDocSymbolReference) {
             return myName.equals(namedElement.getName());
-        } else if (myPlace instanceof LuaReferenceElement) {
-            return myName.equals(namedElement.getName()) && namedElement.isSameKind((LuaSymbol) ((LuaReferenceElement) myPlace).getElement());
+        } else if (myPlace instanceof MoonReferenceElement) {
+            return myName.equals(namedElement.getName()) && namedElement.isSameKind((MoonSymbol) ((MoonReferenceElement) myPlace).getElement());
         }
 
         return myName.equals(namedElement.getName());

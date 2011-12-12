@@ -46,7 +46,7 @@ public class KahluaSdk implements Sdk, ApplicationComponent {
 
     @Override
     public SdkType getSdkType() {
-        return LuaSdkType.getInstance();
+        return MoonSdkType.getInstance();
     }
 
     @Override
@@ -133,9 +133,9 @@ public class KahluaSdk implements Sdk, ApplicationComponent {
                             found = true;
                         }
 
-                    if (!found)
-                        sdkModificator.addRoot(stdRoot, OrderRootType.CLASSES);
-                    }
+                    //EC if (!found)
+                        //EC sdkModificator.addRoot(stdRoot, OrderRootType.CLASSES);
+                }
             });
 
             sdkModificator.commitChanges();
@@ -152,13 +152,13 @@ public class KahluaSdk implements Sdk, ApplicationComponent {
         File jdkHomeFile = new File(jdkHome);
         // if (!jdkHomeFile.exists()) return null;
 
-        final Sdk jdk = new ProjectJdkImpl(versionName, LuaSdkType.getInstance());
+        final Sdk jdk = new ProjectJdkImpl(versionName, MoonSdkType.getInstance());
         final SdkModificator sdkModificator = jdk.getSdkModificator();
 
         String path = jdkHome.replace(File.separatorChar, '/');
         sdkModificator.setHomePath(path);
         sdkModificator.setVersionString(versionName); // must be set after home path, otherwise setting home path clears the version string
-        sdkModificator.addRoot(StdLibrary.getStdFileLocation(), OrderRootType.CLASSES);
+        //ec sdkModificator.addRoot(StdLibrary.getStdFileLocation(), OrderRootType.CLASSES);
         sdkModificator.commitChanges();
 
         return jdk;

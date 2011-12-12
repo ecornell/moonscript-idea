@@ -15,10 +15,10 @@
  */
 package com.eightbitmage.moonscript.intentions.utils;
 
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaAssignmentStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaFunctionCallStatement;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonAssignmentStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonFunctionCallStatement;
 import com.intellij.psi.tree.IElementType;
 import com.eightbitmage.moonscript.lang.psi.expressions.*;
 import org.jetbrains.annotations.NotNull;
@@ -61,58 +61,58 @@ public class ParenthesesUtils {
       new HashMap<IElementType, Integer>(NUM_PRECEDENCES);
 
   static {
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.PLUS, ADDITIVE_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.MINUS, ADDITIVE_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.MULT, MULTIPLICATIVE_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.DIV, MULTIPLICATIVE_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.MOD, MULTIPLICATIVE_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.PLUS, ADDITIVE_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.MINUS, ADDITIVE_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.MULT, MULTIPLICATIVE_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.DIV, MULTIPLICATIVE_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.MOD, MULTIPLICATIVE_PRECEDENCE);
 
-//    s_binaryOperatorPrecedence.put(LuaTokenTypes.mSTAR_STAR, EXPONENTIAL_PRECEDENCE);
-//    s_binaryOperatorPrecedence.put(LuaTokenTypes.mLAND, AND_PRECEDENCE);
-//    s_binaryOperatorPrecedence.put(LuaTokenTypes.mLOR, OR_PRECEDENCE);
-//    s_binaryOperatorPrecedence.put(LuaTokenTypes.mBAND, BINARY_AND_PRECEDENCE);
-//    s_binaryOperatorPrecedence.put(LuaTokenTypes.mBOR, BINARY_OR_PRECEDENCE);
-//    s_binaryOperatorPrecedence.put(LuaTokenTypes.mBXOR, BINARY_XOR_PRECEDENCE);
-   // s_binaryOperatorPrecedence.put(LuaTokenTypes.mBSL, SHIFT_PRECEDENCE);
-   // s_binaryOperatorPrecedence.put(LuaTokenTypes.mBSR, SHIFT_PRECEDENCE);
+//    s_binaryOperatorPrecedence.put(MoonTokenTypes.mSTAR_STAR, EXPONENTIAL_PRECEDENCE);
+//    s_binaryOperatorPrecedence.put(MoonTokenTypes.mLAND, AND_PRECEDENCE);
+//    s_binaryOperatorPrecedence.put(MoonTokenTypes.mLOR, OR_PRECEDENCE);
+//    s_binaryOperatorPrecedence.put(MoonTokenTypes.mBAND, BINARY_AND_PRECEDENCE);
+//    s_binaryOperatorPrecedence.put(MoonTokenTypes.mBOR, BINARY_OR_PRECEDENCE);
+//    s_binaryOperatorPrecedence.put(MoonTokenTypes.mBXOR, BINARY_XOR_PRECEDENCE);
+   // s_binaryOperatorPrecedence.put(MoonTokenTypes.mBSL, SHIFT_PRECEDENCE);
+   // s_binaryOperatorPrecedence.put(MoonTokenTypes.mBSR, SHIFT_PRECEDENCE);
   //  s_binaryOperatorPrecedence.put(">>>", SHIFT_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.GT, RELATIONAL_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.GE, RELATIONAL_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.LT, RELATIONAL_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.LE, RELATIONAL_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.EQ, EQUALITY_PRECEDENCE);
-    s_binaryOperatorPrecedence.put(LuaTokenTypes.NE, EQUALITY_PRECEDENCE);
-    //s_binaryOperatorPrecedence.put(LuaTokenTypes.mCOMPARE_TO, EQUALITY_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.GT, RELATIONAL_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.GE, RELATIONAL_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.LT, RELATIONAL_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.LE, RELATIONAL_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.EQ, EQUALITY_PRECEDENCE);
+    s_binaryOperatorPrecedence.put(MoonTokenTypes.NE, EQUALITY_PRECEDENCE);
+    //s_binaryOperatorPrecedence.put(MoonTokenTypes.mCOMPARE_TO, EQUALITY_PRECEDENCE);
   }
 
   @Nullable
-  public static LuaExpression stripParentheses(
-      @Nullable LuaExpression expression) {
-    LuaExpression parenthesized = expression;
-    while (parenthesized instanceof LuaParenthesizedExpression) {
-      final LuaParenthesizedExpression parenthesizedExpression =
-          (LuaParenthesizedExpression) parenthesized;
+  public static MoonExpression stripParentheses(
+      @Nullable MoonExpression expression) {
+    MoonExpression parenthesized = expression;
+    while (parenthesized instanceof MoonParenthesizedExpression) {
+      final MoonParenthesizedExpression parenthesizedExpression =
+          (MoonParenthesizedExpression) parenthesized;
       parenthesized = parenthesizedExpression.getOperand();
     }
     return parenthesized;
   }
 
-  public static int getPrecendence(LuaExpression expression) {
+  public static int getPrecendence(MoonExpression expression) {
     if (
-        expression instanceof LuaLiteralExpression
+        expression instanceof MoonLiteralExpression
         ) {
       return LITERAL_PRECEDENCE;
     }
-    if (expression instanceof LuaReferenceElement) {
-      final LuaReferenceElement referenceExpression =
-          (LuaReferenceElement) expression;
+    if (expression instanceof MoonReferenceElement) {
+      final MoonReferenceElement referenceExpression =
+          (MoonReferenceElement) expression;
 //      if (referenceExpression.getQualifierExpression() != null) {
 //        return METHOD_CALL_PRECEDENCE;
 //      } else {
         return LITERAL_PRECEDENCE;
 //      }
     }
-    if (expression instanceof LuaFunctionCallStatement) {
+    if (expression instanceof MoonFunctionCallStatement) {
       return METHOD_CALL_PRECEDENCE;
     }
 //    if (expression instanceof LuaTypeCastExpression ||
@@ -122,22 +122,22 @@ public class ParenthesesUtils {
 //    if (expression instanceof LuaPostfixExpression) {
 //      return POSTFIX_PRECEDENCE;
 //    }
-    if (expression instanceof LuaUnaryExpression) {
+    if (expression instanceof MoonUnaryExpression) {
       return PREFIX_PRECEDENCE;
     }
-    if (expression instanceof LuaBinaryExpression) {
-      final LuaBinaryExpression binaryExpression =
-          (LuaBinaryExpression) expression;
+    if (expression instanceof MoonBinaryExpression) {
+      final MoonBinaryExpression binaryExpression =
+          (MoonBinaryExpression) expression;
       final IElementType sign = binaryExpression.getOperationTokenType();
       if (sign != null) return precedenceForBinaryOperator(sign);
     }
-    if (expression instanceof LuaConditionalExpression) {
+    if (expression instanceof MoonConditionalExpression) {
       return CONDITIONAL_PRECEDENCE;
     }
-    if (expression instanceof LuaAssignmentStatement) {
+    if (expression instanceof MoonAssignmentStatement) {
       return ASSIGNMENT_PRECEDENCE;
     }
-    if (expression instanceof LuaParenthesizedExpression) {
+    if (expression instanceof MoonParenthesizedExpression) {
       return PARENTHESIZED_PRECEDENCE;
     }
     return -1;

@@ -16,10 +16,10 @@
 package com.eightbitmage.moonscript.editor.inspections.bugs;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaBinaryExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonBinaryExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.psi.PsiElementVisitor;
@@ -60,17 +60,17 @@ public class LuaDivideByZeroInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+        return new MoonElementVisitor() {
             @Override
-            public void visitBinaryExpression(LuaBinaryExpression expression) {
+            public void visitBinaryExpression(MoonBinaryExpression expression) {
                 super.visitBinaryExpression(expression);
-                final LuaExpression rhs = expression.getRightOperand();
+                final MoonExpression rhs = expression.getRightOperand();
                 if (rhs == null) {
                     return;
                 }
                 final IElementType tokenType = expression.getOperationTokenType();
-                if (!LuaTokenTypes.DIV.equals(tokenType) &&
-                        !LuaTokenTypes.MOD.equals(tokenType)) {
+                if (!MoonTokenTypes.DIV.equals(tokenType) &&
+                        !MoonTokenTypes.MOD.equals(tokenType)) {
                     return;
                 }
                 if (!isZero(rhs)) {
@@ -82,7 +82,7 @@ public class LuaDivideByZeroInspection extends AbstractInspection {
     }
 
 
-    private static boolean isZero(LuaExpression expression) {
+    private static boolean isZero(MoonExpression expression) {
         @NonNls
         final String text = expression.getText();
         return "0".equals(text) ||

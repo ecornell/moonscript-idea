@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.lang.documentor;
 
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
 import com.eightbitmage.moonscript.util.UrlUtil;
 import com.intellij.lang.documentation.DocumentationProvider;
 import com.intellij.openapi.diagnostic.Logger;
@@ -92,7 +92,7 @@ public class KahluaPluginDocumentationProvider implements DocumentationProvider 
 
     @LuaMethod(name="getBaseJarUrl", global = true)
     public String getBaseJarUrl() {
-        String url = VfsUtil.pathToUrl(PathUtil.getJarPathForClass(LuaPsiFile.class));
+        String url = VfsUtil.pathToUrl(PathUtil.getJarPathForClass(MoonPsiFile.class));
         VirtualFile sdkFile = VirtualFileManager.getInstance().findFileByUrl(url);
         if (sdkFile != null) {
             VirtualFile jarFile = JarFileSystem.getInstance().getJarRootForLocalFile(sdkFile);
@@ -146,28 +146,28 @@ public class KahluaPluginDocumentationProvider implements DocumentationProvider 
     private VirtualFile getVirtualFileForElement(PsiElement e) {
         PsiElement r = e;
 
-//        if (e instanceof LuaDeclarationExpression) {
+//        if (e instanceof MoonDeclarationExpression) {
 //            r = e;
 //        } else {
-//            if (e instanceof LuaFunctionCallExpression)
-//                e = ((LuaFunctionCallExpression) e).getFunctionNameElement();
+//            if (e instanceof MoonFunctionCallExpression)
+//                e = ((MoonFunctionCallExpression) e).getFunctionNameElement();
 //
-//            if (e instanceof LuaFieldIdentifier) {
-//                e = ((LuaFieldIdentifier) e).getEnclosingIdentifier();
+//            if (e instanceof MoonFieldIdentifier) {
+//                e = ((MoonFieldIdentifier) e).getEnclosingIdentifier();
 //
-//                assert e instanceof LuaCompoundIdentifier;
+//                assert e instanceof MoonCompoundIdentifier;
 //            }
 //
-//            while (e instanceof LuaCompoundIdentifier) {
+//            while (e instanceof MoonCompoundIdentifier) {
 //                e = e.getParent();
 //            }
 //
-//            if (! (e instanceof LuaReferenceElement))
+//            if (! (e instanceof MoonReferenceElement))
 //                e = e.getParent();
 //
 //
-//            if (e instanceof LuaReferenceElementImpl) {
-//                r = ((LuaReferenceElementImpl) e).getResolvedElement();
+//            if (e instanceof MoonReferenceElementImpl) {
+//                r = ((MoonReferenceElementImpl) e).getResolvedElement();
 //            }
 //        }
 

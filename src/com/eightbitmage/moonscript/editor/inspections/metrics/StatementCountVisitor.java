@@ -15,46 +15,46 @@
  */
 package com.eightbitmage.moonscript.editor.inspections.metrics;
 
-import com.eightbitmage.moonscript.lang.psi.statements.LuaFunctionDefinitionStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaStatementElement;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonFunctionDefinitionStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonStatementElement;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import org.jetbrains.annotations.NotNull;
 
 
-class StatementCountVisitor extends LuaElementVisitor {
+class StatementCountVisitor extends MoonElementVisitor {
   private int statementCount = 0;
 
-//  public void visitElement(LuaPsiElement element) {
+//  public void visitElement(MoonPsiElement element) {
 //    int oldCount = 0;
-//    if (element instanceof LuaFunctionDefinitionStatement) {
+//    if (element instanceof MoonFunctionDefinitionStatement) {
 //      oldCount = statementCount;
 //    }
 //    super.visitElement(element);
 //
-//    if (element instanceof LuaFunctionDefinitionStatement) {
+//    if (element instanceof MoonFunctionDefinitionStatement) {
 //      statementCount = oldCount;
 //    }
 //  }
 
 
-    public void visitFunctionDef(LuaFunctionDefinitionStatement e) {
+    public void visitFunctionDef(MoonFunctionDefinitionStatement e) {
         super.visitFunctionDef(e);
 
         statementCount = 0;
     }
 
 
-  public void visitStatement(@NotNull LuaStatementElement statement) {
+  public void visitStatement(@NotNull MoonStatementElement statement) {
     statementCount++;
     int oldCount = 0;
 
-    if (statement instanceof LuaFunctionDefinitionStatement) {
+    if (statement instanceof MoonFunctionDefinitionStatement) {
       oldCount = statementCount;
     }
 
     super.visitStatement(statement);
 
-    if (statement instanceof LuaFunctionDefinitionStatement) {
+    if (statement instanceof MoonFunctionDefinitionStatement) {
       statementCount = oldCount;
     }
   }

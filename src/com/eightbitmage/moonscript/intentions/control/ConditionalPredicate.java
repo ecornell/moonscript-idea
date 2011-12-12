@@ -17,14 +17,14 @@ package com.eightbitmage.moonscript.intentions.control;
 
 import com.eightbitmage.moonscript.intentions.base.ErrorUtil;
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaConditionalExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonConditionalExpression;
 import com.intellij.psi.PsiElement;
 
 
 class ConditionalPredicate implements PsiElementPredicate {
 
   public boolean satisfiedBy(PsiElement element) {
-    if (!(element instanceof LuaConditionalExpression)) {
+    if (!(element instanceof MoonConditionalExpression)) {
       return false;
     }
     return !ErrorUtil.containsError(element);

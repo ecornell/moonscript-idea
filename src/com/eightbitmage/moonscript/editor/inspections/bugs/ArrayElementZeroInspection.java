@@ -17,11 +17,11 @@
 package com.eightbitmage.moonscript.editor.inspections.bugs;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaLiteralExpression;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaCompoundIdentifier;
-import com.eightbitmage.moonscript.lang.psi.types.LuaType;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonLiteralExpression;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonCompoundIdentifier;
+import com.eightbitmage.moonscript.lang.psi.types.MoonType;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemsHolder;
@@ -63,15 +63,15 @@ public class ArrayElementZeroInspection  extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+        return new MoonElementVisitor() {
             @Override
-            public void visitCompoundIdentifier(LuaCompoundIdentifier e) {
+            public void visitCompoundIdentifier(MoonCompoundIdentifier e) {
                 super.visitCompoundIdentifier(e);
 
-                LuaExpression symbol = e.getRightSymbol();
+                MoonExpression symbol = e.getRightSymbol();
 
-                if (symbol instanceof LuaLiteralExpression) {
-                    if (symbol.getLuaType() == LuaType.NUMBER && symbol.getText().equals("0"))
+                if (symbol instanceof MoonLiteralExpression) {
+                    if (symbol.getLuaType() == MoonType.NUMBER && symbol.getText().equals("0"))
                         holder.registerProblem(e, "Use of element 0", LocalQuickFix.EMPTY_ARRAY);
                 }
             }

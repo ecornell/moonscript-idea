@@ -17,11 +17,11 @@
 package com.eightbitmage.moonscript.editor.inspections.bugs;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaDeclarationExpression;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaBlock;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaGlobal;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonDeclarationExpression;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonBlock;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonGlobal;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemsHolder;
@@ -67,16 +67,16 @@ public class GlobalCreationOutsideOfMainChunk extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+        return new MoonElementVisitor() {
             List<String> validGlobals = new ArrayList<String>();
-            public void visitDeclarationExpression(LuaDeclarationExpression var) {
+            public void visitDeclarationExpression(MoonDeclarationExpression var) {
                 super.visitDeclarationExpression(var);
 
-                if (var instanceof LuaGlobal) {
-                    LuaBlock block = PsiTreeUtil.getParentOfType(var, LuaBlock.class);
+                if (var instanceof MoonGlobal) {
+                    MoonBlock block = PsiTreeUtil.getParentOfType(var, MoonBlock.class);
                     if (block == null) return;
 
-                    if (block instanceof LuaPsiFile) {
+                    if (block instanceof MoonPsiFile) {
                         validGlobals.add(var.getName());
                         return;
                     }

@@ -16,8 +16,8 @@
 package com.eightbitmage.moonscript.intentions.comments;
 
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.luadoc.psi.api.LuaDocComment;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.moondoc.psi.api.MoonDocComment;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
@@ -28,11 +28,11 @@ class EndOfLineCommentPredicate implements PsiElementPredicate {
     if (!(element instanceof PsiComment)) {
       return false;
     }
-    if (element instanceof LuaDocComment) {
+    if (element instanceof MoonDocComment) {
       return false;
     }
     final PsiComment comment = (PsiComment) element;
     final IElementType type = comment.getTokenType();
-    return LuaTokenTypes.SHORTCOMMENT.equals(type);
+    return MoonTokenTypes.SHORTCOMMENT.equals(type);
   }
 }

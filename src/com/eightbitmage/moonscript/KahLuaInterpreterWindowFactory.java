@@ -33,7 +33,7 @@ import se.krka.kahlua.vm.Platform;
  * Date: May 7, 2010
  * Time: 8:02:20 PM
  */
-public class KahLuaInterpreterWindowFactory implements ToolWindowFactory {
+public class KahluaInterpreterWindowFactory implements ToolWindowFactory {
     public static KahluaInterpreter INSTANCE = null;
     public static ToolWindow WINDOW = null;
 

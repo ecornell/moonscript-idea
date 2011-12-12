@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.editor.inspections;
 
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemDescriptor;
 import com.intellij.openapi.diagnostic.Logger;
@@ -47,7 +47,7 @@ public abstract class LuaFix implements LocalQuickFix {
     }
 
     public boolean isAvailable(@NotNull Project project, Editor editor, PsiFile file) {
-        return file instanceof LuaPsiFile;
+        return file instanceof MoonPsiFile;
     }
 
     public boolean startInWriteAction() {

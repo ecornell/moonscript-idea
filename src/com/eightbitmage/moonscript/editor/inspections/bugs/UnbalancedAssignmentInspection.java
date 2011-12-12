@@ -19,9 +19,11 @@ package com.eightbitmage.moonscript.editor.inspections.bugs;
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
 import com.eightbitmage.moonscript.editor.inspections.LuaFix;
 import com.eightbitmage.moonscript.editor.inspections.utils.ExpressionUtils;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElementFactory;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaCompoundIdentifier;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory;
+import com.eightbitmage.moonscript.lang.psi.expressions.*;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonDeclarationStatement;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonCompoundIdentifier;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemDescriptor;
@@ -30,13 +32,10 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.util.IncorrectOperationException;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpressionList;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaFunctionCallExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaIdentifierList;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaAssignmentStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaDeclarationStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaLocalDefinitionStatement;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpressionList;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonAssignmentStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonLocalDefinitionStatement;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 
@@ -75,21 +74,21 @@ public class UnbalancedAssignmentInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
-            public void visitAssignment(LuaAssignmentStatement assign) {
+        return new MoonElementVisitor() {
+            public void visitAssignment(MoonAssignmentStatement assign) {
                 super.visitAssignment(assign);
-                LuaIdentifierList left = assign.getLeftExprs();
-                LuaExpressionList right = assign.getRightExprs();
+                MoonIdentifierList left = assign.getLeftExprs();
+                MoonExpressionList right = assign.getRightExprs();
                 checkAssignment(assign, left, right, holder);
             }
 
             @Override
-            public void visitDeclarationStatement(LuaDeclarationStatement e) {
+            public void visitDeclarationStatement(MoonDeclarationStatement e) {
                 super.visitDeclarationStatement(e);
 
-                if (e instanceof LuaLocalDefinitionStatement) {
-                    LuaIdentifierList left = ((LuaLocalDefinitionStatement) e).getLeftExprs();
-                    LuaExpressionList right = ((LuaLocalDefinitionStatement) e).getRightExprs();
+                if (e instanceof MoonLocalDefinitionStatement) {
+                    MoonIdentifierList left = ((MoonLocalDefinitionStatement) e).getLeftExprs();
+                    MoonExpressionList right = ((MoonLocalDefinitionStatement) e).getRightExprs();
 
                     if (right == null)
                         return;
@@ -105,26 +104,26 @@ public class UnbalancedAssignmentInspection extends AbstractInspection {
     }
 
     private void checkAssignment(PsiElement element,
-                                 LuaIdentifierList left,
-                                 LuaExpressionList right,
+                                 MoonIdentifierList left,
+                                 MoonExpressionList right,
                                  ProblemsHolder holder) {
         if (left != null && right != null && left.count() != right.count()) {
 
             boolean tooManyExprs = left.count() < right.count();
             boolean ignore = false;
 
-            int exprcount = right.getLuaExpressions().size();
+            int exprcount = right.getMoonExpressions().size();
             ignore = exprcount == 0;
 
             PsiElement expr = null;
 
             if (!ignore) {
-                LuaExpression last = right.getLuaExpressions().get(exprcount - 1);
+                MoonExpression last = right.getMoonExpressions().get(exprcount - 1);
 
                 expr = last;
 
-                if (expr instanceof LuaCompoundIdentifier)
-                    expr = ((LuaCompoundIdentifier) expr).getScopeIdentifier();
+                if (expr instanceof MoonCompoundIdentifier)
+                    expr = ((MoonCompoundIdentifier) expr).getScopeIdentifier();
             }
 
             if (expr != null)
@@ -132,7 +131,7 @@ public class UnbalancedAssignmentInspection extends AbstractInspection {
             else
                 ignore = true;
 
-            if (!ignore && expr instanceof LuaFunctionCallExpression)
+            if (!ignore && expr instanceof MoonFunctionCallExpression)
                 ignore = true;
 
             if (!ignore) {
@@ -153,20 +152,20 @@ public class UnbalancedAssignmentInspection extends AbstractInspection {
 
         @Override
         protected void doFix(Project project, ProblemDescriptor descriptor) throws IncorrectOperationException {
-            final LuaAssignmentStatement assign = (LuaAssignmentStatement) descriptor.getPsiElement();
-            final LuaIdentifierList identifierList = assign.getLeftExprs();
-            final LuaExpressionList expressionList = assign.getRightExprs();
+            final MoonAssignmentStatement assign = (MoonAssignmentStatement) descriptor.getPsiElement();
+            final MoonIdentifierList identifierList = assign.getLeftExprs();
+            final MoonExpressionList expressionList = assign.getRightExprs();
             final PsiElement lastExpr = expressionList.getLastChild();
             final int leftCount = identifierList.count();
             final int rightCount = expressionList.count();
 
             if (tooManyExprs) {
                 for (int i = rightCount - leftCount; i > 0; i--) {
-                    identifierList.addAfter(LuaPsiElementFactory.getInstance(project).createExpressionFromText("_"), lastExpr);
+                    identifierList.addAfter(MoonPsiElementFactory.getInstance(project).createExpressionFromText("_"), lastExpr);
                 }
             } else {
                 for (int i = leftCount - rightCount; i > 0; i--) {
-                    expressionList.addAfter(LuaPsiElementFactory.getInstance(project).createExpressionFromText("nil"), lastExpr);
+                    expressionList.addAfter(MoonPsiElementFactory.getInstance(project).createExpressionFromText("nil"), lastExpr);
                 }
             }
         }

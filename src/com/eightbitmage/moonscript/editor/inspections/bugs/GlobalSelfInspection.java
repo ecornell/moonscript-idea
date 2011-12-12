@@ -17,9 +17,9 @@
 package com.eightbitmage.moonscript.editor.inspections.bugs;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaGlobal;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonGlobal;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemsHolder;
@@ -62,11 +62,11 @@ public class GlobalSelfInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
-            public void visitReferenceElement(LuaReferenceElement var) {
+        return new MoonElementVisitor() {
+            public void visitReferenceElement(MoonReferenceElement var) {
                 super.visitReferenceElement(var);
                 PsiElement e = var.getElement();
-                if (e instanceof LuaGlobal && e.getText().equals("self"))
+                if (e instanceof MoonGlobal && e.getText().equals("self"))
                     holder.registerProblem(e, "Usage of global self", LocalQuickFix.EMPTY_ARRAY);
             }
         };

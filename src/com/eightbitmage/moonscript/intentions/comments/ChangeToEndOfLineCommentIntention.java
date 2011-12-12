@@ -17,7 +17,7 @@ package com.eightbitmage.moonscript.intentions.comments;
 
 import com.eightbitmage.moonscript.intentions.base.Intention;
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElementFactory;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.util.IncorrectOperationException;
@@ -34,7 +34,7 @@ public class ChangeToEndOfLineCommentIntention extends Intention {
     public void processIntention(@NotNull PsiElement element)
             throws IncorrectOperationException {
         final PsiComment comment = (PsiComment) element;
-        final LuaPsiElementFactory factory = LuaPsiElementFactory.getInstance(comment.getProject());
+        final MoonPsiElementFactory factory = MoonPsiElementFactory.getInstance(comment.getProject());
         final PsiElement parent = comment.getParent();
         assert parent != null;
         // final PsiElementFactory factory = manager.getElementFactory();

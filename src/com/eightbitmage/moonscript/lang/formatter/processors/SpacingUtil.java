@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.lang.formatter.processors;
 
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiWhiteSpace;
@@ -90,5 +90,5 @@ public abstract class SpacingUtil {
     return FormatterUtil.getLeafNonSpaceBefore(child);
   }
 
-  static TokenSet COMMENT_BIT_SET = LuaTokenTypes.COMMENT_SET;
+  static TokenSet COMMENT_BIT_SET = MoonTokenTypes.COMMENT_SET;
 }

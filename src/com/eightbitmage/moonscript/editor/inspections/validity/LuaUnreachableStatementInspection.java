@@ -17,10 +17,10 @@ package com.eightbitmage.moonscript.editor.inspections.validity;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
 import com.eightbitmage.moonscript.editor.inspections.utils.ControlFlowUtils;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaBlock;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaStatementElement;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonBlock;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonStatementElement;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeInspection.ProblemHighlightType;
 import com.intellij.codeInspection.ProblemsHolder;
 import com.intellij.psi.PsiElementVisitor;
@@ -57,13 +57,13 @@ public class LuaUnreachableStatementInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+        return new MoonElementVisitor() {
 
 
-            public void visitBlock(LuaBlock block) {
+            public void visitBlock(MoonBlock block) {
                 super.visitBlock(block);
                 
-                LuaStatementElement[] statements = block.getStatements();
+                MoonStatementElement[] statements = block.getStatements();
                 for (int i = 0; i < statements.length - 1; i++) {
                     checkPair(statements[i], statements[i + 1]);
                 }
@@ -74,15 +74,15 @@ public class LuaUnreachableStatementInspection extends AbstractInspection {
             public void visitFile(PsiFile file) {
                 super.visitFile(file);
 
-                if (file instanceof LuaPsiFile) {
-                    LuaStatementElement[] statements = ((LuaPsiFile) file).getStatements();
+                if (file instanceof MoonPsiFile) {
+                    MoonStatementElement[] statements = ((MoonPsiFile) file).getStatements();
                     for (int i = 0; i < statements.length - 1; i++) {
                         checkPair(statements[i], statements[i + 1]);
                     }
                 }
             }
 
-            private void checkPair(LuaStatementElement prev, LuaStatementElement statement) {
+            private void checkPair(MoonStatementElement prev, MoonStatementElement statement) {
                 if (!ControlFlowUtils.statementMayCompleteNormally(prev)) {
                     holder.registerProblem(statement,
                             buildErrorString(), ProblemHighlightType.GENERIC_ERROR_OR_WARNING);

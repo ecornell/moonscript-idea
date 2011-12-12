@@ -15,23 +15,23 @@
  */
 package com.eightbitmage.moonscript.lang.psi.controlFlow.impl;
 
-import com.eightbitmage.moonscript.lang.parser.LuaElementTypes;
-import com.eightbitmage.moonscript.lang.psi.impl.symbols.LuaCompoundReferenceElementImpl;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaParameter;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaSymbol;
-import com.eightbitmage.moonscript.lang.psi.types.LuaType;
-import com.eightbitmage.moonscript.lang.psi.util.LuaPsiUtils;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaRecursiveElementVisitor;
+import com.eightbitmage.moonscript.lang.parser.MoonElementTypes;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElement;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFile;
+import com.eightbitmage.moonscript.lang.psi.impl.symbols.MoonCompoundReferenceElementImpl;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonParameter;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonSymbol;
+import com.eightbitmage.moonscript.lang.psi.types.MoonType;
+import com.eightbitmage.moonscript.lang.psi.util.MoonPsiUtils;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonRecursiveElementVisitor;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.Pair;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.eightbitmage.moonscript.lang.psi.LuaFunctionDefinition;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElement;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFile;
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.MoonFunctionDefinition;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.AfterCallInstruction;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.CallEnvironment;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.CallInstruction;
@@ -49,7 +49,7 @@ import java.util.Stack;
 /**
  * @author ven
  */
-public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
+public class ControlFlowBuilder extends MoonRecursiveElementVisitor {
   private static final Logger log = Logger.getInstance("Lua.ControlFlowBuilder");
 
   private List<InstructionImpl> myInstructions;
@@ -65,17 +65,17 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     private InstructionImpl myHead;
     private boolean myNegate;
     private boolean myAssertionsOnly;
-    private LuaPsiElement myLastInScope;
+    private MoonPsiElement myLastInScope;
 
-    private List<Pair<InstructionImpl, LuaPsiElement>> myPending;
+    private List<Pair<InstructionImpl, MoonPsiElement>> myPending;
 
     private int myInstructionNumber;
 
-    public void visitBlock(LuaBlock block) {
+    public void visitBlock(MoonBlock block) {
         final PsiElement parent = block.getParent();
-        if (parent instanceof LuaFunctionDefinition) {
-            final LuaParameter[] parameters = ((LuaFunctionDefinition) parent).getParameters().getLuaParameters();
-            for (LuaParameter parameter : parameters) {
+        if (parent instanceof MoonFunctionDefinition) {
+            final MoonParameter[] parameters = ((MoonFunctionDefinition) parent).getParameters().getLuaParameters();
+            for (MoonParameter parameter : parameters) {
                 addNode(new ReadWriteVariableInstructionImpl(parameter, myInstructionNumber++));
             }
         }
@@ -84,15 +84,15 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
         handlePossibleReturn(block);
     }
 
-    private void handlePossibleReturn(LuaBlock block) {
-        final LuaStatementElement[] statements = block.getStatements();
+    private void handlePossibleReturn(MoonBlock block) {
+        final MoonStatementElement[] statements = block.getStatements();
         for(int i=statements.length; i<0; i--)
             handlePossibleReturn(statements[i]);
     }
 
-    private void handlePossibleReturn(LuaStatementElement last) {
+    private void handlePossibleReturn(MoonStatementElement last) {
         if (PsiTreeUtil.isAncestor(myLastInScope, last, false)) {
-            final MaybeReturnInstruction instruction = new MaybeReturnInstruction((LuaExpression) last, myInstructionNumber++);
+            final MaybeReturnInstruction instruction = new MaybeReturnInstruction((MoonExpression) last, myInstructionNumber++);
             checkPending(instruction);
             addNode(instruction);
         }
@@ -100,21 +100,21 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
 
     final Object lock = new Object();
     
-    public Instruction[] buildControlFlow(LuaPsiElement scope) {
+    public Instruction[] buildControlFlow(MoonPsiElement scope) {
         myInstructions = new ArrayList<InstructionImpl>();
         myProcessingStack = new Stack<InstructionImpl>();
-        myPending = new ArrayList<Pair<InstructionImpl, LuaPsiElement>>();
+        myPending = new ArrayList<Pair<InstructionImpl, MoonPsiElement>>();
         myInstructionNumber = 0;
 
         myLastInScope = null;
 
-        if (scope instanceof LuaPsiFile) {
-            LuaStatementElement[] statements = ((LuaPsiFile) scope).getStatements();
+        if (scope instanceof MoonPsiFile) {
+            MoonStatementElement[] statements = ((MoonPsiFile) scope).getStatements();
             if (statements.length > 0) {
                 myLastInScope = statements[statements.length - 1];
             }
-        } else if (scope instanceof LuaBlock) {
-            LuaStatementElement[] statements = ((LuaBlock) scope).getStatements();
+        } else if (scope instanceof MoonBlock) {
+            MoonStatementElement[] statements = ((MoonBlock) scope).getStatements();
             if (statements.length > 0) {
                 myLastInScope = statements[statements.length - 1];
             }
@@ -139,13 +139,13 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     }
 
 //  private void buildFlowForClosure(final LuaClosableBlock closure) {
-//    for (LuaParameter parameter : closure.getParameters()) {
+//    for (MoonParameter parameter : closure.getParameters()) {
 //      addNode(new ReadWriteVariableInstructionImpl(parameter, myInstructionNumber++));
 //    }
 //
 //    final Set<String> names = new LinkedHashSet<String>();
 //
-//    closure.accept(new LuaRecursiveElementVisitor() {
+//    closure.accept(new MoonRecursiveElementVisitor() {
 //      public void visitReferenceExpression(LuaReferenceExpression refExpr) {
 //        super.visitReferenceExpression(refExpr);
 //        if (refExpr.getQualifierExpression() == null && !PsiUtil.isLValue(refExpr)) {
@@ -167,8 +167,8 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
 //
 //    PsiElement child = closure.getFirstChild();
 //    while (child != null) {
-//      if (child instanceof LuaPsiElement) {
-//        ((LuaPsiElement)child).accept(this);
+//      if (child instanceof MoonPsiElement) {
+//        ((MoonPsiElement)child).accept(this);
 //      }
 //      child = child.getNextSibling();
 //    }
@@ -197,7 +197,7 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     }
   }
 
-  public void visitFunctionDef(LuaFunctionDefinitionStatement e) {
+  public void visitFunctionDef(MoonFunctionDefinitionStatement e) {
     //do not go into functions
 
       e.getIdentifier().accept(this);
@@ -205,33 +205,33 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
   }
 
     @Override
-    public void visitDeclarationStatement(LuaDeclarationStatement e) {
+    public void visitDeclarationStatement(MoonDeclarationStatement e) {
         super.visitDeclarationStatement(e);
 
-        for (LuaSymbol s : e.getDefinedSymbols())
+        for (MoonSymbol s : e.getDefinedSymbols())
             addNode(new ReadWriteVariableInstructionImpl(s, myInstructionNumber++));
     }
 
 
 //    @Override
-//    public void visitDeclarationStatement(LuaDeclarationStatement e) {
+//    public void visitDeclarationStatement(MoonDeclarationStatement e) {
 //        e.getDefinedSymbols().accept(this);
 //    }
 //
 //    @Override
-//    public void visitDeclarationExpression(LuaDeclarationExpression e) {
+//    public void visitDeclarationExpression(MoonDeclarationExpression e) {
 //        addNode(new ReadWriteVariableInstructionImpl(e, myInstructionNumber++));
 //    }
 
     @Override
     public void visitFile(PsiFile file) {
-        visitBlock((LuaBlock) file);
+        visitBlock((MoonBlock) file);
     }
 
     @Override
-    public void visitDoStatement(LuaDoStatement e) {
+    public void visitDoStatement(MoonDoStatement e) {
         final InstructionImpl instruction = startNode(e);
-        final LuaBlock body = e.getBlock();
+        final MoonBlock body = e.getBlock();
         if (body != null) {
             body.accept(this);
         }
@@ -239,9 +239,9 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     }
 
     //
-//  public void visitBreakStatement(LuaBreakStatement breakStatement) {
+//  public void visitBreakStatement(MoonBreakStatement breakStatement) {
 //    super.visitBreakStatement(breakStatement);
-//    final LuaStatementElement target = breakStatement.findTargetStatement();
+//    final MoonStatementElement target = breakStatement.findTargetStatement();
 //    if (target != null && myHead != null) {
 //      addPendingEdge(target, myHead);
 //    }
@@ -250,9 +250,9 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
 //  }
 //
 
-  public void visitReturnStatement(LuaReturnStatement returnStatement) {
+  public void visitReturnStatement(MoonReturnStatement returnStatement) {
     boolean isNodeNeeded = myHead == null || myHead.getElement() != returnStatement;
-    final LuaExpression value = returnStatement.getReturnValue();
+    final MoonExpression value = returnStatement.getReturnValue();
     if (value != null) value.accept(this);
 
     if (isNodeNeeded) {
@@ -267,7 +267,7 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
   }
 //
 //  public void visitAssertStatement(LuaAssertStatement assertStatement) {
-//    final LuaExpression assertion = assertStatement.getAssertion();
+//    final MoonExpression assertion = assertStatement.getAssertion();
 //    if (assertion != null) {
 //      assertion.accept(this);
 //      final InstructionImpl assertInstruction = startNode(assertStatement);
@@ -288,9 +288,9 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     myHead = null;
   }
 
-  public void visitAssignment(LuaAssignmentStatement expression) {
-    LuaIdentifierList lValues = expression.getLeftExprs();
-    LuaExpressionList rValues = expression.getRightExprs();
+  public void visitAssignment(MoonAssignmentStatement expression) {
+    MoonIdentifierList lValues = expression.getLeftExprs();
+    MoonExpressionList rValues = expression.getRightExprs();
     if (rValues != null) {
       rValues.accept(this);
       lValues.accept(this);
@@ -298,16 +298,16 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
   }
 
 //  @Override
-//  public void visitParenthesizedExpression(LuaParenthesizedExpression expression) {
-//    final LuaExpression operand = expression.getOperand();
+//  public void visitParenthesizedExpression(MoonParenthesizedExpression expression) {
+//    final MoonExpression operand = expression.getOperand();
 //    if (operand != null) operand.accept(this);
 //  }
 //
   @Override
-  public void visitUnaryExpression(LuaUnaryExpression expression) {
-    final LuaExpression operand = expression.getOperand();
+  public void visitUnaryExpression(MoonUnaryExpression expression) {
+    final MoonExpression operand = expression.getOperand();
     if (operand != null) {
-      final boolean negation = expression.getOperationTokenType() == LuaElementTypes.NOT;
+      final boolean negation = expression.getOperationTokenType() == MoonElementTypes.NOT;
       if (negation) {
         myNegate = !myNegate;
       }
@@ -319,27 +319,27 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
   }
 
     @Override
-    public void visitCompoundReference(LuaCompoundReferenceElementImpl e) {
+    public void visitCompoundReference(MoonCompoundReferenceElementImpl e) {
         visitReferenceElement(e);
     }
 
     
 
-    public void visitReferenceElement(LuaReferenceElement referenceExpression) {
+    public void visitReferenceElement(MoonReferenceElement referenceExpression) {
     super.visitReferenceElement(referenceExpression);
 
     final ReadWriteVariableInstructionImpl i =
-      new ReadWriteVariableInstructionImpl(referenceExpression, myInstructionNumber++, !myAssertionsOnly && LuaPsiUtils.isLValue(referenceExpression));
+      new ReadWriteVariableInstructionImpl(referenceExpression, myInstructionNumber++, !myAssertionsOnly && MoonPsiUtils.isLValue(referenceExpression));
     addNode(i);
     checkPending(i);
   }
 
-  public void visitIfThenStatement(LuaIfThenStatement ifStatement) {
+  public void visitIfThenStatement(MoonIfThenStatement ifStatement) {
     InstructionImpl ifInstruction = startNode(ifStatement);
-    final LuaExpression condition = ifStatement.getIfCondition();
+    final MoonExpression condition = ifStatement.getIfCondition();
 
     final InstructionImpl head = myHead;
-    final LuaBlock thenBranch = ifStatement.getIfBlock();
+    final MoonBlock thenBranch = ifStatement.getIfBlock();
     InstructionImpl thenEnd = null;
     if (thenBranch != null) {
       if (condition != null) {
@@ -351,7 +351,7 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     }
 
     myHead = head;
-    final LuaBlock elseBranch = ifStatement.getElseBlock();
+    final MoonBlock elseBranch = ifStatement.getElseBlock();
     InstructionImpl elseEnd = null;
     if (elseBranch != null) {
       if (condition != null) {
@@ -421,7 +421,7 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
 //      }
 //    }
 //    else if (clause instanceof LuaForInClause) {
-//      final LuaExpression expression = ((LuaForInClause)clause).getIteratedExpression();
+//      final MoonExpression expression = ((LuaForInClause)clause).getIteratedExpression();
 //      if (expression != null) {
 //        expression.accept(this);
 //      }
@@ -434,7 +434,7 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
 //
 //    InstructionImpl instruction = startNode(forStatement);
 //    if (clause instanceof LuaTraditionalForClause) {
-//      final LuaExpression condition = ((LuaTraditionalForClause)clause).getCondition();
+//      final MoonExpression condition = ((LuaTraditionalForClause)clause).getCondition();
 //      if (condition != null) {
 //        condition.accept(this);
 //        if (!alwaysTrue(condition)) {
@@ -454,7 +454,7 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
 //    checkPending(instruction); //check for breaks targeted here
 //
 //    if (clause instanceof LuaTraditionalForClause) {
-//      for (LuaExpression expression : ((LuaTraditionalForClause)clause).getUpdate()) {
+//      for (MoonExpression expression : ((LuaTraditionalForClause)clause).getUpdate()) {
 //        expression.accept(this);
 //      }
 //    }
@@ -468,14 +468,14 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     final PsiElement element = instruction.getElement();
     if (element == null) {
       //add all
-      for (Pair<InstructionImpl, LuaPsiElement> pair : myPending) {
+      for (Pair<InstructionImpl, MoonPsiElement> pair : myPending) {
         addEdge(pair.getFirst(), instruction);
       }
       myPending.clear();
     }
     else {
       for (int i = myPending.size() - 1; i >= 0; i--) {
-        final Pair<InstructionImpl, LuaPsiElement> pair = myPending.get(i);
+        final Pair<InstructionImpl, MoonPsiElement> pair = myPending.get(i);
         final PsiElement scopeWhenToAdd = pair.getSecond();
         if (scopeWhenToAdd == null) continue;
         if (!PsiTreeUtil.isAncestor(scopeWhenToAdd, element, false)) {
@@ -490,32 +490,32 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
   }
 
   //add edge when instruction.getElement() is not contained in scopeWhenAdded
-  private void addPendingEdge(LuaPsiElement scopeWhenAdded, InstructionImpl instruction) {
+  private void addPendingEdge(MoonPsiElement scopeWhenAdded, InstructionImpl instruction) {
     if (instruction == null) return;
 
     int i = 0;
     if (scopeWhenAdded != null) {
       for (; i < myPending.size(); i++) {
-        Pair<InstructionImpl, LuaPsiElement> pair = myPending.get(i);
+        Pair<InstructionImpl, MoonPsiElement> pair = myPending.get(i);
 
-        final LuaPsiElement currScope = pair.getSecond();
+        final MoonPsiElement currScope = pair.getSecond();
         if (currScope == null) continue;
         if (!PsiTreeUtil.isAncestor(currScope, scopeWhenAdded, true)) break;
       }
     }
-    myPending.add(i, new Pair<InstructionImpl, LuaPsiElement>(instruction, scopeWhenAdded));
+    myPending.add(i, new Pair<InstructionImpl, MoonPsiElement>(instruction, scopeWhenAdded));
   }
 
-  public void visitWhileStatement(LuaWhileStatement whileStatement) {
+  public void visitWhileStatement(MoonWhileStatement whileStatement) {
     final InstructionImpl instruction = startNode(whileStatement);
-    final LuaConditionalExpression condition = whileStatement.getCondition();
+    final MoonConditionalExpression condition = whileStatement.getCondition();
     if (condition != null) {
       condition.accept(this);
     }
     if (!alwaysTrue(condition)) {
       addPendingEdge(whileStatement, myHead); //break
     }
-    final LuaBlock body = whileStatement.getBody();
+    final MoonBlock body = whileStatement.getBody();
     if (body != null) {
       body.accept(this);
     }
@@ -525,21 +525,21 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     finishNode(instruction);
   }
 
-  private boolean alwaysTrue(LuaExpression condition) {
-      LuaType type = condition.getLuaType();
+  private boolean alwaysTrue(MoonExpression condition) {
+      MoonType type = condition.getLuaType();
 
-      if (type != LuaType.NIL && type != LuaType.BOOLEAN && type != LuaType.ANY)
+      if (type != MoonType.NIL && type != MoonType.BOOLEAN && type != MoonType.ANY)
           return true;
 
       return false;
   }
 
 
-  private InstructionImpl startNode(@Nullable LuaPsiElement element) {
+  private InstructionImpl startNode(@Nullable MoonPsiElement element) {
     return startNode(element, true);
   }
 
-  private InstructionImpl startNode(LuaPsiElement element, boolean checkPending) {
+  private InstructionImpl startNode(MoonPsiElement element, boolean checkPending) {
     final InstructionImpl instruction = new InstructionImpl(element, myInstructionNumber++);
     addNode(instruction);
     if (checkPending) checkPending(instruction);
@@ -554,7 +554,7 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
 //  public void visitField(LuaField field) {
 //  }
 //
-//  public void visitParameter(LuaParameter parameter) {
+//  public void visitParameter(MoonParameter parameter) {
 //  }
 //
 //  public void visitMethod(LuaMethod method) {
@@ -671,16 +671,16 @@ public class ControlFlowBuilder extends LuaRecursiveElementVisitor {
     }
   }
 
-  private static boolean hasDeclaredVariable(String name, LuaBlock scope, PsiElement place) {
+  private static boolean hasDeclaredVariable(String name, MoonBlock scope, PsiElement place) {
     PsiElement prev = null;
     while (place != null) {
-      if (place instanceof LuaBlock) {
-        LuaStatementElement[] statements = ((LuaBlock)place).getStatements();
-        for (LuaStatementElement statement : statements) {
+      if (place instanceof MoonBlock) {
+        MoonStatementElement[] statements = ((MoonBlock)place).getStatements();
+        for (MoonStatementElement statement : statements) {
           if (statement == prev) break;
-          if (statement instanceof LuaDeclarationStatement) {
-            LuaSymbol[] variables = ((LuaDeclarationStatement)statement).getDefinedSymbols();
-            for (LuaSymbol variable : variables) {
+          if (statement instanceof MoonDeclarationStatement) {
+            MoonSymbol[] variables = ((MoonDeclarationStatement)statement).getDefinedSymbols();
+            for (MoonSymbol variable : variables) {
               if (name.equals(variable.getName())) return true;
             }
           }

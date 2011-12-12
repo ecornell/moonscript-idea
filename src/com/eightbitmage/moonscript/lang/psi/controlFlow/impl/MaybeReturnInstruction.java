@@ -16,14 +16,14 @@
 
 package com.eightbitmage.moonscript.lang.psi.controlFlow.impl;
 
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.types.LuaType;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.types.MoonType;
 
 /**
 * @author peter
 */
 public class MaybeReturnInstruction extends InstructionImpl {
-  MaybeReturnInstruction(LuaExpression element, int num) {
+  MaybeReturnInstruction(MoonExpression element, int num) {
     super(element, num);
   }
 
@@ -32,10 +32,10 @@ public class MaybeReturnInstruction extends InstructionImpl {
   }
 
   public boolean mayReturnValue() {
-    LuaExpression expression = (LuaExpression) getElement();
+    MoonExpression expression = (MoonExpression) getElement();
     assert expression != null;
-    final LuaType type = expression.getLuaType();
-    return type == null || type != LuaType.NIL;
+    final MoonType type = expression.getLuaType();
+    return type == null || type != MoonType.NIL;
   }
 
 }

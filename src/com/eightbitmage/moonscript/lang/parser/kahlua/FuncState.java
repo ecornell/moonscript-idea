@@ -16,7 +16,7 @@
 package com.eightbitmage.moonscript.lang.parser.kahlua;
 
 
-import com.eightbitmage.moonscript.lang.parser.LuaElementTypes;
+import com.eightbitmage.moonscript.lang.parser.MoonElementTypes;
 import com.intellij.openapi.diagnostic.Logger;
 import se.krka.kahlua.vm.Prototype;
 
@@ -129,7 +129,7 @@ public class FuncState {
 	  	String msg = (linedefined == 0) ?
 	  	    "main function has more than "+limit+" "+what :
 	  	    "function at line "+linedefined+" has more than "+limit+" "+what;
-	  	  ls.lexerror(msg, LuaElementTypes.EMPTY_INPUT);
+	  	  ls.lexerror(msg, MoonElementTypes.EMPTY_INPUT);
 
         return false;
 	}

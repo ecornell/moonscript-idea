@@ -18,17 +18,17 @@ package com.eightbitmage.moonscript.intentions.control;
 import com.eightbitmage.moonscript.intentions.base.ErrorUtil;
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
 import com.eightbitmage.moonscript.intentions.utils.ComparisonUtils;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaBinaryExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonBinaryExpression;
 import com.intellij.psi.PsiElement;
 
 
 class ComparisonPredicate implements PsiElementPredicate {
 
   public boolean satisfiedBy(PsiElement element) {
-    if (!(element instanceof LuaBinaryExpression)) {
+    if (!(element instanceof MoonBinaryExpression)) {
       return false;
     }
-    final LuaBinaryExpression expression = (LuaBinaryExpression) element;
+    final MoonBinaryExpression expression = (MoonBinaryExpression) element;
     if (!ComparisonUtils.isComparison(expression)) {
       return false;
     }

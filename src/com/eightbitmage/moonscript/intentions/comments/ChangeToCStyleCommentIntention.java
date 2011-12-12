@@ -17,8 +17,8 @@ package com.eightbitmage.moonscript.intentions.comments;
 
 import com.eightbitmage.moonscript.intentions.base.Intention;
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElementFactory;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory;
 import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
@@ -51,7 +51,7 @@ public class ChangeToCStyleCommentIntention extends Intention {
       firstComment = (PsiComment) prevComment;
     }
 
-    final LuaPsiElementFactory factory = LuaPsiElementFactory.getInstance(element.getProject());
+    final MoonPsiElementFactory factory = MoonPsiElementFactory.getInstance(element.getProject());
       
     String text = getCommentContents(firstComment);
     final List<PsiElement> commentsToDelete = new ArrayList<PsiElement>();
@@ -111,7 +111,7 @@ public class ChangeToCStyleCommentIntention extends Intention {
     }
     final PsiComment comment = (PsiComment) element;
     final IElementType tokenType = comment.getTokenType();
-    return LuaTokenTypes.SHORTCOMMENT.equals(tokenType);
+    return MoonTokenTypes.SHORTCOMMENT.equals(tokenType);
   }
 
   private static String getCommentContents(PsiComment comment) {

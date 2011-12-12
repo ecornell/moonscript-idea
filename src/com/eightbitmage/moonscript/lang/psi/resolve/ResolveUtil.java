@@ -16,8 +16,8 @@
 
 package com.eightbitmage.moonscript.lang.psi.resolve;
 
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaDeclarationExpression;
-import com.eightbitmage.moonscript.lang.psi.stubs.index.LuaGlobalDeclarationIndex;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonDeclarationExpression;
+import com.eightbitmage.moonscript.lang.psi.stubs.index.MoonGlobalDeclarationIndex;
 import com.intellij.openapi.project.Project;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.ResolveState;
@@ -66,7 +66,7 @@ public abstract class ResolveUtil {
 //    return true;
 //  }
 
-  public static PsiElement[] mapToElements(LuaResolveResult[] candidates) {
+  public static PsiElement[] mapToElements(MoonResolveResult[] candidates) {
     PsiElement[] elements = new PsiElement[candidates.length];
     for (int i = 0; i < elements.length; i++) {
       elements[i] = candidates[i].getElement();
@@ -77,11 +77,11 @@ public abstract class ResolveUtil {
 
 
     public static Collection<String> getFilteredGlobals(Project project, GlobalSearchScope scope) {
-        LuaGlobalDeclarationIndex index = LuaGlobalDeclarationIndex.getInstance();
+        MoonGlobalDeclarationIndex index = MoonGlobalDeclarationIndex.getInstance();
         Collection<String> names = index.getAllKeys(project);
         Collection<String> rejects = new LinkedList<String>();
         for (String name : names) {
-            Collection<LuaDeclarationExpression> elems = index.get(name, project, scope);
+            Collection<MoonDeclarationExpression> elems = index.get(name, project, scope);
             if (elems.size() == 0)
                 rejects.add(name);
         }

@@ -1,35 +1,294 @@
-<idea-plugin version="2">
-    <id>com.8bitmage.moonscript</id>
-    <name>MoonScript-IDEA</name>
-    <description>Plugin for MoonScript language support</description>
-    <version>@version@</version>
-    <vendor logo="/com/eightbitmage/moonscript/images/moonscript-script.png" url="">Elijah Cornell</vendor>
-    <idea-version since-build="9000"/>
-    <depends>com.intellij.modules.xml</depends>
+<!--
+  ~ Copyright 2010 Jon S Akhtar (Sylvanaar)
+  ~
+  ~   Licensed under the Apache License, Version 2.0 (the "License");
+  ~   you may not use this file except in compliance with the License.
+  ~   You may obtain a copy of the License at
+  ~
+  ~   http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~   Unless required by applicable law or agreed to in writing, software
+  ~   distributed under the License is distributed on an "AS IS" BASIS,
+  ~   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~   See the License for the specific language governing permissions and
+  ~   limitations under the License.
+  -->
+
+<idea-plugin url="http://bitbucket.org/ecornell/moonscript-idea/" version="2">
+    <name>Moon</name>
+    <id>Moon</id>
+    <version>.1</version>
+    <!--##teamcity[buildNumber '1.0a16']-->
+    <idea-version since-build="99.18" until-build="107.9999" />
+    <category>Custom Languages</category>
+    <vendor url="http://bitbucket.org/ecornell/moonscript-idea" email="elijah.cornell@gmail.com">elijah.cornell</vendor>
+    
+    <description><![CDATA[
+    <html>
+        <h3>MoonScript language integration for IntelliJ</h3>
+        <br>
+        <b>Features:</b>
+        <br>
+            <ul>
+                <li>Introduce Variable Refactoring (<b>Experimental</b>)</li>
+                <li>Modules support (<b>Experimental</b>)</li>
+                <li>Debugger (<b>Experimental</b>)</li>
+                <li>MoonDoc Creation, Highlighting and Folding</li>
+                <li>Live Templates ("Zen Moon")</li>
+                <li>Custom API Support including custom function signatures and documentation</li>
+                <li>Moon Standard Library Information via Quickhelp (ctrl-Q)</li>
+                <li>Goto Symbol</li>
+                <li>Safe Delete</li>
+                <li>Rename Identifier</li>
+                <li>JavaHelp For Moon 5.1</li>
+                <li>Go to definition</li>
+                <li>find usages</li>
+                <li>Code formatting</li>
+                <li>Speculative completion as an option (Settings|Moon)</li>
+                <li>Code completion</li>
+                <li>1 quickfix</li>
+                <li>6 code intentions</li>
+                <li>11 code inspection</li>
+                <li>Script execution and run configurations</li>
+                <li>Kahlua REPL Console</li>
+                <li>Moon REPL Console</li>
+                <li>Structure view</li>
+                <li>Syntax checking</li>
+                <li>Highlighting of Upvalues, Parameters and Fields</li>
+                <li>Highlighting global vs local variables</li>
+                <li>Customizable Syntax highlighting</li>
+                <li>Code folding for code blocks and comments</li>
+                <li>Brace Matching for do blocks, long strings and comments, and (, { , [</li>
+                <li>Minor feature: comment in/out.</li>
+            </ul>
+        </html>
+        ]]></description>
+    <change-notes><![CDATA[
+        <html>
+        <dl>            
+            <dt>0.1</dt>
+            <dd>Init Build</dd><br>
+        </dl>
+        </html>
+        ]]></change-notes>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.xdebugger</depends>
+    
+    <!--<depends optional="true" config-file="Moon-copyright.xml">com.intellij.copyright</depends>-->
 
     <application-components>
         <component>
-            <implementation-class>com.eightbitmage.moonscript.MoonScriptLoader</implementation-class>
+            <implementation-class>com.eightbitmage.moonscript.sdk.KahluaSdk</implementation-class>
+            <interface-class>com.intellij.openapi.projectRoots.Sdk</interface-class>
+        </component>
+        <component>
+            <implementation-class>com.eightbitmage.moonscript.options.MoonOptionsPanel</implementation-class>
+        </component>
+        <component>
+            <implementation-class>com.eightbitmage.moonscript.editor.inspections.InspectionProvider</implementation-class>
         </component>
     </application-components>
 
     <project-components>
+    <!--<component>-->
+      <!--<implementation-class>com.eightbitmage.moonscript.lang.psi.impl.MoonPsiManager</implementation-class>-->
+    <!--</component>-->
     </project-components>
 
     <actions>
+        <action id="Moon.NewMoonScript" class="com.eightbitmage.moonscript.actions.NewMoonFileAction"
+                text="Moon Script" description="Create new Moon script file">
+            <add-to-group group-id="NewGroup" relative-to-action="NewFile" anchor="after"/>
+        </action>
+        <!--<action id="trigger.exception" class="com.sylvanaar.idea.errorreporting.TriggerExceptionAction" text="Trigger Exception">-->
+            <!--<add-to-group group-id="NewGroup" relative-to-action="NewFile" anchor="after"/>-->
+        <!--</action>-->
+        <action id="com.eightbitmage.moonscript.console.RunMoonConsoleAction"
+                class="com.eightbitmage.moonscript.console.RunMoonConsoleAction"
+                text="Run Moon Console..." description="Run the Moon console">
+          <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+        <action id="com.eightbitmage.moonscript.actions.GenerateMoonListingAction" class="com.eightbitmage.moonscript.actions.GenerateMoonListingAction"
+                text="Generate Listing"
+                description="Generate a source file annotated with comments containing the Moon byte-code for each line.">
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
     </actions>
 
+    <helpset file="IDMoonHelp.jar" path="/Moon.hs" />
+
     <extensions defaultExtensionNs="com.intellij">
-        <lang.syntaxHighlighterFactory key="MoonScript"
-                                       implementationClass="com.eightbitmage.moonscript.highlighter.MoonScriptHighlighterFactory"/>
-        <lang.parserDefinition language="MoonScript"
-                               implementationClass="com.eightbitmage.moonscript.lang.parser.MoonScriptParserDefinition"/>
-        <lang.commenter language="MoonScript"
-                        implementationClass="com.eightbitmage.moonscript.highlighter.MoonScriptCommenter"/>
-        <colorSettingsPage implementation="com.eightbitmage.moonscript.highlighter.MoonScriptColorSettingsPage"/>
-        <lang.braceMatcher language="MoonScript"
-                           implementationClass="com.eightbitmage.moonscript.highlighter.MoonScriptBraceMatcher"/>
-        <lang.fileViewProviderFactory language="MoonScript"
-                                      implementationClass="com.eightbitmage.moonscript.file.MoonScriptFileViewProviderFactory"/>
+        <!-- Error reporter-->
+        <!--<errorHandler implementation="com.sylvanaar.idea.errorreporting.BugzReport"/>-->
+        <!--<errorHandler implementation="com.sylvanaar.idea.errorreporting.YouTrackBugReporter"/>-->
+
+        <!-- Facet -->
+        <!--<facetType id="Moon" implementation="com.eightbitmage.moonscript.frameworks.MoonFacetType" />-->
+        <!--<frameworkSupport id="Moon" implementation="com.eightbitmage.moonscript.frameworks.MoonFacetFrameworkSupportProvider" />-->
+        <!--<projectService serviceImplementation="com.eightbitmage.moonscript.frameworks.MoonScriptableFrameworkManager" />-->
+
+        <!-- Repl Window -->
+        <!--<toolWindow id="Kahlua" anchor="right" icon="/icons/Moon.png"-->
+                    <!--factoryClass="com.eightbitmage.moonscript.KahluaInterpreterWindowFactory"/>-->
+
+        <!-- Application Configuration -->
+        <applicationService serviceImplementation="com.eightbitmage.moonscript.options.MoonApplicationSettings" />
+
+        <!-- Project Configuration -->
+        <!--<projectConfigurable  instance="com.eightbitmage.moonscript.settings.MoonProjectSettingsConfigurable" />-->
+        <!--<projectService serviceImplementation="com.eightbitmage.moonscript.settings.MoonProjectSettings"-->
+                        <!--serviceInterface="com.eightbitmage.moonscript.settings.MoonProjectSettings" />-->
+
+        <fileTypeFactory implementation="com.eightbitmage.moonscript.MoonFileTypeLoader"/>
+
+        <!-- Script Running -->
+        <configurationType id="Moon" implementation="com.eightbitmage.moonscript.run.MoonConfigurationType"/>
+
+
+        <configurationProducer id="Moon" implementation="com.eightbitmage.moonscript.run.MoonRunConfigurationProducer" />
+
+        <programRunner implementation="com.eightbitmage.moonscript.run.MoonRunner"/>
+
+        <!-- Script Debugging -->
+        <programRunner implementation="com.eightbitmage.moonscript.debugger.MoonDebugRunner"/>
+        <xdebugger.breakpointType implementation="com.eightbitmage.moonscript.debugger.MoonLineBreakpointType" />
+
+        <!-- Editor -->
+        <codeInsight.parameterInfo language="Moon" implementationClass="com.eightbitmage.moonscript.codeInsight.MoonParameterInfoHandler" />
+
+        <!-- Syntax Hilighting extensions -->
+        <lang.syntaxHighlighterFactory key="Moon" implementationClass="com.eightbitmage.moonscript.editor.highlighter.MoonSyntaxHighlighterFactory" />
+
+        <colorSettingsPage implementation="com.eightbitmage.moonscript.editor.highlighter.MoonColorsPage"/>
+
+        <readWriteAccessDetector implementation="com.eightbitmage.moonscript.editor.highlighter.MoonReadWriteAccessDetector" />
+
+        <quoteHandler fileType="Moon" className="com.eightbitmage.moonscript.editor.highlighter.MoonQuoteHandler" />
+
+        <!-- Annotator extensions -->
+        <annotator language="Moon" implementationClass="com.eightbitmage.moonscript.editor.annotator.MoonAnnotator" />
+
+        <inspectionToolProvider id="Moon" implementation="com.eightbitmage.moonscript.editor.inspections.InspectionProvider"/>
+
+        <projectService serviceInterface="com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory"
+                    serviceImplementation="com.eightbitmage.moonscript.lang.psi.impl.MoonPsiElementFactoryImpl"/>
+
+
+        <projectService serviceImplementation="com.eightbitmage.moonscript.lang.psi.MoonPsiManager" />
+
+        <!--Completion-->
+        <completion.contributor language="Moon" implementationClass="com.eightbitmage.moonscript.editor.completion.MoonCompletionContributor" />
+
+
+        <lookup.charFilter implementation="com.eightbitmage.moonscript.editor.completion.MoonCharFilter" />
+
+        <!-- Lang extensions -->
+        <lang.formatter language="Moon" implementationClass="com.eightbitmage.moonscript.lang.formatter.MoonFormattingModelBuilder"/>
+        <fileTypeIndentOptionsProvider id="Moon" implementation="com.eightbitmage.moonscript.lang.formatter.MoonIndentOptionsProvider"/>
+
+        <lang.braceMatcher language="Moon"
+                           implementationClass="com.eightbitmage.moonscript.lang.MoonBraceMatcher"/>
+
+        <!--<codeStyleSettingsProvider implementation="com.eightbitmage.moonscript.lang.formatter.MoonCodeStyleSettingsProvider" />-->
+
+        <lang.parserDefinition language="Moon" implementationClass="com.eightbitmage.moonscript.lang.parser.MoonParserDefinition"/>
+
+        <lang.commenter language="Moon" implementationClass="com.eightbitmage.moonscript.lang.MoonCommenter"/>
+
+
+        <lang.foldingBuilder language="Moon" implementationClass="com.eightbitmage.moonscript.lang.MoonFoldingBuilder"/>
+
+        <lang.documentationProvider language="Moon" order="first"
+                                    implementationClass="com.eightbitmage.moonscript.lang.documentor.KahluaPluginDocumentationProvider" />
+        <lang.documentationProvider language="Moon" order="last"
+                                    implementationClass="com.eightbitmage.moonscript.lang.documentor.MoonDocDocumentationProvider" />
+        <lang.documentationProvider language="Moon" order="last"
+                                    implementationClass="com.eightbitmage.moonscript.lang.documentor.ContextualDocumentationProvider" />
+
+        <lang.psiStructureViewFactory language="Moon"
+                                      implementationClass="com.eightbitmage.moonscript.lang.structure.MoonStructureViewFactory"/>
+
+        <lang.refactoringSupport language="Moon" implementationClass="com.eightbitmage.moonscript.refactoring.MoonRefactoringSupportProvider" />
+
+        <lang.findUsagesProvider language="Moon" implementationClass="com.eightbitmage.moonscript.findUsages.MoonFindUsagesProvider" />
+
+        <lang.namesValidator language="Moon" implementationClass="com.eightbitmage.moonscript.lang.MoonNamesValidation" />
+
+        <gotoSymbolContributor implementation="com.eightbitmage.moonscript.editor.MoonGotoSymbolContributor" />
+
+        <typedHandler order="first" implementation="com.eightbitmage.moonscript.lang.MoonTypedInsideBlockDelegate" />
+        <enterHandlerDelegate implementation= "com.eightbitmage.moonscript.lang.MoonEnterHandlerDelegate"/>
+        <enterHandlerDelegate implementation="com.eightbitmage.moonscript.lang.moondoc.editor.MoonDocEnterHandlerDelegate" />
+ 
+        <codeInsight.lineMarkerProvider language="Moon" implementationClass="com.eightbitmage.moonscript.codeInsight.MoonLineMarkerProvider" />            
+
+        <moduleType id="MOON_MODULE" implementationClass="com.eightbitmage.moonscript.module.MoonModuleType"/>
+        <moduleConfigurationEditorProvider implementation="com.eightbitmage.moonscript.module.MoonModuleConfigurationEditorProvider" />
+        
+        <sdkType implementation="com.eightbitmage.moonscript.sdk.MoonSdkType"/>
+
+        <consoleFilterProvider implementation="com.eightbitmage.moonscript.run.MoonLineErrorFilterProvider" />
+
+        <!--<library.creator implementation="com.eightbitmage.moonscript.library.MoonLibraryCreator"/>-->
+        <library.presentationProvider implementation="com.eightbitmage.moonscript.library.MoonLibraryPresentationProvider"/>
+        <library.type implementation="com.eightbitmage.moonscript.library.MoonLibraryType"/>
+
+        <!--Stubs-->
+        <stubElementTypeHolder  class="com.eightbitmage.moonscript.lang.parser.MoonElementTypes"/>
+
+        <stubIndex implementation="com.eightbitmage.moonscript.lang.psi.stubs.index.MoonFullScriptNameIndex"/>
+        <stubIndex implementation="com.eightbitmage.moonscript.lang.psi.stubs.index.MoonGlobalDeclarationIndex" />
+        <stubIndex implementation="com.eightbitmage.moonscript.lang.psi.stubs.index.MoonFieldIndex" />
+
+        <!-- Live Templates -->
+        <liveTemplateContext implementation="com.eightbitmage.moonscript.lang.template.MoonTemplateContextType"/>
+        <defaultLiveTemplatesProvider implementation="com.eightbitmage.moonscript.lang.template.MoonDefaultLiveTemplateProvider" />
+
+        <liveTemplateMacro implementation="com.eightbitmage.moonscript.lang.template.MoonFileMacro" />
+        <liveTemplateMacro implementation="com.eightbitmage.moonscript.lang.template.MoonFunctionMacro" />
+
+    <!-- control -->
+    <intentionAction>
+      <bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>
+      <categoryKey>intention.category.moon/intention.category.control.flow</categoryKey>
+      <className>com.eightbitmage.moonscript.intentions.control.FlipComparisonIntention</className>
+    </intentionAction>
+    <intentionAction>
+      <bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>
+      <categoryKey>intention.category.moon/intention.category.control.flow</categoryKey>
+      <className>com.eightbitmage.moonscript.intentions.control.FlipConjunctionIntention</className>
+    </intentionAction>
+    <!--<intentionAction>-->
+      <!--<bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>-->
+      <!--<categoryKey>intention.category.moon/intention.category.control.flow</categoryKey>-->
+      <!--<className>com.eightbitmage.moonscript.intentions.control.ExpandBooleanIntention</className>-->
+    <!--</intentionAction>-->
+    <intentionAction>
+      <bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>
+      <categoryKey>intention.category.moon/intention.category.control.flow</categoryKey>
+      <className>com.eightbitmage.moonscript.intentions.control.NegateComparisonIntention</className>
+    </intentionAction>
+
+
+    <!-- Calls -->
+    <intentionAction>
+      <bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>
+      <categoryKey>intention.category.moon/intention.category.Moon.style</categoryKey>
+      <className>com.eightbitmage.moonscript.intentions.style.UseStringColonCallIntention</className>
+    </intentionAction>
+        
+    <!-- comments -->
+    <intentionAction>
+      <bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>
+      <categoryKey>intention.category.moon/intention.category.comments</categoryKey>
+      <className>com.eightbitmage.moonscript.intentions.comments.ChangeToCStyleCommentIntention</className>
+    </intentionAction>
+    <intentionAction>
+      <bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>
+      <categoryKey>intention.category.moon/intention.category.comments</categoryKey>
+      <className>com.eightbitmage.moonscript.intentions.comments.ChangeToEndOfLineCommentIntention</className>
+    </intentionAction>
     </extensions>
 </idea-plugin>

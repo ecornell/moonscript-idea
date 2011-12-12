@@ -15,10 +15,10 @@
  */
 package com.eightbitmage.moonscript.intentions.control;
 
-import com.eightbitmage.moonscript.intentions.LuaIntentionsBundle;
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaBinaryExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
+import com.eightbitmage.moonscript.intentions.MoonIntentionsBundle;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonBinaryExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.util.IncorrectOperationException;
@@ -30,17 +30,17 @@ import org.jetbrains.annotations.NotNull;
 
 public class FlipConjunctionIntention extends MutablyNamedIntention {
   protected String getTextForElement(PsiElement element) {
-    final LuaBinaryExpression binaryExpression =
-        (LuaBinaryExpression) element;
+    final MoonBinaryExpression binaryExpression =
+        (MoonBinaryExpression) element;
     final IElementType tokenType = binaryExpression.getOperationTokenType();
     final String conjunction;
     assert tokenType != null;
-    if (tokenType.equals(LuaTokenTypes.AND)) {
-      conjunction = LuaTokenTypes.AND.toString();
+    if (tokenType.equals(MoonTokenTypes.AND)) {
+      conjunction = MoonTokenTypes.AND.toString();
     } else {
-      conjunction =  LuaTokenTypes.OR.toString();
+      conjunction =  MoonTokenTypes.OR.toString();
     }
-    return LuaIntentionsBundle.message("flip.conjunction.intention.name", conjunction);
+    return MoonIntentionsBundle.message("flip.conjunction.intention.name", conjunction);
   }
 
   @NotNull
@@ -50,21 +50,21 @@ public class FlipConjunctionIntention extends MutablyNamedIntention {
 
   public void processIntention(@NotNull PsiElement element)
       throws IncorrectOperationException {
-    final LuaBinaryExpression exp =
-        (LuaBinaryExpression) element;
+    final MoonBinaryExpression exp =
+        (MoonBinaryExpression) element;
     final IElementType tokenType = exp.getOperationTokenType();
 
-    final LuaExpression lhs = exp.getLeftOperand();
+    final MoonExpression lhs = exp.getLeftOperand();
     final String lhsText = lhs.getText();
 
-    final LuaExpression rhs = exp.getRightOperand();
+    final MoonExpression rhs = exp.getRightOperand();
     final String rhsText = rhs.getText();
 
     final String conjunction;
-    if (tokenType.equals(LuaTokenTypes.AND)) {
-      conjunction = LuaTokenTypes.AND.toString();
+    if (tokenType.equals(MoonTokenTypes.AND)) {
+      conjunction = MoonTokenTypes.AND.toString();
     } else {
-      conjunction = LuaTokenTypes.OR.toString();
+      conjunction = MoonTokenTypes.OR.toString();
     }
 
     final String newExpression =

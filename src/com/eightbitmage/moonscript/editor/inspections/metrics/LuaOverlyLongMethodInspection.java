@@ -15,9 +15,9 @@
 */
 package com.eightbitmage.moonscript.editor.inspections.metrics;
 
-import com.eightbitmage.moonscript.lang.psi.statements.LuaBlock;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaFunctionDefinitionStatement;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonBlock;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonFunctionDefinitionStatement;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemsHolder;
 
@@ -48,14 +48,14 @@ public class LuaOverlyLongMethodInspection extends LuaMethodMetricInspection {
     return "Method '#ref' is too long ( statement count =" + args[0] + '>' + args[1] + ')';
   }
 
-  public LuaElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-    return new LuaElementVisitor() {
-         public void visitFunctionDef(LuaFunctionDefinitionStatement func) {
+  public MoonElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
+    return new MoonElementVisitor() {
+         public void visitFunctionDef(MoonFunctionDefinitionStatement func) {
               super.visitFunctionDef(func);
 
               final int limit = getLimit();
               final StatementCountVisitor visitor = new StatementCountVisitor();
-              final LuaBlock block = func.getBlock();
+              final MoonBlock block = func.getBlock();
               if (block == null) return;
               block.acceptChildren(visitor);
               final int statementCount = visitor.getStatementCount();

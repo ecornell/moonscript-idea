@@ -15,10 +15,10 @@
  */
 package com.eightbitmage.moonscript.intentions.utils;
 
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaAssignmentStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaReturnStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaStatementElement;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonAssignmentStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonReturnStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonStatementElement;
 import org.jetbrains.annotations.NonNls;
 
 
@@ -28,16 +28,16 @@ public class ConditionalUtils {
     super();
   }
 
-  public static boolean isReturn(LuaStatementElement statement, @NonNls String value) {
+  public static boolean isReturn(MoonStatementElement statement, @NonNls String value) {
     if (statement == null) {
       return false;
     }
-    if (!(statement instanceof LuaReturnStatement)) {
+    if (!(statement instanceof MoonReturnStatement)) {
       return false;
     }
-    final LuaReturnStatement returnStatement =
-        (LuaReturnStatement) statement;
-    final LuaExpression returnValue = (LuaExpression) returnStatement.getReturnValue();
+    final MoonReturnStatement returnStatement =
+        (MoonReturnStatement) statement;
+    final MoonExpression returnValue = (MoonExpression) returnStatement.getReturnValue();
     if (returnValue == null) {
       return false;
     }
@@ -45,20 +45,20 @@ public class ConditionalUtils {
     return value.equals(returnValueText);
   }
 
-  public static boolean isAssignment(LuaStatementElement statement, @NonNls String value) {
+  public static boolean isAssignment(MoonStatementElement statement, @NonNls String value) {
     if (statement == null) {
       return false;
     }
-    if (!(statement instanceof LuaExpression)) {
+    if (!(statement instanceof MoonExpression)) {
       return false;
     }
-    final LuaExpression expression = (LuaExpression) statement;
-    if (!(expression instanceof LuaAssignmentStatement)) {
+    final MoonExpression expression = (MoonExpression) statement;
+    if (!(expression instanceof MoonAssignmentStatement)) {
       return false;
     }
-    final LuaAssignmentStatement assignment =
-        (LuaAssignmentStatement) expression;
-    final LuaExpression rhs = assignment.getRightExprs();
+    final MoonAssignmentStatement assignment =
+        (MoonAssignmentStatement) expression;
+    final MoonExpression rhs = assignment.getRightExprs();
     if (rhs == null) {
       return false;
     }
@@ -66,7 +66,7 @@ public class ConditionalUtils {
     return value.equals(rhsText);
   }
 
-  public static boolean isAssignment(LuaStatementElement statement) {
-    return statement instanceof LuaAssignmentStatement;
+  public static boolean isAssignment(MoonStatementElement statement) {
+    return statement instanceof MoonAssignmentStatement;
   }
 }

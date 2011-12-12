@@ -18,13 +18,13 @@ package com.eightbitmage.moonscript.editor.inspections.performance;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
 import com.eightbitmage.moonscript.editor.inspections.LuaFix;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpressionList;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaIdentifierList;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaAssignmentStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaDeclarationStatement;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaLocalDefinitionStatement;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpressionList;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonIdentifierList;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonAssignmentStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonDeclarationStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonLocalDefinitionStatement;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemDescriptor;
@@ -72,20 +72,20 @@ public class RedundantInitializationInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+        return new MoonElementVisitor() {
             @Override
-            public void visitDeclarationStatement(LuaDeclarationStatement e) {
+            public void visitDeclarationStatement(MoonDeclarationStatement e) {
                 super.visitDeclarationStatement(e);
 
-                if (e instanceof LuaLocalDefinitionStatement) {
-                    LuaIdentifierList left = ((LuaLocalDefinitionStatement) e).getLeftExprs();
-                    LuaExpressionList right = ((LuaLocalDefinitionStatement) e).getRightExprs();
+                if (e instanceof MoonLocalDefinitionStatement) {
+                    MoonIdentifierList left = ((MoonLocalDefinitionStatement) e).getLeftExprs();
+                    MoonExpressionList right = ((MoonLocalDefinitionStatement) e).getRightExprs();
 
                     if (right == null || right.count() == 0)
                         return;
 
                     boolean allNil = true;
-                    for (LuaExpression expr : right.getLuaExpressions())
+                    for (MoonExpression expr : right.getMoonExpressions())
                         if (!expr.getText().equals("nil")) {
                             allNil = false;
                             break;
@@ -104,7 +104,7 @@ public class RedundantInitializationInspection extends AbstractInspection {
 
         @Override
         protected void doFix(Project project, ProblemDescriptor descriptor) throws IncorrectOperationException {
-            final LuaAssignmentStatement assign = (LuaAssignmentStatement) descriptor.getPsiElement();
+            final MoonAssignmentStatement assign = (MoonAssignmentStatement) descriptor.getPsiElement();
 
             assign.getOperatorElement().delete();
             assign.getRightExprs().delete();

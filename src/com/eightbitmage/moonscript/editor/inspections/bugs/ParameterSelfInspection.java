@@ -17,11 +17,11 @@
 package com.eightbitmage.moonscript.editor.inspections.bugs;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaParameterList;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaFunctionDefinitionStatement;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaParameter;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaSymbol;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonParameterList;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonFunctionDefinitionStatement;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonParameter;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonSymbol;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemsHolder;
@@ -63,21 +63,21 @@ public class ParameterSelfInspection extends AbstractInspection {
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
-            public void visitFunctionDef(LuaFunctionDefinitionStatement def) {
+        return new MoonElementVisitor() {
+            public void visitFunctionDef(MoonFunctionDefinitionStatement def) {
                 super.visitFunctionDef(def);
 
                 // Is this function defined with :
-                LuaSymbol name = def.getIdentifier();
+                MoonSymbol name = def.getIdentifier();
                 if (!name.getText().contains(":")) return;
 
-                LuaParameterList parameterList = def.getParameters();
+                MoonParameterList parameterList = def.getParameters();
                 if (parameterList == null) return;
 
-                LuaParameter[] parms = parameterList.getLuaParameters();
+                MoonParameter[] parms = parameterList.getLuaParameters();
                 if (parms == null) return;
 
-                for (LuaParameter parm : parms) {
+                for (MoonParameter parm : parms) {
                     if (parm.getText().equals("self"))
                         holder.registerProblem(parm, "Parameter hides implicit self", LocalQuickFix.EMPTY_ARRAY);
                 }

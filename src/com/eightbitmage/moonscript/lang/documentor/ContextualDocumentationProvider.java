@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.lang.documentor;
 
-import com.eightbitmage.moonscript.lang.psi.statements.LuaStatementElement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonStatementElement;
 import com.intellij.lang.documentation.DocumentationProvider;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiManager;
@@ -37,7 +37,7 @@ public class ContextualDocumentationProvider implements DocumentationProvider {
         if (element == originalElement) return null;
         PsiElement s = element;
 
-        while (!(s instanceof LuaStatementElement) && s != null) {
+        while (!(s instanceof MoonStatementElement) && s != null) {
             s = s.getContext();
         }
         String s2 = s != null ? s.getText() : null;

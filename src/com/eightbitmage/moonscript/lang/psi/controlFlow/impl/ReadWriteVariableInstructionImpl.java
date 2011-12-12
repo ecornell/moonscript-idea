@@ -15,12 +15,12 @@
  */
 package com.eightbitmage.moonscript.lang.psi.controlFlow.impl;
 
-import com.eightbitmage.moonscript.lang.psi.LuaReferenceElement;
+import com.eightbitmage.moonscript.lang.psi.MoonReferenceElement;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.ReadWriteVariableInstruction;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonGlobal;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonSymbol;
 import com.intellij.psi.PsiElement;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaGlobal;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaLocal;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaSymbol;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonLocal;
 
 
 /**
@@ -29,7 +29,7 @@ import com.eightbitmage.moonscript.lang.psi.symbols.LuaSymbol;
 class ReadWriteVariableInstructionImpl extends InstructionImpl implements ReadWriteVariableInstruction {
   private final boolean myIsWrite;
   public String myName;
-  LuaSymbol mySymbol;
+  MoonSymbol mySymbol;
 
   ReadWriteVariableInstructionImpl(String varName, PsiElement element, int num, boolean isWrite) {
     super(element, num);
@@ -37,18 +37,18 @@ class ReadWriteVariableInstructionImpl extends InstructionImpl implements ReadWr
     myIsWrite = isWrite;
   }
 
-  ReadWriteVariableInstructionImpl(LuaSymbol variable, int num) {
+  ReadWriteVariableInstructionImpl(MoonSymbol variable, int num) {
     super(variable, num);
     myName = variable.getName();
     mySymbol = variable;
     myIsWrite = true;
   }
 
-  ReadWriteVariableInstructionImpl(LuaReferenceElement refExpr, int num, boolean isWrite) {
+  ReadWriteVariableInstructionImpl(MoonReferenceElement refExpr, int num, boolean isWrite) {
     super(refExpr, num);
     myName = refExpr.getName();
     myIsWrite = isWrite;
-    mySymbol = (LuaSymbol) refExpr.getElement();
+    mySymbol = (MoonSymbol) refExpr.getElement();
   }
 
   public String getVariableName() {
@@ -61,10 +61,10 @@ class ReadWriteVariableInstructionImpl extends InstructionImpl implements ReadWr
 
     @Override
     public boolean isGlobal() {
-        return mySymbol instanceof LuaGlobal;
+        return mySymbol instanceof MoonGlobal;
     }
 
     protected String getElementPresentation() {
-    return (isWrite() ? "WRITE " : "READ ") + (mySymbol instanceof LuaLocal ? "LOCAL " : "GLOBAL ") + myName;
+    return (isWrite() ? "WRITE " : "READ ") + (mySymbol instanceof MoonLocal ? "LOCAL " : "GLOBAL ") + myName;
   }
 }

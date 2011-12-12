@@ -17,8 +17,8 @@ package com.eightbitmage.moonscript.intentions.control;
 
 import com.eightbitmage.moonscript.intentions.base.ErrorUtil;
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaBinaryExpression;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonBinaryExpression;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 
@@ -26,14 +26,14 @@ import com.intellij.psi.tree.IElementType;
 class ConjunctionPredicate implements PsiElementPredicate {
 
   public boolean satisfiedBy(PsiElement element) {
-    if (!(element instanceof LuaBinaryExpression)) {
+    if (!(element instanceof MoonBinaryExpression)) {
       return false;
     }
-    final LuaBinaryExpression expression = (LuaBinaryExpression) element;
+    final MoonBinaryExpression expression = (MoonBinaryExpression) element;
     final IElementType tokenType =  expression.getOperationTokenType();
     if (tokenType == null) return false;
-    if (!tokenType.equals(LuaTokenTypes.AND) &&
-        !tokenType.equals(LuaTokenTypes.OR)) {
+    if (!tokenType.equals(MoonTokenTypes.AND) &&
+        !tokenType.equals(MoonTokenTypes.OR)) {
       return false;
     }
     return !ErrorUtil.containsError(element);

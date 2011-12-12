@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.lang.psi.resolve.completion;
 
-import com.eightbitmage.moonscript.lang.psi.resolve.LuaResolveResult;
+import com.eightbitmage.moonscript.lang.psi.resolve.MoonResolveResult;
 import com.eightbitmage.moonscript.lang.psi.resolve.processors.SymbolResolveProcessor;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.ResolveState;
@@ -37,7 +37,7 @@ public class CompletionProcessor extends SymbolResolveProcessor {
 
       PsiElement[] res = new PsiElement[myCandidates.size()];
 
-      Iterator<LuaResolveResult> iter = myCandidates.iterator();
+      Iterator<MoonResolveResult> iter = myCandidates.iterator();
       
       for(int i=0;i<res.length;i++)
           res[i]=iter.next().getElement();

@@ -15,16 +15,16 @@
  */
 package com.eightbitmage.moonscript.lang.psi.controlFlow.impl;
 
-import com.eightbitmage.moonscript.lang.psi.statements.LuaIfThenStatement;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonIfThenStatement;
 
 
 public class IfEndInstruction extends InstructionImpl{
-  public IfEndInstruction(LuaIfThenStatement ifStatement, int num) {
+  public IfEndInstruction(MoonIfThenStatement ifStatement, int num) {
     super(ifStatement, num);
   }
 
   @Override
-  public LuaIfThenStatement getElement() {
-    return (LuaIfThenStatement)super.getElement();
+  public MoonIfThenStatement getElement() {
+    return (MoonIfThenStatement)super.getElement();
   }
 }

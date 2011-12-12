@@ -15,9 +15,9 @@
  */
 package com.eightbitmage.moonscript.editor.inspections.utils;
 
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElement;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaConditionalExpression;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElement;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonConditionalExpression;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import com.eightbitmage.moonscript.lang.psi.statements.*;
 import org.jetbrains.annotations.NotNull;
@@ -32,70 +32,70 @@ public class ControlFlowUtils {
   }
 
     public static boolean statementMayCompleteNormally(
-            @Nullable LuaStatementElement statement) {
+            @Nullable MoonStatementElement statement) {
         if (statement == null) {
             return true;
         }
-        if (statement instanceof LuaBreakStatement ||
-                statement instanceof LuaReturnStatement) {
+        if (statement instanceof MoonBreakStatement ||
+                statement instanceof MoonReturnStatement) {
             return false;
         }
 
-        if (statement instanceof LuaGenericForStatement || statement instanceof LuaNumericForStatement) {
+        if (statement instanceof MoonGenericForStatement || statement instanceof MoonNumericForStatement) {
             return forStatementMayReturnNormally(statement);
         }
 
-        if (statement instanceof LuaWhileStatement) {
+        if (statement instanceof MoonWhileStatement) {
             return whileStatementMayReturnNormally(
-                    (LuaWhileStatement) statement);
+                    (MoonWhileStatement) statement);
         }
 
-        if (statement instanceof LuaDoStatement) {
-            return blockMayCompleteNormally(((LuaDoStatement) statement).getBlock());
+        if (statement instanceof MoonDoStatement) {
+            return blockMayCompleteNormally(((MoonDoStatement) statement).getBlock());
         }
 
-        if (statement instanceof LuaBlock) {
-            return blockMayCompleteNormally((LuaBlock) statement);
+        if (statement instanceof MoonBlock) {
+            return blockMayCompleteNormally((MoonBlock) statement);
         }
 
-        if (statement instanceof LuaIfThenStatement) {
-            return ifStatementMayReturnNormally((LuaIfThenStatement) statement);
+        if (statement instanceof MoonIfThenStatement) {
+            return ifStatementMayReturnNormally((MoonIfThenStatement) statement);
         }
         return true;
     }
 
     private static boolean whileStatementMayReturnNormally(
-      @NotNull LuaWhileStatement loopStatement) {
-    final LuaConditionalExpression test = loopStatement.getCondition();
+      @NotNull MoonWhileStatement loopStatement) {
+    final MoonConditionalExpression test = loopStatement.getCondition();
     return !BoolUtils.isTrue(test)
         || statementIsBreakTarget(loopStatement);
   }
 
   private static boolean forStatementMayReturnNormally(
-      @NotNull LuaStatementElement loopStatement) {
+      @NotNull MoonStatementElement loopStatement) {
     return true;
   }
 
 
   private static boolean ifStatementMayReturnNormally(
-      @NotNull LuaIfThenStatement ifStatement) {
-    final LuaBlock thenBranch = ifStatement.getIfBlock();
+      @NotNull MoonIfThenStatement ifStatement) {
+    final MoonBlock thenBranch = ifStatement.getIfBlock();
     if (blockMayCompleteNormally(thenBranch)) {
       return true;
     }
-    final LuaBlock elseBranch = ifStatement.getElseBlock();
+    final MoonBlock elseBranch = ifStatement.getElseBlock();
     return elseBranch == null ||
         blockMayCompleteNormally(elseBranch);
   }
 
   public static boolean blockMayCompleteNormally(
-      @Nullable LuaBlock block) {
+      @Nullable MoonBlock block) {
     if (block == null) {
       return true;
     }
 
-    final LuaStatementElement[] statements = block.getStatements();
-    for (final LuaStatementElement statement : statements) {
+    final MoonStatementElement[] statements = block.getStatements();
+    for (final MoonStatementElement statement : statements) {
       if (!statementMayCompleteNormally(statement)) {
         return false;
       }
@@ -105,53 +105,53 @@ public class ControlFlowUtils {
 
 
   private static boolean statementIsBreakTarget(
-      @NotNull LuaStatementElement statement) {
+      @NotNull MoonStatementElement statement) {
     final BreakFinder breakFinder = new BreakFinder(statement);
     statement.accept(breakFinder);
     return breakFinder.breakFound();
   }
 
   public static boolean statementContainsReturn(
-      @NotNull LuaStatementElement statement) {
+      @NotNull MoonStatementElement statement) {
     final ReturnFinder returnFinder = new ReturnFinder();
     statement.accept(returnFinder);
     return returnFinder.returnFound();
   }
 
-  public static boolean isInLoop(@NotNull LuaPsiElement element) {
-    final LuaConditionalLoop loop =
-        PsiTreeUtil.getParentOfType(element, LuaConditionalLoop.class);
+  public static boolean isInLoop(@NotNull MoonPsiElement element) {
+    final MoonConditionalLoop loop =
+        PsiTreeUtil.getParentOfType(element, MoonConditionalLoop.class);
     if (loop == null) {
       return false;
     }
-    final LuaBlock body = loop.getBody();
+    final MoonBlock body = loop.getBody();
     return PsiTreeUtil.isAncestor(body, element, true);
   }
 
 
 
-//  private static boolean isInWhileStatementBody(@NotNull LuaPsiElement element) {
-//    final LuaWhileStatement whileStatement =
-//        PsiTreeUtil.getParentOfType(element, LuaWhileStatement.class);
+//  private static boolean isInWhileStatementBody(@NotNull MoonPsiElement element) {
+//    final MoonWhileStatement whileStatement =
+//        PsiTreeUtil.getParentOfType(element, MoonWhileStatement.class);
 //    if (whileStatement == null) {
 //      return false;
 //    }
-//    final LuaStatementElement body = whileStatement.getBody();
+//    final MoonStatementElement body = whileStatement.getBody();
 //    return PsiTreeUtil.isAncestor(body, element, true);
 //  }
 
-//  private static boolean isInForStatementBody(@NotNull LuaPsiElement element) {
+//  private static boolean isInForStatementBody(@NotNull MoonPsiElement element) {
 //    final LuaForStatement forStatement =
 //        PsiTreeUtil.getParentOfType(element, LuaForStatement.class);
 //    if (forStatement == null) {
 //      return false;
 //    }
-//    final LuaStatementElement body = forStatement.getBody();
+//    final MoonStatementElement body = forStatement.getBody();
 //    return PsiTreeUtil.isAncestor(body, element, true);
 //  }
 
 
-//  public static LuaStatementElement stripBraces(@NotNull LuaStatementElement branch) {
+//  public static MoonStatementElement stripBraces(@NotNull MoonStatementElement branch) {
 //    if (branch instanceof LuaBlockStatement) {
 //      final LuaBlockStatement block = (LuaBlockStatement) branch;
 //      final LuaStatement[] statements = block.getBlock().getStatements();
@@ -166,21 +166,21 @@ public class ControlFlowUtils {
 //  }
 
   public static boolean statementCompletesWithStatement(
-      @NotNull LuaStatementElement containingStatement,
-      @NotNull LuaStatementElement statement) {
-    LuaPsiElement statementToCheck = statement;
+      @NotNull MoonStatementElement containingStatement,
+      @NotNull MoonStatementElement statement) {
+    MoonPsiElement statementToCheck = statement;
     while (true) {
       if (statementToCheck.equals(containingStatement)) {
         return true;
       }
-      final LuaPsiElement container =
+      final MoonPsiElement container =
           getContainingStatement(statementToCheck);
       if (container == null) {
         return false;
       }
-      if (container instanceof LuaBlock) {
-        if (!statementIsLastInBlock((LuaBlock) container,
-            (LuaStatementElement) statementToCheck)) {
+      if (container instanceof MoonBlock) {
+        if (!statementIsLastInBlock((MoonBlock) container,
+            (MoonStatementElement) statementToCheck)) {
           return false;
         }
       }
@@ -192,14 +192,14 @@ public class ControlFlowUtils {
   }
 
   public static boolean blockCompletesWithStatement(
-      @NotNull LuaBlock body,
-      @NotNull LuaStatementElement statement) {
-    LuaStatementElement statementToCheck = statement;
+      @NotNull MoonBlock body,
+      @NotNull MoonStatementElement statement) {
+    MoonStatementElement statementToCheck = statement;
     while (true) {
       if (statementToCheck == null) {
         return false;
       }
-      final LuaStatementElement container =
+      final MoonStatementElement container =
           getContainingStatement(statementToCheck);
       if (container == null) {
         return false;
@@ -207,8 +207,8 @@ public class ControlFlowUtils {
       if (isLoop(container)) {
         return false;
       }
-      if (container instanceof LuaBlock) {
-        if (!statementIsLastInBlock((LuaBlock) container,
+      if (container instanceof MoonBlock) {
+        if (!statementIsLastInBlock((MoonBlock) container,
             statementToCheck)) {
           return false;
         }
@@ -217,7 +217,7 @@ public class ControlFlowUtils {
         }
         statementToCheck =
             PsiTreeUtil.getParentOfType(container,
-                LuaStatementElement.class);
+                MoonStatementElement.class);
       } else {
         statementToCheck = container;
       }
@@ -225,53 +225,53 @@ public class ControlFlowUtils {
   }
 
 
-  private static boolean isLoop(@NotNull LuaPsiElement element) {
-    return element instanceof LuaConditionalLoop;
+  private static boolean isLoop(@NotNull MoonPsiElement element) {
+    return element instanceof MoonConditionalLoop;
   }
 
   @Nullable
-  private static LuaStatementElement getContainingStatement(
-      @NotNull LuaPsiElement statement) {
-    return PsiTreeUtil.getParentOfType(statement, LuaStatementElement.class);
+  private static MoonStatementElement getContainingStatement(
+      @NotNull MoonPsiElement statement) {
+    return PsiTreeUtil.getParentOfType(statement, MoonStatementElement.class);
   }
 
   @Nullable
-  private static LuaPsiElement getContainingStatementOrBlock(
-      @NotNull LuaPsiElement statement) {
-    return PsiTreeUtil.getParentOfType(statement, LuaStatementElement.class, LuaBlock.class);
+  private static MoonPsiElement getContainingStatementOrBlock(
+      @NotNull MoonPsiElement statement) {
+    return PsiTreeUtil.getParentOfType(statement, MoonStatementElement.class, MoonBlock.class);
   }
 
-  private static boolean statementIsLastInBlock(@NotNull LuaBlock block,
-                                                @NotNull LuaStatementElement statement) {
-    final LuaStatementElement[] statements = block.getStatements();
+  private static boolean statementIsLastInBlock(@NotNull MoonBlock block,
+                                                @NotNull MoonStatementElement statement) {
+    final MoonStatementElement[] statements = block.getStatements();
     for (int i = statements.length - 1; i >= 0; i--) {
-      final LuaStatementElement childStatement = statements[i];
+      final MoonStatementElement childStatement = statements[i];
       if (statement.equals(childStatement)) {
         return true;
       }
-      if (!(childStatement instanceof LuaReturnStatement)) {
+      if (!(childStatement instanceof MoonReturnStatement)) {
         return false;
       }
     }
     return false;
   }
 
-  private static boolean statementIsLastInCodeBlock(@NotNull LuaBlock block,
-                                                    @NotNull LuaStatementElement statement) {
-    final LuaStatementElement[] statements = block.getStatements();
+  private static boolean statementIsLastInCodeBlock(@NotNull MoonBlock block,
+                                                    @NotNull MoonStatementElement statement) {
+    final MoonStatementElement[] statements = block.getStatements();
     for (int i = statements.length - 1; i >= 0; i--) {
-      final LuaStatementElement childStatement = statements[i];
+      final MoonStatementElement childStatement = statements[i];
       if (statement.equals(childStatement)) {
         return true;
       }
-      if (!(childStatement instanceof LuaReturnStatement)) {
+      if (!(childStatement instanceof MoonReturnStatement)) {
         return false;
       }
     }
     return false;
   }
 
-  private static class ReturnFinder extends LuaElementVisitor {
+  private static class ReturnFinder extends MoonElementVisitor {
     private boolean m_found = false;
 
     public boolean returnFound() {
@@ -279,7 +279,7 @@ public class ControlFlowUtils {
     }
 
     public void visitReturnStatement(
-        @NotNull LuaReturnStatement returnStatement) {
+        @NotNull MoonReturnStatement returnStatement) {
       if (m_found) {
         return;
       }
@@ -288,11 +288,11 @@ public class ControlFlowUtils {
     }
   }
 
-  private static class BreakFinder extends LuaElementVisitor {
+  private static class BreakFinder extends MoonElementVisitor {
     private boolean m_found = false;
-    private final LuaStatementElement m_target;
+    private final MoonStatementElement m_target;
 
-    private BreakFinder(@NotNull LuaStatementElement target) {
+    private BreakFinder(@NotNull MoonStatementElement target) {
       super();
       m_target = target;
     }
@@ -302,13 +302,13 @@ public class ControlFlowUtils {
     }
 
     public void visitBreakStatement(
-        @NotNull LuaBreakStatement breakStatement) {
+        @NotNull MoonBreakStatement breakStatement) {
       if (m_found) {
         return;
       }
       super.visitBreakStatement(breakStatement);
     // TODO
-      final LuaStatementElement exitedStatement = null; // TODO breakStatement.findTargetStatement();
+      final MoonStatementElement exitedStatement = null; // TODO breakStatement.findTargetStatement();
       if (exitedStatement == null) {
         return;
       }
@@ -319,21 +319,21 @@ public class ControlFlowUtils {
   }
 
 
-//  public static boolean isInExitStatement(@NotNull LuaExpression expression) {
+//  public static boolean isInExitStatement(@NotNull MoonExpression expression) {
 //    return isInReturnStatementArgument(expression) ||
 //        isInThrowStatementArgument(expression);
 //  }
 
 //  private static boolean isInReturnStatementArgument(
-//      @NotNull LuaExpression expression) {
-//    final LuaReturnStatement returnStatement =
+//      @NotNull MoonExpression expression) {
+//    final MoonReturnStatement returnStatement =
 //        PsiTreeUtil
-//            .getParentOfType(expression, LuaReturnStatement.class);
+//            .getParentOfType(expression, MoonReturnStatement.class);
 //    return returnStatement != null;
 //  }
 
 //  private static boolean isInThrowStatementArgument(
-//      @NotNull LuaExpression expression) {
+//      @NotNull MoonExpression expression) {
 //    final LuaThrowStatement throwStatement =
 //        PsiTreeUtil
 //            .getParentOfType(expression, LuaThrowStatement.class);
@@ -345,7 +345,7 @@ public class ControlFlowUtils {
 //    boolean visit(Instruction instruction);
 //  }
 //
-//  public static void visitAllExitPoints(@Nullable LuaBlock block, ExitPointVisitor visitor) {
+//  public static void visitAllExitPoints(@Nullable MoonBlock block, ExitPointVisitor visitor) {
 //    if (block == null) return;
 //    final Instruction[] flow = block.getControlFlow();
 //    boolean[] visited = new boolean[flow.length];

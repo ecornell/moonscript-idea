@@ -15,12 +15,12 @@
  */
 package com.eightbitmage.moonscript.intentions.control;
 
-import com.eightbitmage.moonscript.intentions.LuaIntentionsBundle;
+import com.eightbitmage.moonscript.intentions.MoonIntentionsBundle;
 import com.eightbitmage.moonscript.intentions.base.MutablyNamedIntention;
 import com.eightbitmage.moonscript.intentions.base.PsiElementPredicate;
 import com.eightbitmage.moonscript.intentions.utils.ComparisonUtils;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaBinaryExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonBinaryExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.util.IncorrectOperationException;
@@ -29,13 +29,13 @@ import org.jetbrains.annotations.NotNull;
 
 public class NegateComparisonIntention extends MutablyNamedIntention {
   protected String getTextForElement(PsiElement element) {
-    final LuaBinaryExpression binaryExpression =
-        (LuaBinaryExpression) element;
+    final MoonBinaryExpression binaryExpression =
+        (MoonBinaryExpression) element;
     final IElementType tokenType = binaryExpression.getOperationTokenType();
     final String comparison = ComparisonUtils.getStringForComparison(tokenType);
     final String negatedComparison = ComparisonUtils.getNegatedComparison(tokenType);
 
-    return LuaIntentionsBundle.message("negate.comparison.intention.name", comparison, negatedComparison);
+    return MoonIntentionsBundle.message("negate.comparison.intention.name", comparison, negatedComparison);
   }
 
   @NotNull
@@ -45,14 +45,14 @@ public class NegateComparisonIntention extends MutablyNamedIntention {
 
   public void processIntention(@NotNull PsiElement element)
       throws IncorrectOperationException {
-    final LuaBinaryExpression exp =
-        (LuaBinaryExpression) element;
+    final MoonBinaryExpression exp =
+        (MoonBinaryExpression) element;
     final IElementType tokenType = exp.getOperationTokenType();
 
-    final LuaExpression lhs = exp.getLeftOperand();
+    final MoonExpression lhs = exp.getLeftOperand();
     final String lhsText = lhs.getText();
 
-    final LuaExpression rhs = exp.getRightOperand();
+    final MoonExpression rhs = exp.getRightOperand();
     final String rhsText = rhs.getText();
 
     final String negatedComparison = ComparisonUtils.getNegatedComparison(tokenType);

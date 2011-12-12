@@ -16,16 +16,16 @@
 package com.eightbitmage.moonscript.lang.psi.dataFlow.reachingDefs;
 
 import com.eightbitmage.moonscript.lang.psi.dataFlow.DFAEngine;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaExpression;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaBlock;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaStatementElement;
-import com.eightbitmage.moonscript.lang.psi.types.LuaType;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonBlock;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonStatementElement;
+import com.eightbitmage.moonscript.lang.psi.types.MoonType;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiManager;
 import com.intellij.psi.util.PsiTreeUtil;
-import com.eightbitmage.moonscript.lang.psi.LuaControlFlowOwner;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElement;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiFileBase;
+import com.eightbitmage.moonscript.lang.psi.MoonControlFlowOwner;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElement;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiFileBase;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.ControlFlowUtil;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.Instruction;
 import com.eightbitmage.moonscript.lang.psi.controlFlow.ReadWriteVariableInstruction;
@@ -45,11 +45,11 @@ public class ReachingDefinitionsCollector {
   private ReachingDefinitionsCollector() {
   }
 
-  public static FragmentVariableInfos obtainVariableFlowInformation(final LuaStatementElement first, final LuaStatementElement last) {
-    LuaPsiElement context = PsiTreeUtil.getParentOfType(first, LuaBlock.class, LuaPsiFileBase.class);
-    LuaControlFlowOwner flowOwner;
+  public static FragmentVariableInfos obtainVariableFlowInformation(final MoonStatementElement first, final MoonStatementElement last) {
+    MoonPsiElement context = PsiTreeUtil.getParentOfType(first, MoonBlock.class, MoonPsiFileBase.class);
+    MoonControlFlowOwner flowOwner;
 
-    flowOwner = (LuaControlFlowOwner) context;
+    flowOwner = (MoonControlFlowOwner) context;
 
     assert flowOwner != null;
     assert PsiTreeUtil.isAncestor(flowOwner, last, true);
@@ -86,13 +86,13 @@ public class ReachingDefinitionsCollector {
         if (anyDefInFragment(defs, fragmentInstructions)) {
           for (int def : defs) {
             if (fragmentInstructions.contains(def)) {
-              LuaType outputType = getType(flow[def].getElement());
+              MoonType outputType = getType(flow[def].getElement());
               addVariable(name, omap, manager, outputType);
             }
           }
 
           if (!allProperDefsInFragment(defs, ref, fragmentInstructions, postorder)) {
-            LuaType inputType = getType(rwInstruction.getElement());
+            MoonType inputType = getType(rwInstruction.getElement());
             addVariable(name, imap, manager, inputType);
           }
         }
@@ -114,15 +114,15 @@ public class ReachingDefinitionsCollector {
     };
   }
 
-//  private static void addClosureUsages(final Map<String, VariableInfo> imap, final Map<String, VariableInfo> omap, final LuaStatement first, final LuaStatement last, LuaControlFlowOwner flowOwner) {
-//    flowOwner.accept(new LuaRecursiveElementVisitor() {
+//  private static void addClosureUsages(final Map<String, VariableInfo> imap, final Map<String, VariableInfo> omap, final LuaStatement first, final LuaStatement last, MoonControlFlowOwner flowOwner) {
+//    flowOwner.accept(new MoonRecursiveElementVisitor() {
 //      public void visitClosure(LuaClosableBlock closure) {
 //        addUsagesInClosure(imap, omap, closure, first, last);
 //        super.visitClosure(closure);
 //      }
 //
 //      private void addUsagesInClosure(final Map<String, VariableInfo> imap, final Map<String, VariableInfo> omap, final LuaClosableBlock closure, final LuaStatement first, final LuaStatement last) {
-//        closure.accept(new LuaRecursiveElementVisitor() {
+//        closure.accept(new MoonRecursiveElementVisitor() {
 //          public void visitReferenceExpression(LuaReferenceExpression refExpr) {
 //            if (refExpr.isQualified()) {
 //              return;
@@ -160,7 +160,7 @@ public class ReachingDefinitionsCollector {
 //    });
 //  }
 
-  private static void addVariable(String name, Map<String, VariableInfo> map, PsiManager manager, LuaType type) {
+  private static void addVariable(String name, Map<String, VariableInfo> map, PsiManager manager, MoonType type) {
     VariableInfoImpl info = (VariableInfoImpl) map.get(name);
     if (info == null) {
       info = new VariableInfoImpl(name, manager);
@@ -206,18 +206,18 @@ public class ReachingDefinitionsCollector {
   }
 
   @Nullable
-  private static LuaType getType(PsiElement element) {
-    if (element instanceof LuaExpression) return ((LuaExpression) element).getLuaType();
+  private static MoonType getType(PsiElement element) {
+    if (element instanceof MoonExpression) return ((MoonExpression) element).getLuaType();
     
     return null;
   }
 
-  private static VariableInfo[] filterNonlocals(Map<String, VariableInfo> infos, LuaStatementElement place) {
+  private static VariableInfo[] filterNonlocals(Map<String, VariableInfo> infos, MoonStatementElement place) {
     List<VariableInfo> result = new ArrayList<VariableInfo>();
 //    for (Iterator<VariableInfo> iterator = infos.values().iterator(); iterator.hasNext();) {
 //      VariableInfo info = iterator.next();
 //      String name = info.getName();
-//      LuaPsiElement property = ResolveUtil.resolveProperty(place, name);
+//      MoonPsiElement property = ResolveUtil.resolveProperty(place, name);
 //      if (property instanceof LuaVariable) iterator.remove();
 //      else if (property instanceof LuaReferenceExpression) {
 //        LuaMember member = PsiTreeUtil.getParentOfType(property, LuaMember.class);
@@ -236,7 +236,7 @@ public class ReachingDefinitionsCollector {
     return result.toArray(new VariableInfo[result.size()]);
   }
 
-  private static LinkedHashSet<Integer> getFragmentInstructions(LuaStatementElement first, LuaStatementElement last, Instruction[] flow) {
+  private static LinkedHashSet<Integer> getFragmentInstructions(MoonStatementElement first, MoonStatementElement last, Instruction[] flow) {
     LinkedHashSet<Integer> result = new LinkedHashSet<Integer>();
     for (Instruction instruction : flow) {
       if (isInFragment(instruction, first, last)) {
@@ -246,13 +246,13 @@ public class ReachingDefinitionsCollector {
     return result;
   }
 
-  private static boolean isInFragment(Instruction instruction, LuaStatementElement first, LuaStatementElement last) {
+  private static boolean isInFragment(Instruction instruction, MoonStatementElement first, MoonStatementElement last) {
     final PsiElement element = instruction.getElement();
     if (element == null) return false;
     return isInFragment(first, last, element);
   }
 
-  private static boolean isInFragment(LuaStatementElement first, LuaStatementElement last, PsiElement element) {
+  private static boolean isInFragment(MoonStatementElement first, MoonStatementElement last, PsiElement element) {
     final PsiElement parent = first.getParent();
     if (!PsiTreeUtil.isAncestor(parent, element, true)) return false;
     PsiElement run = element;
@@ -324,7 +324,7 @@ public class ReachingDefinitionsCollector {
 
     private
     @Nullable
-    LuaType myType;
+    MoonType myType;
 
     VariableInfoImpl(@NotNull String name, PsiManager manager) {
       myName = name;
@@ -337,12 +337,12 @@ public class ReachingDefinitionsCollector {
     }
 
     @Nullable
-    public LuaType getType() {
+    public MoonType getType() {
       //if (myType instanceof PsiIntersectionType) return ((PsiIntersectionType) myType).getConjuncts()[0];
       return myType;
     }
 
-    void addSubtype(LuaType t) {
+    void addSubtype(MoonType t) {
 //      if (t != null) {
 //        if (myType == null) myType = t;
 //        else {

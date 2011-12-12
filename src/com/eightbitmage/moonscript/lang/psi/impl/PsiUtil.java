@@ -16,7 +16,7 @@
 
 package com.eightbitmage.moonscript.lang.psi.impl;
 
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaParenthesizedExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonParenthesizedExpression;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
@@ -61,14 +61,14 @@ public class PsiUtil {
     if (element == null) return null;
     if (up) {
       PsiElement parent;
-      while ((parent=element.getParent()) instanceof LuaParenthesizedExpression) {
+      while ((parent=element.getParent()) instanceof MoonParenthesizedExpression) {
         element = parent;
       }
       return element;
     }
     else {
-      while (element instanceof LuaParenthesizedExpression) {
-        element = ((LuaParenthesizedExpression)element).getOperand();
+      while (element instanceof MoonParenthesizedExpression) {
+        element = ((MoonParenthesizedExpression)element).getOperand();
       }
       return element;
     }

@@ -16,11 +16,11 @@
 
 package com.eightbitmage.moonscript.lang.formatter.models.spacing;
 
-import com.eightbitmage.moonscript.lang.parser.LuaElementTypes;
+import com.eightbitmage.moonscript.lang.parser.MoonElementTypes;
 import com.intellij.psi.tree.TokenSet;
 
 
-public abstract class SpacingTokens implements LuaElementTypes {
+public abstract class SpacingTokens implements MoonElementTypes {
 
   protected final static TokenSet LEFT_BRACES = TokenSet.create(LPAREN, LBRACK, LCURLY);
   protected final static TokenSet RIGHT_BRACES = TokenSet.create(RPAREN, RBRACK, RCURLY);

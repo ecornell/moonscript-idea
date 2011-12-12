@@ -17,13 +17,13 @@ package com.eightbitmage.moonscript.editor.inspections.performance;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
 import com.eightbitmage.moonscript.editor.inspections.utils.ControlFlowUtils;
-import com.eightbitmage.moonscript.lang.lexer.LuaTokenTypes;
-import com.eightbitmage.moonscript.lang.psi.LuaPsiElement;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaBinaryExpression;
-import com.eightbitmage.moonscript.lang.psi.expressions.LuaIdentifierList;
-import com.eightbitmage.moonscript.lang.psi.statements.LuaAssignmentStatement;
-import com.eightbitmage.moonscript.lang.psi.symbols.LuaSymbol;
-import com.eightbitmage.moonscript.lang.psi.visitor.LuaElementVisitor;
+import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
+import com.eightbitmage.moonscript.lang.psi.MoonPsiElement;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonBinaryExpression;
+import com.eightbitmage.moonscript.lang.psi.expressions.MoonIdentifierList;
+import com.eightbitmage.moonscript.lang.psi.statements.MoonAssignmentStatement;
+import com.eightbitmage.moonscript.lang.psi.symbols.MoonSymbol;
+import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.intellij.codeHighlighting.HighlightDisplayLevel;
 import com.intellij.codeInspection.LocalQuickFix;
 import com.intellij.codeInspection.ProblemsHolder;
@@ -64,19 +64,19 @@ public class StringConcatenationInLoopsInspection extends AbstractInspection {
 
     @NotNull
     @Override
-    public LuaElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        return new LuaElementVisitor() {
+    public MoonElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
+        return new MoonElementVisitor() {
 
             @Override
             public void visitBinaryExpression(
-                    LuaBinaryExpression expression) {
+                    MoonBinaryExpression expression) {
                 super.visitBinaryExpression(expression);
                 if (expression.getRightOperand() == null) {
                     return;
                 }
-                final LuaPsiElement sign = expression.getOperator();
+                final MoonPsiElement sign = expression.getOperator();
                 final IElementType tokenType = sign.getNode().getFirstChildNode().getElementType();
-                if (!tokenType.equals(LuaTokenTypes.CONCAT)) {
+                if (!tokenType.equals(MoonTokenTypes.CONCAT)) {
                     return;
                 }
                 if (!ControlFlowUtils.isInLoop(expression)) {
@@ -84,15 +84,15 @@ public class StringConcatenationInLoopsInspection extends AbstractInspection {
                 }
 
                 PsiElement e = expression.getParent().getParent();
-                if (!(e instanceof LuaAssignmentStatement))
+                if (!(e instanceof MoonAssignmentStatement))
                     return;
 
-                LuaIdentifierList lvalues = ((LuaAssignmentStatement) e).getLeftExprs();
+                MoonIdentifierList lvalues = ((MoonAssignmentStatement) e).getLeftExprs();
 
                 if (lvalues == null || lvalues.count() != 1)
                     return;
 
-                LuaSymbol id = lvalues.getSymbols()[0];
+                MoonSymbol id = lvalues.getSymbols()[0];
 
                 if (!id.getText().equals(expression.getLeftOperand().getText()))
                     return;
