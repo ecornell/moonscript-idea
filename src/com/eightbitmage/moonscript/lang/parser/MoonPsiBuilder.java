@@ -23,22 +23,16 @@ import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by IntelliJ IDEA.
- * User: jon
- * Date: Apr 3, 2010
- * Time: 3:34:06 AM
- */
 public class MoonPsiBuilder {
-private PsiBuilder psiBuilder;
+
+    private PsiBuilder psiBuilder;
     private boolean isError = false;
 
-    static Logger log = Logger.getInstance("Lua.parser.MoonPsiBuilder");
+    static Logger log = Logger.getInstance("Moon.parser.MoonPsiBuilder");
+
 
 	public MoonPsiBuilder(@NotNull PsiBuilder builder) {
 		psiBuilder = builder;
-
-       // psiBuilder.setDebugMode(true);
 	}
 
 	public boolean compare(final IElementType type) {
@@ -49,7 +43,9 @@ private PsiBuilder psiBuilder;
 		return types.contains(getTokenType());
 	}
 
-    public void debug() { psiBuilder.setDebugMode(true); }
+    public void debug() {
+        psiBuilder.setDebugMode(true);
+    }
     
 	public boolean compareAndEat(final IElementType type) {
 		boolean found = compare(type);

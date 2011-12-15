@@ -36,7 +36,7 @@ public class MoonFacetType extends FacetType<MoonFacet, MoonFacetConfiguration> 
     public static final MoonFacetType INSTANCE = new MoonFacetType();
 
     public MoonFacetType() {
-        super(ID, "Lua", "Lua");
+        super(ID, "Moon", "Moon");
     }
 
     @Override

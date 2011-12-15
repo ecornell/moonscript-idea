@@ -16,11 +16,11 @@
 
 package com.eightbitmage.moonscript.lang.parser;
 
-
 import com.eightbitmage.moonscript.lang.lexer.MoonLexer;
 import com.eightbitmage.moonscript.lang.lexer.MoonParsingLexerMergingAdapter;
 import com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes;
-import com.eightbitmage.moonscript.lang.parser.kahlua.KahluaParser;
+import com.eightbitmage.moonscript.lang.parser.moon.MoonParser;
+import com.eightbitmage.moonscript.lang.parser.moon.MoonParserOld;
 import com.eightbitmage.moonscript.lang.psi.impl.MoonPsiFileImpl;
 import com.eightbitmage.moonscript.lang.psi.stubs.elements.MoonStubFileElementType;
 import com.intellij.lang.ASTNode;
@@ -39,23 +39,17 @@ import org.jetbrains.annotations.NotNull;
 
 import static com.eightbitmage.moonscript.lang.parser.MoonElementTypes.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Max
- * Date: 04.07.2009
- * Time: 14:39:39
- */
 public class MoonParserDefinition implements ParserDefinition {
     public static final IStubFileElementType MOON_FILE = new MoonStubFileElementType();
-    //public static final IFileElementType MOON_FILE = new IFileElementType("Lua Script", MoonFileType.MOON_LANGUAGE);
 
     @NotNull
     public Lexer createLexer(Project project) {
-        return new MoonParsingLexerMergingAdapter(new MoonLexer());
+        //return new MoonParsingLexerMergingAdapter(new MoonLexer());
+        return new MoonLexer();
     }
 
     public PsiParser createParser(Project project) {
-        return new KahluaParser();
+        return new MoonParser(project);
     }
 
     public IFileElementType getFileNodeType() {

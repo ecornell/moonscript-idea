@@ -40,9 +40,9 @@ public class MoonBraceMatcher implements PairedBraceMatcher {
             new BracePair(LBRACK, RBRACK, false),
             new BracePair(LCURLY, RCURLY, false),
             new BracePair(REPEAT, UNTIL, true),
-            new BracePair(DO, END, true),
-            new BracePair(IF, END, true),
-            new BracePair(FUNCTION, END, true),            
+            //new BracePair(DO, END, true),
+            //new BracePair(IF, END, true),
+            //new BracePair(FUNCTION, END, true),
            };
 
     /**

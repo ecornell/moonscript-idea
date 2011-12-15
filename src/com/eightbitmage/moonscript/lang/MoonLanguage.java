@@ -21,7 +21,7 @@ import com.intellij.lang.Language;
 public class MoonLanguage extends Language {
 
     public MoonLanguage() {
-        super("Lua");
+        super("Moon");
     }
 
     @Override

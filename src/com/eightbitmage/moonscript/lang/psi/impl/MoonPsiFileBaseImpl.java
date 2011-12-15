@@ -23,20 +23,12 @@ import com.intellij.lang.Language;
 import com.intellij.psi.FileViewProvider;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Jun 13, 2010
- * Time: 7:54:09 PM
- */
 public abstract class MoonPsiFileBaseImpl extends PsiFileBase implements MoonPsiFileBase {
+
     private MoonFunctionDefinitionStatement[] funcs_cache;
 
     protected MoonPsiFileBaseImpl(FileViewProvider viewProvider, @NotNull Language language) {
         super(viewProvider, language);
     }
-
-
-
 
 }

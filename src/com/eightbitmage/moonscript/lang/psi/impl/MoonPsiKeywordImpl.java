@@ -49,7 +49,7 @@ public class MoonPsiKeywordImpl extends LeafPsiElement implements MoonPsiKeyword
   }
 
   public String toString(){
-    return "LuaKeyword:" + getText();
+    return "MoonKeyword:" + getText();
   }
 
 //  static {

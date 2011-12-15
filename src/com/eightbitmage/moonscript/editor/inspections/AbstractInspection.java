@@ -92,7 +92,7 @@ public abstract class AbstractInspection extends LocalInspectionTool implements 
 
     @NotNull
     public HighlightDisplayLevel getDefaultLevel() {
-        return HighlightDisplayLevel.INFO;
+        return HighlightDisplayLevel.WEAK_WARNING;
     }
 
     public boolean isSuppressedFor(PsiElement element) {
@@ -132,7 +132,7 @@ public abstract class AbstractInspection extends LocalInspectionTool implements 
     @Nls
     @NotNull
     public String getGroupDisplayName() {
-        return "Lua";
+        return "Moon";
     }
 
 //    @Nullable
@@ -145,12 +145,12 @@ public abstract class AbstractInspection extends LocalInspectionTool implements 
 //    }
 //
     @Nullable
-    protected LuaFix buildFix(PsiElement location) {
+    protected MoonFix buildFix(PsiElement location) {
         return null;
     }
 //
 //    @Nullable
-//    protected LuaFix[] buildFixes(PsiElement location) {
+//    protected MoonFix[] buildFixes(PsiElement location) {
 //        return null;
 //    }
     

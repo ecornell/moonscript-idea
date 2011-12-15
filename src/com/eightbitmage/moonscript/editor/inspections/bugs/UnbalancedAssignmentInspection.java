@@ -17,7 +17,7 @@
 package com.eightbitmage.moonscript.editor.inspections.bugs;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.editor.inspections.LuaFix;
+import com.eightbitmage.moonscript.editor.inspections.MoonFix;
 import com.eightbitmage.moonscript.editor.inspections.utils.ExpressionUtils;
 import com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory;
 import com.eightbitmage.moonscript.lang.psi.expressions.*;
@@ -142,7 +142,7 @@ public class UnbalancedAssignmentInspection extends AbstractInspection {
     }
 
 
-    private class UnbalancedAssignmentFix extends LuaFix {
+    private class UnbalancedAssignmentFix extends MoonFix {
         boolean tooManyExprs;
 
         public UnbalancedAssignmentFix(boolean tooManyExprs) {

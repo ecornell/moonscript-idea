@@ -47,7 +47,7 @@ public class MoonStubFileElementType extends IStubFileElementType<MoonFileStub> 
 
     @Override
     public String getExternalId() {
-        return "lua.FILE";
+        return "moon.FILE";
     }
 
     @Override

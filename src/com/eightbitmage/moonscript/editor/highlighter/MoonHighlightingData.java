@@ -34,60 +34,64 @@ import java.awt.*;
  */
 public class MoonHighlightingData {
     @NonNls
-    static final String KEYWORD_ID = "LUA_KEYWORD";
+    static final String KEYWORD_ID = "MOON_KEYWORD";
     @NonNls
-    static final String COMMENT_ID = "LUA_COMMENT";
+    static final String COMMENT_ID = "MOON_COMMENT";
     @NonNls
-    static final String LONGCOMMENT_ID = "LUA_LONGCOMMENT";
+    static final String LONGCOMMENT_ID = "MOON_LONGCOMMENT";
     @NonNls
-    static final String NUMBER_ID = "LUA_NUMBER";
+    static final String NUMBER_ID = "MOON_NUMBER";
     @NonNls
-    static final String STRING_ID = "LUA_STRING";
+    static final String STRING_ID = "MOON_STRING";
     @NonNls
-    static final String LONGSTRING_ID = "LUA_LONGSTRING";   
+    static final String LONGSTRING_ID = "MOON_LONGSTRING";   
     @NonNls
-    static final String LONGSTRING_BRACES_ID = "LUA_LONGSTRING_BRACES";
+    static final String LONGSTRING_BRACES_ID = "MOON_LONGSTRING_BRACES";
     @NonNls
-    static final String LONGCOMMENT_BRACES_ID = "LUA_LONGCOMMENT_BRACES";
+    static final String LONGCOMMENT_BRACES_ID = "MOON_LONGCOMMENT_BRACES";
     @NonNls
-    static final String BRACES_ID = "LUA_BRACES";
+    static final String BRACES_ID = "MOON_BRACES";
     @NonNls
-    static final String PARENTHS_ID = "LUA_PARENTHS";
+    static final String PARENTHS_ID = "MOON_PARENTHS";
     @NonNls
-    static final String BRACKETS_ID = "LUA_BRACKETS";
+    static final String BRACKETS_ID = "MOON_BRACKETS";
     @NonNls
-    static final String BAD_CHARACTER_ID = "LUA_BAD_CHARACTER";
+    static final String BAD_CHARACTER_ID = "MOON_BAD_CHARACTER";
     @NonNls
-    static final String IDENTIFIER_ID = "LUA_IDENTIFIER";
+    static final String IDENTIFIER_ID = "MOON_IDENTIFIER";
     @NonNls
-    static final String VAR_ID = "LUA_VAR";
+    static final String VAR_ID = "MOON_VAR";
     @NonNls
-    static final String COMMA_ID = "LUA_COMMA";
+    static final String COMMA_ID = "MOON_COMMA";
     @NonNls
-    static final String SEMICOLON_ID = "LUA_SEMICOLON";
+    static final String SEMICOLON_ID = "MOON_SEMICOLON";
     @NonNls
-    static final String SELF_ID = "LUA_SELF";
+    static final String SELF_ID = "MOON_SELF";
     @NonNls
-    static final String DEFINED_CONSTANTS_ID = "LUA_DEFINED_CONSTANTS";
+    static final String DEFINED_CONSTANTS_ID = "MOON_DEFINED_CONSTANTS";
     @NonNls
-    static final String LOCAL_VAR_ID = "LUA_LOCAL_VAR";
+    static final String LOCAL_VAR_ID = "MOON_LOCAL_VAR";
     @NonNls
-    static final String GLOBAL_VAR_ID = "LUA_GLOBAL_VAR";
+    static final String GLOBAL_VAR_ID = "MOON_GLOBAL_VAR";
     @NonNls
-    static final String FIELD_ID = "LUA_FIELD";
+    static final String FIELD_ID = "MOON_FIELD";
     @NonNls
-    static final String TAIL_CALL_ID = "LUA_TAIL_CALL";
+    static final String TAIL_CALL_ID = "MOON_TAIL_CALL";
     @NonNls
-    static final String PARAMETER_ID = "LUA_PARAMETER";
+    static final String PARAMETER_ID = "MOON_PARAMETER";
     @NonNls
-    static final String UPVAL_ID = "LUA_UPVAL";
+    static final String UPVAL_ID = "MOON_UPVAL";
 
     @NonNls
-    static final String LUADOC_ID = "LUA_LUADOC";
+    static final String LUADOC_ID = "MOON_LUADOC";
     @NonNls
-    static final String LUADOC_TAG_ID = "LUA_LUADOC_TAG";
+    static final String LUADOC_TAG_ID = "MOON_LUADOC_TAG";
     @NonNls
-    static final String LUADOC_VALUE_ID = "LUA_LUADOC_VALUE";
+    static final String LUADOC_VALUE_ID = "MOON_LUADOC_VALUE";
+
+    @NonNls
+    static final String OPERATION_SIGN_ID = "MOON_OPERATION_SIGN";
+
 
     private static final TextAttributes    LUADOC_ATTR =
             SyntaxHighlighterColors.DOC_COMMENT.getDefaultAttributes().clone();
@@ -170,6 +174,9 @@ public class MoonHighlightingData {
 
     public static final TextAttributesKey DEFINED_CONSTANTS =
          TextAttributesKey.createTextAttributesKey(DEFINED_CONSTANTS_ID, DEFINED_CONSTANTS_ATTR);
+
+     public static final TextAttributesKey OPERATION_SIGN =
+        TextAttributesKey.createTextAttributesKey(OPERATION_SIGN_ID, SyntaxHighlighterColors.OPERATION_SIGN.getDefaultAttributes().clone());
 
     static {
         DEFINED_CONSTANTS_ATTR.setForegroundColor(Color.MAGENTA);

@@ -35,7 +35,7 @@ import javax.swing.*;
 public class MoonCodeStyleSettingsProvider extends CodeStyleSettingsProvider {
   @NotNull
   public Configurable createSettingsPage(final CodeStyleSettings settings, final CodeStyleSettings originalSettings) {
-    return new CodeStyleAbstractConfigurable(settings, originalSettings, "Lua"){
+    return new CodeStyleAbstractConfigurable(settings, originalSettings, "MoonScript"){
       protected CodeStyleAbstractPanel createPanel(final CodeStyleSettings settings) {
         return new CodeStyleMoonPanel(settings);
       }
@@ -55,6 +55,6 @@ public class MoonCodeStyleSettingsProvider extends CodeStyleSettingsProvider {
 
   @Override
   public String getConfigurableDisplayName() {
-    return "Lua";
+    return "MoonScript";
   }
 }

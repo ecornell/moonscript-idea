@@ -36,12 +36,12 @@ import org.jetbrains.annotations.NotNull;
 public class MoonFunctionMacro implements Macro {
     @Override
     public String getName() {
-        return "currentLuaFunction";
+        return "currentMoonFunction";
     }
 
     @Override
     public String getDescription() {
-        return "Substitutes the name of the current Lua script function";
+        return "Substitutes the name of the current MoonScript function";
     }
 
     @Override

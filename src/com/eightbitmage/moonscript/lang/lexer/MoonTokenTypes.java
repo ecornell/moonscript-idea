@@ -39,7 +39,7 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
    *  Whitespaces & NewLines
    * ****************************************************************************************************/
 
-    IElementType NL_BEFORE_LONGSTRING = new MoonElementType("newline after longstring stert bracket");
+    IElementType NL_BEFORE_LONGSTRING = new MoonElementType("newline after longstring start bracket");
     IElementType WS = TokenType.WHITE_SPACE;
     IElementType NEWLINE = new MoonElementType("new line");
 
@@ -155,6 +155,10 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
     IElementType UNTIL = new MoonElementType("until");
     IElementType END = new MoonElementType("end");
 
+    IElementType CLASS = new MoonElementType("class");
+    IElementType IMPORT = new MoonElementType("import");
+    IElementType EXPORT = new MoonElementType("export");
+
     /*
     IElementType MODULE = new MoonElementType("module");
     IElementType REQUIRE = new MoonElementType("require");
@@ -166,7 +170,8 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
             WITH, IF, THEN, ELSEIF, THEN, ELSE,
             WHILE, FOR, IN, RETURN, BREAK,
             CONTINUE, LOCAL,
-            REPEAT, UNTIL, END/*, MODULE, REQUIRE */);
+            REPEAT, UNTIL, END,
+            CLASS, IMPORT, EXPORT/*, MODULE, REQUIRE */);
 
     TokenSet BRACES = TokenSet.create(LCURLY, RCURLY);
     TokenSet PARENS = TokenSet.create(LPAREN, RPAREN);
@@ -182,9 +187,11 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
             EQ, GE, GT, LT, LE, NE, DOT, COLON,
             MINUS, PLUS, DIV, MULT, EXP, MOD);
 
+    TokenSet OP_SET = TokenSet.create(EQ, GE, GT, LT, LE, NE, MINUS, PLUS, DIV, MULT, EXP, MOD);
+
     TokenSet TABLE_ACCESS = TokenSet.create(DOT, COLON, LBRACK);
 
-      TokenSet LITERALS_SET = TokenSet.create(NUMBER, NIL, TRUE, FALSE, STRING, LONGSTRING, LONGSTRING_BEGIN, LONGSTRING_END);
+    TokenSet LITERALS_SET = TokenSet.create(NUMBER, NIL, TRUE, FALSE, STRING, LONGSTRING, LONGSTRING_BEGIN, LONGSTRING_END);
 
     TokenSet IDENTIFIERS_SET = TokenSet.create(NAME);
 

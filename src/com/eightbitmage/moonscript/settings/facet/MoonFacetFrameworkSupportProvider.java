@@ -32,7 +32,7 @@ public class MoonFacetFrameworkSupportProvider extends FacetBasedFrameworkSuppor
 
     @Override
     public String getTitle() {
-        return "Lua";
+        return "Moon";
     }
 
     @Override

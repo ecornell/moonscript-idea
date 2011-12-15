@@ -17,7 +17,7 @@
 package com.eightbitmage.moonscript.editor.inspections.performance;
 
 import com.eightbitmage.moonscript.editor.inspections.AbstractInspection;
-import com.eightbitmage.moonscript.editor.inspections.LuaFix;
+import com.eightbitmage.moonscript.editor.inspections.MoonFix;
 import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
 import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpressionList;
 import com.eightbitmage.moonscript.lang.psi.expressions.MoonIdentifierList;
@@ -65,7 +65,7 @@ public class RedundantInitializationInspection extends AbstractInspection {
     @NotNull
     @Override
     public HighlightDisplayLevel getDefaultLevel() {
-        return HighlightDisplayLevel.INFO;
+        return HighlightDisplayLevel.WEAK_WARNING;
     }
 
 
@@ -100,7 +100,7 @@ public class RedundantInitializationInspection extends AbstractInspection {
         };
     }
 
-    private class RedundantInitializationFix extends LuaFix {
+    private class RedundantInitializationFix extends MoonFix {
 
         @Override
         protected void doFix(Project project, ProblemDescriptor descriptor) throws IncorrectOperationException {

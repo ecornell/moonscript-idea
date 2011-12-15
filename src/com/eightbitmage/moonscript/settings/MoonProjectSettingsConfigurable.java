@@ -86,7 +86,7 @@ public class MoonProjectSettingsConfigurable implements SearchableConfigurable {
     @NotNull
     @Override
     public String getId() {
-        return "lua.project.configurable";
+        return "moon.project.configurable";
     }
 
     @Override

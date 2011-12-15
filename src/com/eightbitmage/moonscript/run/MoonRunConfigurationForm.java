@@ -50,7 +50,7 @@ public class MoonRunConfigurationForm implements MoonRunConfigurationParams {
         scriptNameEdit.addBrowseFolderListener("Select script", "", myMoonRunConfiguration.getProject(), BrowseFilesListener.SINGLE_FILE_DESCRIPTOR);
     }
 
-    public CommonLuaRunConfigurationParams getCommonParams() {
+    public CommonMoonRunConfigurationParams getCommonParams() {
         return commonOptionsForm;
     }
 

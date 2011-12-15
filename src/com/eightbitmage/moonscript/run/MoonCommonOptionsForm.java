@@ -31,7 +31,7 @@ import java.util.Map;
  * Date: 10.07.2009
  * Time: 21:43:12
  */
-public class MoonCommonOptionsForm implements CommonLuaRunConfigurationParams {
+public class MoonCommonOptionsForm implements CommonMoonRunConfigurationParams {
     private JPanel rootPanel;
     private RawCommandLineEditor interpreterOptions;
     private EnvironmentVariablesComponent environmentVariablesEdit;

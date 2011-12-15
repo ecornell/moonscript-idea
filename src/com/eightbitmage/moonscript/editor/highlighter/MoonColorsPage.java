@@ -74,6 +74,7 @@ public class MoonColorsPage implements ColorSettingsPage {
             new AttributesDescriptor(MoonBundle.message("color.settings.string"), MoonHighlightingData.STRING),
             new AttributesDescriptor(MoonBundle.message("color.settings.longstring"), MoonHighlightingData.LONGSTRING),
             new AttributesDescriptor(MoonBundle.message("color.settings.keyword"), MoonHighlightingData.KEYWORD),
+            new AttributesDescriptor(MoonBundle.message("color.settings.operation"), MoonHighlightingData.OPERATION_SIGN),
             new AttributesDescriptor(MoonBundle.message("color.settings.constant.keywords"), MoonHighlightingData.DEFINED_CONSTANTS),
             new AttributesDescriptor(MoonBundle.message("color.settings.globals"), MoonHighlightingData.GLOBAL_VAR),
             new AttributesDescriptor(MoonBundle.message("color.settings.locals"), MoonHighlightingData.LOCAL_VAR),
@@ -103,7 +104,6 @@ public class MoonColorsPage implements ColorSettingsPage {
         ATTR_MAP.put("moondoc", MoonHighlightingData.LUADOC);
         ATTR_MAP.put("moondoc-tag", MoonHighlightingData.LUADOC_TAG);
         ATTR_MAP.put("moondoc-value", MoonHighlightingData.LUADOC_VALUE);
-
     }
 
     @NotNull

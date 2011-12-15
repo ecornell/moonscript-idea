@@ -39,7 +39,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MoonRunConfiguration extends ModuleBasedConfiguration<RunConfigurationModule> implements CommonLuaRunConfigurationParams, MoonRunConfigurationParams {
+public class MoonRunConfiguration extends ModuleBasedConfiguration<RunConfigurationModule> implements CommonMoonRunConfigurationParams, MoonRunConfigurationParams {
     static Logger log = Logger.getLogger(MoonRunConfiguration.class);
 
     // common config
@@ -81,7 +81,7 @@ public class MoonRunConfiguration extends ModuleBasedConfiguration<RunConfigurat
         return state;
     }
 
-    public static void copyParams(CommonLuaRunConfigurationParams from, CommonLuaRunConfigurationParams to) {
+    public static void copyParams(CommonMoonRunConfigurationParams from, CommonMoonRunConfigurationParams to) {
         to.setEnvs(new HashMap<String, String>(from.getEnvs()));
         to.setInterpreterOptions(from.getInterpreterOptions());
         to.setWorkingDirectory(from.getWorkingDirectory());
@@ -205,7 +205,7 @@ public class MoonRunConfiguration extends ModuleBasedConfiguration<RunConfigurat
         this.interpreterPath = path;
     }
 
-    public CommonLuaRunConfigurationParams getCommonParams() {
+    public CommonMoonRunConfigurationParams getCommonParams() {
         return this;
     }
 

@@ -81,7 +81,7 @@ public class UnusedDefInspection extends AbstractInspection {
     @NonNls
     @NotNull
     public String getShortName() {
-        return "LuaUnusedAssignment";
+        return "MoonUnusedAssignment";
     }
 
 

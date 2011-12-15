@@ -30,36 +30,6 @@
         <b>Features:</b>
         <br>
             <ul>
-                <li>Introduce Variable Refactoring (<b>Experimental</b>)</li>
-                <li>Modules support (<b>Experimental</b>)</li>
-                <li>Debugger (<b>Experimental</b>)</li>
-                <li>MoonDoc Creation, Highlighting and Folding</li>
-                <li>Live Templates ("Zen Moon")</li>
-                <li>Custom API Support including custom function signatures and documentation</li>
-                <li>Moon Standard Library Information via Quickhelp (ctrl-Q)</li>
-                <li>Goto Symbol</li>
-                <li>Safe Delete</li>
-                <li>Rename Identifier</li>
-                <li>JavaHelp For Moon 5.1</li>
-                <li>Go to definition</li>
-                <li>find usages</li>
-                <li>Code formatting</li>
-                <li>Speculative completion as an option (Settings|Moon)</li>
-                <li>Code completion</li>
-                <li>1 quickfix</li>
-                <li>6 code intentions</li>
-                <li>11 code inspection</li>
-                <li>Script execution and run configurations</li>
-                <li>Kahlua REPL Console</li>
-                <li>Moon REPL Console</li>
-                <li>Structure view</li>
-                <li>Syntax checking</li>
-                <li>Highlighting of Upvalues, Parameters and Fields</li>
-                <li>Highlighting global vs local variables</li>
-                <li>Customizable Syntax highlighting</li>
-                <li>Code folding for code blocks and comments</li>
-                <li>Brace Matching for do blocks, long strings and comments, and (, { , [</li>
-                <li>Minor feature: comment in/out.</li>
             </ul>
         </html>
         ]]></description>
@@ -186,6 +156,7 @@
 
         <!-- Lang extensions -->
         <lang.formatter language="Moon" implementationClass="com.eightbitmage.moonscript.lang.formatter.MoonFormattingModelBuilder"/>
+
         <fileTypeIndentOptionsProvider id="Moon" implementation="com.eightbitmage.moonscript.lang.formatter.MoonIndentOptionsProvider"/>
 
         <lang.braceMatcher language="Moon"
@@ -262,7 +233,7 @@
     </intentionAction>
     <!--<intentionAction>-->
       <!--<bundleName>com.eightbitmage.moonscript.intentions.MoonIntentionsBundle</bundleName>-->
-      <!--<categoryKey>intention.category.moon/intention.category.control.flow</categoryKey>-->
+      <!--<categoryKey>intention.category.oldmoon/intention.category.control.flow</categoryKey>-->
       <!--<className>com.eightbitmage.moonscript.intentions.control.ExpandBooleanIntention</className>-->
     <!--</intentionAction>-->
     <intentionAction>

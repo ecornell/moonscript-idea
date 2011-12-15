@@ -42,7 +42,7 @@ import java.io.Serializable;
         }
 )
 public class MoonFacetConfiguration implements FacetConfiguration, Serializable, PersistentStateComponent<MoonFacetSettings> {
-    private Logger LOG = Logger.getInstance("Lua.MoonFacetConfiguration");
+    private Logger LOG = Logger.getInstance("Moon.MoonFacetConfiguration");
     private MoonFacetSettings settings = new MoonFacetSettings();
 
     public MoonFacetConfiguration() {

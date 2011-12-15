@@ -25,6 +25,7 @@ import com.intellij.util.io.StringRef;
 
 
 public class MoonFileStub extends PsiFileStubImpl<MoonPsiFile> implements PsiFileStub<MoonPsiFile> {
+
     private static final String[] EMPTY = new String[0];
     private StringRef myName;
 

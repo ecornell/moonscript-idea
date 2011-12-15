@@ -16,8 +16,8 @@
 
 package com.eightbitmage.moonscript.editor.inspections;
 
-import com.eightbitmage.moonscript.editor.inspections.metrics.LuaOverlyComplexMethodInspection;
-import com.eightbitmage.moonscript.editor.inspections.metrics.LuaOverlyLongMethodInspection;
+import com.eightbitmage.moonscript.editor.inspections.metrics.MoonOverlyComplexMethodInspection;
+import com.eightbitmage.moonscript.editor.inspections.metrics.MoonOverlyLongMethodInspection;
 import com.eightbitmage.moonscript.editor.inspections.performance.RedundantInitializationInspection;
 import com.eightbitmage.moonscript.editor.inspections.performance.StringConcatenationInLoopsInspection;
 import com.eightbitmage.moonscript.editor.inspections.unassignedVariable.UnassignedVariableAccessInspection;
@@ -40,9 +40,9 @@ public class InspectionProvider implements InspectionToolProvider, ApplicationCo
                 ParameterSelfInspection.class,
                 GlobalSelfInspection.class,
                 UnbalancedAssignmentInspection.class,
-                LuaDivideByZeroInspection.class,
-                LuaOverlyComplexMethodInspection.class,
-                LuaOverlyLongMethodInspection.class,
+                MoonDivideByZeroInspection.class,
+                MoonOverlyComplexMethodInspection.class,
+                MoonOverlyLongMethodInspection.class,
                 ArrayElementZeroInspection.class,
                 LuaUnreachableStatementInspection.class,
                 StringConcatenationInLoopsInspection.class,
@@ -56,7 +56,7 @@ public class InspectionProvider implements InspectionToolProvider, ApplicationCo
     @NotNull
     @Override
     public String getComponentName() {
-        return "LuaInspectionProvider";
+        return "MoonInspectionProvider";
     }
 
     @Override

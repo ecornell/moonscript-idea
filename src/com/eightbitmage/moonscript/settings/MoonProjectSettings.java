@@ -27,7 +27,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
                 @Storage(id = "default",
                         file = "$PROJECT_FILE$"),
                 @Storage(id = "dir",
-                        file = "$PROJECT_CONFIG_DIR$/Lua_project.xml",
+                        file = "$PROJECT_CONFIG_DIR$/Moon_project.xml",
                         scheme = StorageScheme.DIRECTORY_BASED)}
 )
 public class MoonProjectSettings implements PersistentStateComponent<MoonProjectSettings> {

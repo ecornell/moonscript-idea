@@ -32,16 +32,9 @@ import com.eightbitmage.moonscript.lang.psi.symbols.MoonGlobalDeclaration;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.psi.tree.TokenSet;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Apr 10, 2010
- * Time: 3:54:46 PM
- */
 public interface MoonElementTypes extends MoonTokenTypes, MoonDocElementTypes {
-    IElementType EMPTY_INPUT = new MoonElementType("empty input");
 
-    
+    IElementType EMPTY_INPUT = new MoonElementType("empty input");
 
     IElementType FUNCTION_DEFINITION = new MoonElementType("Function Definition");
 
@@ -49,16 +42,13 @@ public interface MoonElementTypes extends MoonTokenTypes, MoonDocElementTypes {
     IElementType LOCAL_NAME_DECL = new MoonElementType("local name declaration");
 
     IElementType GLOBAL_NAME = new MoonElementType("global name");
-  //  IElementType GLOBAL_NAME_DECL = new MoonElementType("global name declaration");
- // IElementType GETTABLE = new MoonElementType("get table");
-//IElementType GETSELF = new MoonElementType("get self");
+    //  IElementType GLOBAL_NAME_DECL = new MoonElementType("global name declaration");
+    // IElementType GETTABLE = new MoonElementType("get table");
+    // IElementType GETSELF = new MoonElementType("get self");
     MoonStubElementType<MoonGlobalDeclarationStub, MoonGlobalDeclaration> GLOBAL_NAME_DECL = new MoonStubGlobalDeclarationType();
     MoonStubElementType<MoonCompoundIdentifierStub, MoonCompoundIdentifier> GETTABLE = new MoonStubCompoundIdentifierType();
-    //MoonStubElementType<MoonCompoundIdentifierStub, MoonCompoundIdentifier> GETSELF = new MoonStubCompoundIdentifierType();
-
+    // MoonStubElementType<MoonCompoundIdentifierStub, MoonCompoundIdentifier> GETSELF = new MoonStubCompoundIdentifierType();
     MoonStubElementType<MoonFieldStub, MoonFieldIdentifier> FIELD_NAME = new MoonFieldStubType();
-
-    
 
     IElementType TABLE_INDEX = new MoonElementType("table index");
     IElementType KEY_ASSIGNMENT = new MoonElementType("keyed field initializer");
@@ -113,7 +103,10 @@ public interface MoonElementTypes extends MoonTokenTypes, MoonDocElementTypes {
 
     IElementType LOCAL_FUNCTION = new MoonElementType("local function def");
 
-    TokenSet BLOCK_SET = TokenSet.create(FUNCTION_DEFINITION, LOCAL_FUNCTION, ANONYMOUS_FUNCTION_EXPRESSION,
+    TokenSet BLOCK_SET = TokenSet.create(
+            FUNCTION_DEFINITION,
+            LOCAL_FUNCTION,
+            ANONYMOUS_FUNCTION_EXPRESSION,
             WHILE_BLOCK,
             GENERIC_FOR_BLOCK,
             IF_THEN_BLOCK,

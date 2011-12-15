@@ -8,15 +8,16 @@ import org.jetbrains.annotations.NotNull;
 
 %%
 
-//--- file: lua.l ---
 /*
-* moon.l - flex lexer for Lua 5.1
+* moon.l - flex lexer for MoonScript
 */
 
 %class _MoonLexer
 %implements FlexLexer, MoonTokenTypes
 
 %unicode
+
+//%debug
 
 %function advance
 %type IElementType
@@ -63,6 +64,8 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 "false"        { return FALSE; }
 "for"          { return FOR; }
 "function"     { return FUNCTION; }
+"->"           { return FUNCTION; }
+"class"        { return CLASS; }
 "if"           { return IF; }
 "in"           { return IN; }
 "local"        { return LOCAL; }
@@ -75,32 +78,43 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 "true"         { return TRUE; }
 "until"        { return UNTIL; }
 "while"        { return WHILE; }
+
+"export"       { return EXPORT; }
+"import"       { return IMPORT; }
+
 {number}       { return NUMBER; }
 
 {luadoc}       { yypushback(1); /* TODO: Only pushback a newline */  return LUADOC_COMMENT; }
 
---\[{sep}\[ { longCommentOrStringHandler.setCurrentExtQuoteStart(yytext().toString()); yybegin( XLONGCOMMENT ); return LONGCOMMENT_BEGIN; }
---+        { yypushback(yytext().length()); yybegin( XSHORTCOMMENT ); return advance(); }
+--\[{sep}\[    { longCommentOrStringHandler.setCurrentExtQuoteStart(yytext().toString()); yybegin( XLONGCOMMENT ); return LONGCOMMENT_BEGIN; }
+--+            { yypushback(yytext().length()); yybegin( XSHORTCOMMENT ); return advance(); }
 
-"["{sep}"[" { longCommentOrStringHandler.setCurrentExtQuoteStart(yytext().toString()); yybegin( XLONGSTRING_BEGIN ); return LONGSTRING_BEGIN; }
+"["{sep}"["    { longCommentOrStringHandler.setCurrentExtQuoteStart(yytext().toString()); yybegin( XLONGSTRING_BEGIN ); return LONGSTRING_BEGIN; }
 
 "\""           { yybegin(XSTRINGQ);  return STRING; }
-'            { yybegin(XSTRINGA); return STRING; }
+'              { yybegin(XSTRINGA); return STRING; }
 
 
 "#!"         { yybegin( XSHORTCOMMENT ); return SHEBANG; }
 {w}          { return WS; }
 "..."        { return ELLIPSIS; }
 ".."         { return CONCAT; }
+"..="        { return CONCAT; }
 "=="         { return EQ; }
 ">="         { return GE; }
 "<="         { return LE; }
 "~="         { return NE; }
+"!="         { return NE; }
 "-"          { return MINUS; }
+"-="         { return MINUS; }
 "+"          { return PLUS;}
+"+="         { return PLUS;}
 "*"          { return MULT;}
+"*="         { return MULT;}
 "%"          { return MOD;}
+"%="         { return MOD;}
 "/"          { return DIV; }
+"/="         { return DIV; }
 "="          { return ASSIGN;}
 ">"          { return GT;}
 "<"          { return LT;}
@@ -130,8 +144,8 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
   \\'        {return STRING;}
   \\"["      {return STRING;}
   \\"]"      {return STRING;}
-   \\\\        { return STRING; }
-  {nl}    { yybegin(YYINITIAL); return WRONG; }
+  \\\\       { return STRING; }
+  {nl}       { yybegin(YYINITIAL); return WRONG; }
   .          {return STRING;}
 }
 
@@ -139,15 +153,15 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 {
   ''          { return STRING; }
   '           { yybegin(YYINITIAL); return STRING; }
-  \\[abfnrt] { return STRING; }
+  \\[abfnrt]  { return STRING; }
   \\\n        { return STRING; }
-  \\\'          { return STRING; }
-  \\'          { yybegin(YYINITIAL); return STRING; }
+  \\\'        { return STRING; }
+  \\'         { yybegin(YYINITIAL); return STRING; }
   \\"["       { return STRING; }
   \\"]"       { return STRING; }
   \\\\        { return STRING; }
-  {nl}     { yybegin(YYINITIAL);return WRONG;  }
-  .          { return STRING; }
+  {nl}        { yybegin(YYINITIAL);return WRONG;  }
+  .           { return STRING; }
 }
 
 
@@ -160,32 +174,35 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 
 <XLONGSTRING>
 {
-  "]"{sep}"]"     { if (longCommentOrStringHandler.isCurrentExtQuoteStart(yytext())) {
+  "]"{sep}"]"     {
+                    if (longCommentOrStringHandler.isCurrentExtQuoteStart(yytext())) {
                        yybegin(YYINITIAL); longCommentOrStringHandler.resetCurrentExtQuoteStart(); return LONGSTRING_END;
-                       } else { yypushback(yytext().length()-1); }
-                        return LONGSTRING;
+                    } else { yypushback(yytext().length()-1); }
+                    return LONGSTRING;
                   }
                   
   {nl}     { return LONGSTRING; }
-  .          { return LONGSTRING; }
+  .        { return LONGSTRING; }
 }
 
 <XSHORTCOMMENT>
 {
   {nl}      {yybegin(YYINITIAL); return NEWLINE; }
   
-  .          { return SHORTCOMMENT;}
+  .         { return SHORTCOMMENT;}
 }
 
 <XLONGCOMMENT>
 {
-  "]"{sep}"]"     { if (longCommentOrStringHandler.isCurrentExtQuoteStart(yytext())) {
+  "]"{sep}"]"     {
+                    if (longCommentOrStringHandler.isCurrentExtQuoteStart(yytext())) {
                        yybegin(YYINITIAL); longCommentOrStringHandler.resetCurrentExtQuoteStart(); return LONGCOMMENT_END;
-                       }  else { yypushback(yytext().length()-1); }
-                        return LONGCOMMENT;  }
+                    }  else { yypushback(yytext().length()-1); }
+                  return LONGCOMMENT;
+                  }
 
   {nl}     { return LONGCOMMENT;}
-  .          { return LONGCOMMENT;}
+  .        { return LONGCOMMENT;}
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

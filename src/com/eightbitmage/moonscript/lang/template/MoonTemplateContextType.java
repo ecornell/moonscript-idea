@@ -33,7 +33,7 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MoonTemplateContextType extends TemplateContextType {
     protected MoonTemplateContextType() {
-        super("LUA", "Lua");
+        super("MOON", "Moon ");
     }
 
     public boolean isInContext(@NotNull PsiFile file, int offset) {

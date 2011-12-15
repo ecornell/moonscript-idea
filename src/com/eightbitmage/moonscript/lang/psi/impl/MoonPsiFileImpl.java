@@ -51,13 +51,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Apr 10, 2010
- * Time: 12:19:03 PM
- */
-public class MoonPsiFileImpl extends MoonPsiFileBaseImpl implements MoonPsiFile, PsiFileWithStubSupport, PsiFileEx, MoonPsiFileBase, MoonExpressionCodeFragment {
+public class MoonPsiFileImpl
+        extends MoonPsiFileBaseImpl
+        implements MoonPsiFile, PsiFileWithStubSupport, PsiFileEx, MoonPsiFileBase, MoonExpressionCodeFragment {
+
     private boolean sdkFile;
 
     public MoonPsiFileImpl(FileViewProvider viewProvider) {
@@ -70,17 +67,15 @@ public class MoonPsiFileImpl extends MoonPsiFileBaseImpl implements MoonPsiFile,
         return MoonFileType.MOON_FILE_TYPE;
     }
 
-
     @Override
     public String toString() {
-        return "Lua script: " + getName();
+        return "Moon script: " + getName();
     }
 
     @Override
     public GlobalSearchScope getFileResolveScope() {
         return new ProjectAndLibrariesScope(getProject());
     }
-
 
     @Override
     public MoonStatementElement addStatementBefore(@NotNull MoonStatementElement statement, MoonStatementElement anchor) throws IncorrectOperationException {

@@ -61,6 +61,8 @@ public class MoonSyntaxHighlighter extends SyntaxHighlighterBase {
         fillMap(colors, MoonTokenTypes.DEFINED_CONSTANTS, MoonHighlightingData.DEFINED_CONSTANTS);
         colors.put(MoonTokenTypes.COMMA, MoonHighlightingData.COMMA);
         colors.put(MoonTokenTypes.NUMBER, MoonHighlightingData.NUMBER);
+
+        fillMap(colors, MoonTokenTypes.OP_SET, MoonHighlightingData.OPERATION_SIGN);
     }
 
     @NotNull

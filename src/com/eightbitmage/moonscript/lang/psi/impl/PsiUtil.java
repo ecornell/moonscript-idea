@@ -29,7 +29,7 @@ import org.jetbrains.annotations.Nullable;
  * @author ven
  */
 public class PsiUtil {
-  public static final Logger LOG = Logger.getInstance("Lua.PsiUtil");
+  public static final Logger LOG = Logger.getInstance("Moon.PsiUtil");
 
   private PsiUtil() {
   }

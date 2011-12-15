@@ -40,7 +40,7 @@ import java.util.List;
 
 
 public class MoonFormattingBlock implements Block {
-    public static final Logger LOG = Logger.getInstance("Lua.MoonBlock");
+    public static final Logger LOG = Logger.getInstance("Moon.MoonBlock");
   final protected ASTNode myNode;
   final protected Alignment myAlignment;
   final protected Indent myIndent;

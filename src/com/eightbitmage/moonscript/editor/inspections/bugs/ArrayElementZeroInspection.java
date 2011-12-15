@@ -45,7 +45,7 @@ public class ArrayElementZeroInspection  extends AbstractInspection {
 
     @Override
     public String getStaticDescription() {
-        return "Lua arrays are 1 based. This checks for array access of element 0.";
+        return "MoonScript arrays are 1 based. This checks for array access of element 0.";
     }
 
     @NotNull

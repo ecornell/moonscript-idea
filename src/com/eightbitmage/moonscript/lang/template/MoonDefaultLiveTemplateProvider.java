@@ -38,7 +38,7 @@ public class MoonDefaultLiveTemplateProvider
     }
 
     private static final String DEFAULT_TEMPLATES[] = {
-        "/liveTemplates/lua",
+        "/liveTemplates/moon",
     };
 
 }

@@ -20,7 +20,7 @@ package com.eightbitmage.moonscript.run;
  * @author wibotwi
  */
 public interface MoonRunConfigurationParams {
-    CommonLuaRunConfigurationParams getCommonParams();
+    CommonMoonRunConfigurationParams getCommonParams();
 
     String getScriptName();
 

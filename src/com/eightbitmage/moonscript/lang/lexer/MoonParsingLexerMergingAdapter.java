@@ -28,6 +28,7 @@ import com.intellij.psi.tree.TokenSet;
  * Time: 12:27 AM
  */
 public class MoonParsingLexerMergingAdapter extends MergingLexerAdapterBase implements MoonTokenTypes {
+
     static final TokenSet tokensToMerge = TokenSet.create(LONGSTRING_BEGIN, LONGSTRING, LONGSTRING_END, NL_BEFORE_LONGSTRING);
     static final TokenSet tokensToMerge2 = TokenSet.create(LONGCOMMENT_BEGIN, LONGCOMMENT, LONGCOMMENT_END,
             NL_BEFORE_LONGSTRING);
