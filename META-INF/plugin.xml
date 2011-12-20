@@ -59,12 +59,18 @@
         <component>
             <implementation-class>com.eightbitmage.moonscript.editor.inspections.InspectionProvider</implementation-class>
         </component>
+        <component>
+            <implementation-class>com.eightbitmage.moonscript.options.MoonSettings</implementation-class>
+        </component>
     </application-components>
 
     <project-components>
     <!--<component>-->
       <!--<implementation-class>com.eightbitmage.moonscript.lang.psi.impl.MoonPsiManager</implementation-class>-->
     <!--</component>-->
+        <component>
+            <implementation-class>com.eightbitmage.moonscript.compiler.MoonScriptSourceGeneratingCompiler</implementation-class>
+        </component>
     </project-components>
 
     <actions>
@@ -108,8 +114,8 @@
 
         <!-- Project Configuration -->
         <!--<projectConfigurable  instance="com.eightbitmage.moonscript.settings.MoonProjectSettingsConfigurable" />-->
-        <!--<projectService serviceImplementation="com.eightbitmage.moonscript.settings.MoonProjectSettings"-->
-                        <!--serviceInterface="com.eightbitmage.moonscript.settings.MoonProjectSettings" />-->
+        <!--<projectService serviceImplementation="com.eightbitmage.moonscript.settings.MoonProjectSettings" />-->
+           <!--serviceInterface="com.eightbitmage.moonscript.settings.MoonProjectSettings" />-->
 
         <fileTypeFactory implementation="com.eightbitmage.moonscript.MoonFileTypeLoader"/>
 
@@ -262,4 +268,5 @@
       <className>com.eightbitmage.moonscript.intentions.comments.ChangeToEndOfLineCommentIntention</className>
     </intentionAction>
     </extensions>
+
 </idea-plugin>
