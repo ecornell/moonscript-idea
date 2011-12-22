@@ -32,11 +32,6 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-/**
- * JFlexx wrapper to command line tool.
- *
- * @author Alexey Efimov
- */
 public final class MoonScript {
     @NonNls
     private static final Pattern LINE_NUMBER_PATTERN = Pattern.compile(".*\\[(\\d+)\\].*?");

@@ -39,6 +39,10 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
    *  Whitespaces & NewLines
    * ****************************************************************************************************/
 
+    IElementType INDENT = new MoonElementType("indent");
+    IElementType UNINDENT = new MoonElementType("unindent");
+    IElementType BEGIN = new MoonElementType("begin");
+
     IElementType NL_BEFORE_LONGSTRING = new MoonElementType("newline after longstring start bracket");
     IElementType WS = TokenType.WHITE_SPACE;
     IElementType NEWLINE = new MoonElementType("new line");
@@ -159,11 +163,8 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
     IElementType IMPORT = new MoonElementType("import");
     IElementType EXPORT = new MoonElementType("export");
 
-    /*
-    IElementType MODULE = new MoonElementType("module");
-    IElementType REQUIRE = new MoonElementType("require");
-    */
-
+    IElementType SELF = new MoonElementType("@");
+    IElementType SWITCH = new MoonElementType("switch");
 
 
     TokenSet KEYWORDS = TokenSet.create(DO, FUNCTION, NOT, AND, OR,
@@ -171,7 +172,8 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
             WHILE, FOR, IN, RETURN, BREAK,
             CONTINUE, LOCAL,
             REPEAT, UNTIL, END,
-            CLASS, IMPORT, EXPORT/*, MODULE, REQUIRE */);
+            CLASS, IMPORT, EXPORT,
+            SWITCH);
 
     TokenSet BRACES = TokenSet.create(LCURLY, RCURLY);
     TokenSet PARENS = TokenSet.create(LPAREN, RPAREN);

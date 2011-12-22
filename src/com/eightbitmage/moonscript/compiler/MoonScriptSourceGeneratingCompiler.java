@@ -36,9 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The source generating compiler for *.flex files.
- *
- * @author Alexey Efimov
+ * The source generating compiler for *.moon files.
  */
 public class MoonScriptSourceGeneratingCompiler implements SourceGeneratingCompiler, ProjectComponent {
     @NonNls
@@ -110,8 +108,7 @@ public class MoonScriptSourceGeneratingCompiler implements SourceGeneratingCompi
     }
 
     public boolean validateConfiguration(CompileScope scope) {
-        //if (MoonScript.isCompilationEnabled()) {
-        if (true) {
+        if (MoonScript.isCompilationEnabled()) {
             Module[] affectedModules = scope.getAffectedModules();
             if (affectedModules.length > 0) {
                 Project project = affectedModules[0].getProject();
@@ -237,13 +234,11 @@ public class MoonScriptSourceGeneratingCompiler implements SourceGeneratingCompi
     private static class GenerateAction implements Computable<GenerationItem[]> {
         private final CompileContext context;
         private final GenerationItem[] items;
-        //private final Sdk projectSdk;
         private final File outputDir;
 
         public GenerateAction(CompileContext context, GenerationItem[] items, VirtualFile outputRootDirectory) {
             this.context = context;
             this.items = items;
-            //this.projectSdk = projectSdk;
             outputDir = VfsUtil.virtualToIoFile(outputRootDirectory);
         }
 

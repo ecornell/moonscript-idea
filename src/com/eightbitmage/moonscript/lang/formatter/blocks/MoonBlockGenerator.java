@@ -42,7 +42,9 @@ import java.util.List;
  * @author ilyas
  */
 public class MoonBlockGenerator implements MoonElementTypes {
+
     public static final Logger LOG = Logger.getInstance("Moon.MoonBlockGenerator");
+
 //  private static final TokenSet NESTED = TokenSet.create(REFERENCE_EXPRESSION,
 //      PATH_INDEX_PROPERTY,
 //      PATH_METHOD_CALL,

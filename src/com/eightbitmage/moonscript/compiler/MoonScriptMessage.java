@@ -4,8 +4,6 @@ import java.text.MessageFormat;
 
 /**
  * MoonScript message.
- *
- * @author Alexey Efimov
  */
 public final class MoonScriptMessage {
     private final int line;
@@ -35,6 +33,7 @@ public final class MoonScriptMessage {
     }
 
     public String toString() {
-        return line >= 0 ? column >= 0 ? MessageFormat.format("{0} ({1}:{2})", message, line, column) : MessageFormat.format("{0} ({1})", message, line) : message;
+        //return line >= 0 ? column >= 0 ? MessageFormat.format("{0} ({1}:{2})", message, line, column) : MessageFormat.format("{0} ({1})", message, line) : message;
+        return line >= 0 ? column >= 0 ? MessageFormat.format("{0} ({1})", message, line, column) : MessageFormat.format("{0} ({1})", message, line) : message;
     }
 }
