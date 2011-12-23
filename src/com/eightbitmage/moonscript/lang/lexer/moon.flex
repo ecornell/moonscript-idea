@@ -123,13 +123,11 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 %x XLONGCOMMENT
 %x XSTRINGQ
 %x XSTRINGA
-
 %x XINDENT
 
-%state YYNORMAL
-
-%state YYNAME
-%state YYNUMBER
+%s YYNORMAL
+%s YYNAME
+%s YYNUMBER
 
 %%
 
@@ -138,8 +136,13 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 /*************************************************************************************************/
 /* The initial state recognizes keywords, most operators and characters that start another state */
 /*************************************************************************************************/
-
 <YYINITIAL> {
+  .  { current_line_indent = 0; indent_level = 0; yypushback(yylength()); yybegin(XINDENT); }
+}
+
+
+<YYNORMAL> {
+    {nl}     { current_line_indent = 0; yybegin(XINDENT); }
 
     /* Keywords */
     "and"          { return AND; }
@@ -184,11 +187,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
     "\""           { yybegin(XSTRINGQ);  return STRING; }
     '              { yybegin(XSTRINGA); return STRING; }
 
-
     "#!"          { yybegin( XSHORTCOMMENT ); return SHEBANG; }
-    //{indent}     { return INDENT; }
-
-    ^{w}          { current_line_indent = 0; yybegin(XINDENT); }
 
     {name}        { yybegin(YYNAME);
                     return NAME; }
@@ -233,21 +232,23 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 
     "@"          { return SELF; }
 
-    {nl}         { return NEWLINE; }
+    //{nl}         { return NEWLINE; }
     {w}          { return WS; }
 
+    .            { stack.clear();
+                   yybegin(YYNORMAL);
+                   return WRONG; }
 }
 
 
 <XINDENT>
 {
-  [ \t]    { current_line_indent++; }
-//<XINDENT>"\t"     { current_line_indent = (current_line_indent + 8) & ~7; }
+  " "      { System.out.println("_"); current_line_indent++; }
+  "\t"     { System.out.println("_"); current_line_indent++; }
   {nl}     { current_line_indent = 0; /*ignoring blank line */ }
   .        {
-//                   unput(*yytext);
                    yypushback(yylength());
-                    System.out.println(current_line_indent + " " + indent_level);
+                   System.out.println(current_line_indent + " " + indent_level);
                    if (current_line_indent > indent_level) {
                        indent_level++;
                        return INDENT;
@@ -256,17 +257,15 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
                        return UNINDENT;
                    }
                    else {
-                   //    BEGIN normal;
-                         yybegin(YYINITIAL);
+                         yybegin(YYNORMAL);
                    }
-                 }
+           }
 }
-//<YYNORMAL>{nl}     { current_line_indent = 0; yybegin(XINDENT); }
 
 <XSTRINGQ>
 {
   \"\"       {return STRING;}
-  \"         { yybegin(YYINITIAL); return STRING; }
+  \"         { yybegin(YYNORMAL); return STRING; }
   \\[abfnrt] {return STRING;}
   \\\n       {return STRING;}
   \\\"       {return STRING; }
@@ -274,22 +273,22 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
   \\"["      {return STRING;}
   \\"]"      {return STRING;}
   \\\\       { return STRING; }
-  {nl}       { yybegin(YYINITIAL); return WRONG; }
+  {nl}       { yybegin(YYNORMAL); return WRONG; }
   .          {return STRING;}
 }
 
 <XSTRINGA>
 {
   ''          { return STRING; }
-  '           { yybegin(YYINITIAL); return STRING; }
+  '           { yybegin(YYNORMAL); return STRING; }
   \\[abfnrt]  { return STRING; }
   \\\n        { return STRING; }
   \\\'        { return STRING; }
-  \\'         { yybegin(YYINITIAL); return STRING; }
+  \\'         { yybegin(YYNORMAL); return STRING; }
   \\"["       { return STRING; }
   \\"]"       { return STRING; }
   \\\\        { return STRING; }
-  {nl}        { yybegin(YYINITIAL);return WRONG;  }
+  {nl}        { yybegin(YYNORMAL);return WRONG;  }
   .           { return STRING; }
 }
 
@@ -297,7 +296,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 <XLONGSTRING_BEGIN>
 {
     {nl}     { return NL_BEFORE_LONGSTRING; }
-    .          { yypushback(1); yybegin(XLONGSTRING); return advance(); }
+    .        { yypushback(1); yybegin(XLONGSTRING); return advance(); }
 }
 
 
@@ -305,7 +304,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 {
   "]"{sep}"]"     {
                     if (longCommentOrStringHandler.isCurrentExtQuoteStart(yytext())) {
-                       yybegin(YYINITIAL); longCommentOrStringHandler.resetCurrentExtQuoteStart(); return LONGSTRING_END;
+                       yybegin(YYNORMAL); longCommentOrStringHandler.resetCurrentExtQuoteStart(); return LONGSTRING_END;
                     } else { yypushback(yytext().length()-1); }
                     return LONGSTRING;
                   }
@@ -316,8 +315,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 
 <XSHORTCOMMENT>
 {
-  {nl}      {yybegin(YYINITIAL); return NEWLINE; }
-  
+  {nl}      {yybegin(YYNORMAL);  yypushback(yylength()); return NEWLINE; }
   .         { return SHORTCOMMENT;}
 }
 
@@ -341,49 +339,20 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 /*****************************************************************/
 
 <YYNAME, YYNUMBER> {
-  "."                         { yybegin(YYINITIAL);
-                                return DOT; }
-
-  ":"                         { yybegin(YYINITIAL);
-                                return COLON; }
-
-  //";"                         { return SEMICOLON; }
-  //
-  //"::"                        { yybegin(YYINITIAL);
-  //                              return PROTOTYPE; }
-
-  ","                         { yybegin(YYINITIAL);
-                                return COMMA; }
-
-  "["                         { yybegin(YYINITIAL);
-                                return LBRACK; }
-
-  "]"                         { yybegin(YYINITIAL);
-                                return RBRACK; }
-
-  ")"                         { yybegin(YYINITIAL);
-                                return RPAREN; }
-
-  "+"                         { yybegin(YYINITIAL);
-                                return PLUS; }
-
-  "-"                         { yybegin(YYINITIAL);
-                                return MINUS; }
-
-  "*"                         { yybegin(YYINITIAL);
-                                return MULT; }
-
-  "%"                         { yybegin(YYINITIAL);
-                                return MOD; }
-
-  "/"                         { yybegin(YYINITIAL);
-                                return DIV; }
-
-  "!"                         { yybegin(YYINITIAL);
-                                return FUNCTION; }
-
-  {nl}         { yybegin(YYINITIAL); return NEWLINE; }
-  {w}          { yybegin(YYINITIAL); return WS; }
+  "."          { yybegin(YYNORMAL); return DOT; }
+  ":"          { yybegin(YYNORMAL); return COLON; }
+  ","          { yybegin(YYNORMAL); return COMMA; }
+  "["          { yybegin(YYNORMAL); return LBRACK; }
+  "]"          { yybegin(YYNORMAL); return RBRACK; }
+  ")"          { yybegin(YYNORMAL); return RPAREN; }
+  "+"          { yybegin(YYNORMAL); return PLUS; }
+  "-"          { yybegin(YYNORMAL); return MINUS; }
+  "*"          { yybegin(YYNORMAL); return MULT; }
+  "%"          { yybegin(YYNORMAL); return MOD; }
+  "/"          { yybegin(YYNORMAL); return DIV; }
+  "!"          { yybegin(YYNORMAL); return FUNCTION; }
+  {nl}         { yybegin(YYNORMAL); yypushback(yylength()); return NEWLINE; }
+  {w}          { yybegin(YYNORMAL); return WS; }
 }
 
 
@@ -415,6 +384,6 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 /* Nothing matched */
 /*******************/
 
-.                             { stack.clear();
-                                yybegin(YYINITIAL);
-                                return WRONG; }
+ .     { stack.clear();
+         yybegin(YYNORMAL);
+         return WRONG; }

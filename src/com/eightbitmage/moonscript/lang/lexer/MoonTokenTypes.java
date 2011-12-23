@@ -41,13 +41,12 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
 
     IElementType INDENT = new MoonElementType("indent");
     IElementType UNINDENT = new MoonElementType("unindent");
-    IElementType BEGIN = new MoonElementType("begin");
 
     IElementType NL_BEFORE_LONGSTRING = new MoonElementType("newline after longstring start bracket");
     IElementType WS = TokenType.WHITE_SPACE;
     IElementType NEWLINE = new MoonElementType("new line");
 
-    TokenSet WHITE_SPACES_SET = TokenSet.create(WS, NEWLINE, TokenType.WHITE_SPACE, LDOC_WHITESPACE, NL_BEFORE_LONGSTRING);
+    TokenSet WHITE_SPACES_SET = TokenSet.create(WS, NEWLINE, TokenType.WHITE_SPACE, LDOC_WHITESPACE, NL_BEFORE_LONGSTRING, INDENT, UNINDENT);
 
     /* **************************************************************************************************
    *  Comments
