@@ -42,10 +42,10 @@ public class MoonTypedInsideBlockDelegate extends TypedHandlerDelegate {
         if (! (file instanceof MoonPsiFile))
             return Result.CONTINUE;
         
-        int caretOffset = editor.getCaretModel().getOffset();
-        PsiElement e1 = file.findElementAt(caretOffset);
-
-        preserveParen = (e1 != null && e1.getText().equals(")"));
+//        int caretOffset = editor.getCaretModel().getOffset();
+//        PsiElement e1 = file.findElementAt(caretOffset);
+//
+//        preserveParen = (e1 != null && e1.getText().equals(")"));
 
         return super.beforeCharTyped(c, project, editor, file,
                 fileType);   
@@ -56,30 +56,30 @@ public class MoonTypedInsideBlockDelegate extends TypedHandlerDelegate {
         if (! (file instanceof MoonPsiFile))
             return Result.CONTINUE;
         
-        Document document = editor.getDocument();
-        int caretOffset = editor.getCaretModel().getOffset();
-
-        PsiDocumentManager.getInstance(file.getProject()).commitDocument(document);
-
-        PsiElement e = file.findElementAt(caretOffset-1);
-
-        if (!(e instanceof PsiComment)) {
-
-            PsiElement e1 = file.findElementAt(caretOffset);
-//            PsiElement e2 = file.findElementAt(caretOffset+1);
-
-            // This handles the case where we are already inside parens.
-            // for example a(b,c function(|) where | is the cursor
-            if (c == '(' && e1 != null && e1.getText().equals(")")) {
-                e = e1;
-                c = ')';
-            }
-
-            if (c == ')' && e != null && e.getContext() instanceof MoonFunctionDefinition) {
-                document.insertString(e.getTextOffset() + 1, preserveParen ? " end)" : " end");
-                return Result.STOP;
-            }
-        }
+//        Document document = editor.getDocument();
+//        int caretOffset = editor.getCaretModel().getOffset();
+//
+//        PsiDocumentManager.getInstance(file.getProject()).commitDocument(document);
+//
+//        PsiElement e = file.findElementAt(caretOffset-1);
+//
+//        if (!(e instanceof PsiComment)) {
+//
+//            PsiElement e1 = file.findElementAt(caretOffset);
+////            PsiElement e2 = file.findElementAt(caretOffset+1);
+//
+//            // This handles the case where we are already inside parens.
+//            // for example a(b,c function(|) where | is the cursor
+//            if (c == '(' && e1 != null && e1.getText().equals(")")) {
+//                e = e1;
+//                c = ')';
+//            }
+//
+//            if (c == ')' && e != null && e.getContext() instanceof MoonFunctionDefinition) {
+//                document.insertString(e.getTextOffset() + 1, preserveParen ? " end)" : " end");
+//                return Result.STOP;
+//            }
+//        }
         return super.charTyped(c, project, editor, file);
     }
 }

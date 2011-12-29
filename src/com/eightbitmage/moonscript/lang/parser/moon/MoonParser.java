@@ -14,11 +14,6 @@ import com.intellij.openapi.project.Project;
 import com.intellij.psi.tree.IElementType;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Parser.
- *
- * @author Alexey Efimov, Max Ishchenko
- */
 public class MoonParser implements PsiParser, MoonElementTypes {
 
     private static final Logger LOG = Logger.getInstance("#MoonParser");
@@ -75,11 +70,11 @@ public class MoonParser implements PsiParser, MoonElementTypes {
 
         IElementType t = builder.getTokenType();
 
-        System.out.println("first->" + t + "[" + builder.getCurrentOffset() + "]");
+        System.out.println("t->" + t + "[" + builder.getCurrentOffset() + "]");
 
-        if (t == NAME) {
+        //if (t == NAME) {
 
-        }
+        //}
 
 //        if (first == JFlexElementTypes.MACROS) {
 //            parseMacroDefinition(builder);

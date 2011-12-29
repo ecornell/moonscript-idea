@@ -46,7 +46,7 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
     IElementType WS = TokenType.WHITE_SPACE;
     IElementType NEWLINE = new MoonElementType("new line");
 
-    TokenSet WHITE_SPACES_SET = TokenSet.create(WS, NEWLINE, TokenType.WHITE_SPACE, LDOC_WHITESPACE, NL_BEFORE_LONGSTRING, INDENT, UNINDENT);
+    TokenSet WHITE_SPACES_SET = TokenSet.create(WS, NEWLINE, TokenType.WHITE_SPACE, LDOC_WHITESPACE, NL_BEFORE_LONGSTRING);
 
     /* **************************************************************************************************
    *  Comments
