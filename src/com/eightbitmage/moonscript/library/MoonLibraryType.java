@@ -18,13 +18,17 @@ package com.eightbitmage.moonscript.library;
 
 import com.eightbitmage.moonscript.module.MoonModuleType;
 import com.intellij.openapi.module.Module;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.roots.libraries.LibraryKind;
 import com.intellij.openapi.roots.libraries.LibraryType;
+import com.intellij.openapi.roots.libraries.NewLibraryConfiguration;
 import com.intellij.openapi.roots.libraries.ui.LibraryEditorComponent;
 import com.intellij.openapi.roots.libraries.ui.LibraryPropertiesEditor;
 import com.intellij.openapi.roots.ui.configuration.FacetsProvider;
 import com.eightbitmage.moonscript.MoonIcons;
+import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
@@ -46,6 +50,11 @@ public class MoonLibraryType extends LibraryType<MoonLibraryProperties> {
     @Override
     public String getCreateActionName() {
         return "New Lua Library";
+    }
+
+    @Override
+    public NewLibraryConfiguration createNewLibrary(@NotNull JComponent jComponent, @Nullable VirtualFile virtualFile, @NotNull Project project) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @NotNull

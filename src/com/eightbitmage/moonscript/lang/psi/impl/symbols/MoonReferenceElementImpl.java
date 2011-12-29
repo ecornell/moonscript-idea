@@ -9,8 +9,11 @@ import com.eightbitmage.moonscript.lang.psi.util.MoonPsiUtils;
 import com.eightbitmage.moonscript.lang.psi.visitor.MoonElementVisitor;
 import com.eightbitmage.moonscript.options.MoonApplicationSettings;
 import com.intellij.lang.ASTNode;
+import com.intellij.openapi.application.ApplicationInfo;
+import com.intellij.openapi.project.Project;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.*;
+import com.intellij.psi.impl.source.resolve.ResolveCache;
 import com.intellij.util.IncorrectOperationException;
 import com.eightbitmage.moonscript.lang.psi.resolve.MoonResolveResult;
 import com.eightbitmage.moonscript.lang.psi.resolve.MoonResolver;
@@ -18,13 +21,21 @@ import com.eightbitmage.moonscript.lang.psi.resolve.ResolveUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Collection;
+import com.intellij.openapi.diagnostic.Logger;
 
 
 /**
  * TODO: implement all reference stuff...
  */
 public abstract class MoonReferenceElementImpl extends MoonSymbolImpl implements MoonReferenceElement {
+
+    private final static Logger LOG = Logger.getInstance(MoonReferenceElementImpl.class.getName());
+
+    private static ResolveCache resolveCache = null;
+
     public MoonReferenceElementImpl(ASTNode node) {
         super(node);
     }
@@ -65,13 +76,13 @@ public abstract class MoonReferenceElementImpl extends MoonSymbolImpl implements
 
     @Nullable
     public PsiElement resolve() {
-        ResolveResult[] results = getManager().getResolveCache().resolveWithCaching(this, RESOLVER, true, false);
+        ResolveResult[] results = getResolveCache().resolveWithCaching(this, RESOLVER, true, false);
         return results.length == 1 ? results[0].getElement() : null;
     }
 
     @NotNull
     public ResolveResult[] multiResolve(final boolean incompleteCode) {
-        return getManager().getResolveCache().resolveWithCaching(this, RESOLVER, true, incompleteCode);
+        return getResolveCache().resolveWithCaching(this, RESOLVER, true, incompleteCode);
     }
 
     private static final MoonResolver RESOLVER = new MoonResolver();
@@ -160,5 +171,46 @@ public abstract class MoonReferenceElementImpl extends MoonSymbolImpl implements
             return results[0].getElement();
 
         return null;
+    }
+
+
+    private ResolveCache getResolveCache() {
+        if (null == resolveCache) {
+            String appVersion = ApplicationInfo.getInstance().getMajorVersion();
+            if ("11".equals(appVersion)) {
+                // The IDEA 11 way: ResolveCache.getInstance(getProject());
+                try {
+                    Class resolveCacheClass = Class.forName("ResolveCache");
+                    Method m = resolveCacheClass.getDeclaredMethod("getInstance", new Class[] { Project.class });
+                    try {
+                        resolveCache = (ResolveCache)m.invoke(null, getProject());
+                    } catch (IllegalAccessException e) {
+                        LOG.error("Could not access the 'getInstance' method on the ResolveCache class", e);
+                    } catch (InvocationTargetException e) {
+                        LOG.error("Could not invoke the 'getInstance' method on the ResolveCache class", e);
+                    }
+                } catch (ClassNotFoundException e) {
+                    LOG.error("Could not find the ResolveCache class!", e); // Now, this is a problem.
+                } catch (NoSuchMethodException e) {
+                    LOG.info("Could not resolve the ResolveCache#getInstance method.", e);
+                }
+            } else if ("10".equals(appVersion)) {
+                // The IDEA 10 way: getManager().getResolveCache();
+                Class managerClass = getManager().getClass();
+                try {
+                    Method m = managerClass.getDeclaredMethod("getResolveCache");
+                    try {
+                        resolveCache = (ResolveCache)m.invoke(managerClass);
+                    } catch (IllegalAccessException e) {
+                        LOG.error("Could not access the 'getResolveCache' method on the PsiManagerEx class", e);
+                    } catch (InvocationTargetException e) {
+                        LOG.error("Could not invoke the 'getResolveCache' method on the PsiManagerEx class", e);
+                    }
+                } catch (NoSuchMethodException e) {
+                    LOG.error("Could not find the 'getResolveCache' method.", e);
+                }
+            }
+        }
+        return resolveCache;
     }
 }

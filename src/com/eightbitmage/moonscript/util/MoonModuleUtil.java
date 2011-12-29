@@ -34,12 +34,14 @@ import org.jetbrains.annotations.Nullable;
  *         Date: 29.04.2010
  */
 public class MoonModuleUtil {
-    public static boolean isLuaSdk(@Nullable final Sdk sdk) {
+    public static boolean isMoonSdk(@Nullable final Sdk sdk) {
         return sdk != null && sdk.getSdkType() instanceof MoonSdkType;
     }
 
-    public static boolean isLuaModule(@Nullable final Module module) {
-        return module != null && MoonModuleType.ID.equals(module.getModuleType().getId());
+    public static boolean isMoonModule(@Nullable final Module module) {
+        //return module != null && MoonModuleType.ID.equals(module.getModuleType().getId());
+        System.out.println(module.getName());
+        return module != null;
     }
 
     public static void checkForSdkFile(final MoonPsiFile file, Project project) {

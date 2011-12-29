@@ -61,7 +61,9 @@ public interface MoonDocElementTypes extends MoonDocTokenTypes {
         
       final Project project = parentElement.getProject();
 
-      final PsiBuilder builder = new PsiBuilderImpl(project, getLanguage(), new MoonDocLexer(), chameleon, chameleon.getText());
+//      final PsiBuilder builder = new PsiBuilderImpl(project, getLanguage(), new MoonDocLexer(), chameleon, chameleon.getText());
+        final PsiBuilder builder = null;
+
       final PsiParser parser = new MoonDocParser();
 
       return parser.parse(this, builder).getFirstChildNode();

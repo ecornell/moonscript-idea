@@ -164,6 +164,7 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
 
     IElementType SELF = new MoonElementType("@");
     IElementType SWITCH = new MoonElementType("switch");
+    IElementType WHEN = new MoonElementType("switch");
 
 
     TokenSet KEYWORDS = TokenSet.create(DO, FUNCTION, NOT, AND, OR,
@@ -172,7 +173,7 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
             CONTINUE, LOCAL,
             REPEAT, UNTIL, END,
             CLASS, IMPORT, EXPORT,
-            SWITCH);
+            SWITCH, WHEN);
 
     TokenSet BRACES = TokenSet.create(LCURLY, RCURLY);
     TokenSet PARENS = TokenSet.create(LPAREN, RPAREN);

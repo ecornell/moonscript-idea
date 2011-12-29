@@ -17,7 +17,9 @@
 package com.eightbitmage.moonscript.library;
 
 import com.intellij.facet.ui.libraries.LibraryInfo;
+import com.intellij.framework.library.DownloadableLibraryType;
 import com.intellij.ide.util.frameworkSupport.CustomLibraryDescriptionImpl;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,8 +29,12 @@ import com.intellij.ide.util.frameworkSupport.CustomLibraryDescriptionImpl;
  */
 public class MoonLibraryDescription extends CustomLibraryDescriptionImpl {
 
-    public MoonLibraryDescription(@org.jetbrains.annotations.NotNull LibraryInfo[] libraryInfos,
-                                  @org.jetbrains.annotations.NotNull String defaultLibraryName) {
-        super(libraryInfos, defaultLibraryName);
+    public MoonLibraryDescription(@NotNull DownloadableLibraryType downloadableLibraryType) {
+        super(downloadableLibraryType);    //To change body of overridden methods use File | Settings | File Templates.
     }
+
+//    public MoonLibraryDescription(@org.jetbrains.annotations.NotNull LibraryInfo[] libraryInfos,
+//                                  @org.jetbrains.annotations.NotNull String defaultLibraryName) {
+//        super(libraryInfos, defaultLibraryName);
+//    }
 }

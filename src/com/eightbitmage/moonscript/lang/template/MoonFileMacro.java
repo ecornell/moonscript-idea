@@ -29,16 +29,21 @@ import org.jetbrains.annotations.NotNull;
  * Date: 2/25/11
  * Time: 1:35 PM
  */
-public class MoonFileMacro implements Macro {
+public class MoonFileMacro extends Macro {
     @Override
     public String getName() {
         return "currentLuaFile";
     }
 
     @Override
-    public String getDescription() {
-        return "Substitutes the name of the current Lua script file";
+    public String getPresentableName() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
+
+//    @Override
+//    public String getDescription() {
+//        return "Substitutes the name of the current Lua script file";
+//    }
 
     @Override
     public String getDefaultValue() {

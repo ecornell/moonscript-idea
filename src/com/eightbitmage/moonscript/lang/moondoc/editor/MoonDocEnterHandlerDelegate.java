@@ -35,6 +35,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.eightbitmage.moonscript.lang.psi.expressions.MoonExpression;
 import com.eightbitmage.moonscript.lang.psi.expressions.MoonKeyValueInitializer;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by IntelliJ IDEA.
@@ -103,5 +104,10 @@ public class MoonDocEnterHandlerDelegate implements EnterHandlerDelegate {
         }
 
         return Result.Continue;
+    }
+
+    @Override
+    public Result postProcessEnter(@NotNull PsiFile psiFile, @NotNull Editor editor, @NotNull DataContext dataContext) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

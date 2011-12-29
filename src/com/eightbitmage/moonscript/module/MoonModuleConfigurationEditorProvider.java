@@ -30,7 +30,7 @@ import java.util.List;
 public class MoonModuleConfigurationEditorProvider implements ModuleConfigurationEditorProvider {
     public ModuleConfigurationEditor[] createEditors(@NotNull final ModuleConfigurationState state) {
         final Module module = state.getRootModel().getModule();
-        if (!MoonModuleUtil.isLuaModule(module)) return ModuleConfigurationEditor.EMPTY;
+        if (!MoonModuleUtil.isMoonModule(module)) return ModuleConfigurationEditor.EMPTY;
         final DefaultModuleConfigurationEditorFactory editorFactory = DefaultModuleConfigurationEditorFactory.getInstance();
         final List<ModuleConfigurationEditor> editors = new ArrayList<ModuleConfigurationEditor>();
 

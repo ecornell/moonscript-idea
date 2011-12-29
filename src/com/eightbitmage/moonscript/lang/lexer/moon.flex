@@ -93,6 +93,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
     "import"       { return IMPORT; }
     "with"         { return WITH; }
     "switch"       { return SWITCH; }
+    "when"         { return WHEN; }
 
 
     //{luadoc}       { yypushback(1); return LUADOC_COMMENT; }

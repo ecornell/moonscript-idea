@@ -81,7 +81,7 @@ public class MoonModuleType extends ModuleType<MoonModuleBuilder> {
     }
 
     public boolean isValidSdk(final Module module, final Sdk projectSdk) {
-        if (MoonModuleUtil.isLuaModule(module) && MoonModuleUtil.isLuaSdk(projectSdk))
+        if (MoonModuleUtil.isMoonModule(module) && MoonModuleUtil.isMoonSdk(projectSdk))
             return true;
 
         return false;

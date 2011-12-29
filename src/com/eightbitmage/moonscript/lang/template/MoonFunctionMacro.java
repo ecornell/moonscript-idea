@@ -33,16 +33,21 @@ import org.jetbrains.annotations.NotNull;
  * Date: 2/25/11
  * Time: 1:35 PM
  */
-public class MoonFunctionMacro implements Macro {
+public class MoonFunctionMacro extends Macro {
     @Override
     public String getName() {
         return "currentMoonFunction";
     }
 
     @Override
-    public String getDescription() {
-        return "Substitutes the name of the current MoonScript function";
+    public String getPresentableName() {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
+
+//    @Override
+//    public String getDescription() {
+//        return "Substitutes the name of the current MoonScript function";
+//    }
 
     @Override
     public String getDefaultValue() {

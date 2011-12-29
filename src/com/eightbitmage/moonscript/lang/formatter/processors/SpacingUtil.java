@@ -87,7 +87,8 @@ public abstract class SpacingUtil {
   }
 
   static ASTNode getPrevElementType(final ASTNode child) {
-    return FormatterUtil.getLeafNonSpaceBefore(child);
+    //return FormatterUtil.getLeafNonSpaceBefore(child);
+    return FormatterUtil.getPreviousNonWhitespaceLeaf(child);
   }
 
   static TokenSet COMMENT_BIT_SET = MoonTokenTypes.COMMENT_SET;

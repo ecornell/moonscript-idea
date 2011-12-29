@@ -78,6 +78,11 @@ public class MoonPsiFileImpl
     }
 
     @Override
+    public boolean ignoreReferencedElementAccessibility() {
+        return false;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
     public MoonStatementElement addStatementBefore(@NotNull MoonStatementElement statement, MoonStatementElement anchor) throws IncorrectOperationException {
         return (MoonStatementElement) addBefore(statement, anchor);
     }

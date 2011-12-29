@@ -31,6 +31,7 @@ import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiWhiteSpace;
 import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.util.IncorrectOperationException;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by IntelliJ IDEA.
@@ -94,5 +95,10 @@ public class MoonEnterHandlerDelegate implements EnterHandlerDelegate {
             }
         }
         return Result.Continue;
+    }
+
+    @Override
+    public Result postProcessEnter(@NotNull PsiFile psiFile, @NotNull Editor editor, @NotNull DataContext dataContext) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

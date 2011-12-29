@@ -89,20 +89,22 @@ public class MoonDocTagValueTokenType extends MoonDocChameleonElementType implem
     }
 
     private ASTNode parseImpl(ASTNode chameleon) {
-        final PsiElement parentElement = chameleon.getTreeParent().getPsi();
+//        final PsiElement parentElement = chameleon.getTreeParent().getPsi();
+//
+//        assert parentElement != null;
+//        final Project project = parentElement.getProject();
+//        final PsiBuilder builder = new PsiBuilderImpl(project, getLanguage(), new MoonDocLexer(), chameleon, chameleon.getText());
+//
+//        PsiBuilder.Marker rootMarker = builder.mark();
+//        if (BUILT_IN_TYPES.contains(chameleon.getText())) {
+//            ParserUtils.advance(builder, 1);
+//        } else {
+//            parseBody(builder);
+//        }
+//        rootMarker.done(this);
+//        return builder.getTreeBuilt().getFirstChildNode();
 
-        assert parentElement != null;
-        final Project project = parentElement.getProject();
-        final PsiBuilder builder = new PsiBuilderImpl(project, getLanguage(), new MoonDocLexer(), chameleon, chameleon.getText());
-
-        PsiBuilder.Marker rootMarker = builder.mark();
-        if (BUILT_IN_TYPES.contains(chameleon.getText())) {
-            ParserUtils.advance(builder, 1);
-        } else {
-            parseBody(builder);
-        }
-        rootMarker.done(this);
-        return builder.getTreeBuilt().getFirstChildNode();
+        return null;
     }
 
     private static void parseBody(PsiBuilder builder) {

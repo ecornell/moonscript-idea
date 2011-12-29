@@ -17,7 +17,6 @@
 package com.eightbitmage.moonscript.library;
 
 import com.intellij.facet.ui.libraries.LibraryInfo;
-import com.intellij.openapi.roots.ui.configuration.libraries.CustomLibraryCreator;
 import com.intellij.openapi.roots.ui.configuration.libraries.CustomLibraryDescription;
 import com.eightbitmage.moonscript.MoonIcons;
 import org.jetbrains.annotations.NotNull;
