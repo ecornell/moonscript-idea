@@ -50,7 +50,7 @@ public class MoonKeywordsManager {
         keywords.add("else");
 
         keywords.add("elseif");
-        keywords.add("end");
+        //keywords.add("end");
         keywords.add("false");
         keywords.add("for");
         keywords.add("function");
@@ -68,5 +68,8 @@ public class MoonKeywordsManager {
         keywords.add("true");
         keywords.add("until");
         keywords.add("while");
+
+        keywords.add("with");
+        keywords.add("switch");
     }
 }

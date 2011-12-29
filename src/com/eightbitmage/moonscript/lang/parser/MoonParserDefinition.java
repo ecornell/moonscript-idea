@@ -1,19 +1,3 @@
-/*
- * Copyright 2010 Jon S Akhtar (Sylvanaar)
- *
- *   Licensed under the Apache License, Version 2.0 (the "License");
- *   you may not use this file except in compliance with the License.
- *   You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- *   Unless required by applicable law or agreed to in writing, software
- *   distributed under the License is distributed on an "AS IS" BASIS,
- *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *   See the License for the specific language governing permissions and
- *   limitations under the License.
- */
-
 package com.eightbitmage.moonscript.lang.parser;
 
 import com.eightbitmage.moonscript.lang.lexer.MoonLexer;
@@ -44,8 +28,8 @@ public class MoonParserDefinition implements ParserDefinition {
 
     @NotNull
     public Lexer createLexer(Project project) {
-        //return new MoonParsingLexerMergingAdapter(new MoonLexer());
-        return new MoonLexer();
+        return new MoonParsingLexerMergingAdapter(new MoonLexer());
+        //return new MoonLexer();
     }
 
     public PsiParser createParser(Project project) {
@@ -75,7 +59,6 @@ public class MoonParserDefinition implements ParserDefinition {
     public PsiElement createElement(ASTNode node) {
         return MoonPsiCreator.createElement(node);
     }
-
 
     public PsiFile createFile(FileViewProvider fileViewProvider) {
         return new MoonPsiFileImpl(fileViewProvider);

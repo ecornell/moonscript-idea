@@ -16,93 +16,16 @@ import java.util.Stack;
 
 %class _MoonLexer
 %implements FlexLexer, MoonTokenTypes
-
-%unicode
-
-%debug
-
-%function advance
 %type IElementType
-
-//%eof{ return;
-//%eof}
+%function advance
+%unicode
+//%debug
 
 %{
     ExtendedSyntaxStrCommentHandler longCommentOrStringHandler = new ExtendedSyntaxStrCommentHandler();
-
     int current_line_indent = 0;
     int indent_level = 0;
-
-    private final Stack<Integer> stack = new Stack<Integer>();
-
-  /**
-   * Push the actual state on top of the stack
-   */
-  private void pushState() {
-    stack.push(yystate());
-  }
-
-  /**
-   * Push the actual state on top of the stack
-   * and change into another state
-   *
-   * @param state The new state
-   */
-  private void pushStateAndBegin(int state) {
-    stack.push(yystate());
-    yybegin(state);
-  }
-
-  /**
-   * Pop the last state from the stack and change to it.
-   * If the stack is empty, go to YYINITIAL
-   */
-  private void popState() {
-    if (!stack.empty()) {
-      yybegin(stack.pop());
-    } else {
-      yybegin(YYINITIAL);
-    }
-  }
-
-  /**
-   * Push the stream back to the position before the text match
-   *
-   * @param text The text to match
-   * @return true when matched
-   */
-  private boolean pushBackTo(String text) {
-    final int position = yytext().toString().indexOf(text);
-
-    if (position != -1) {
-      yypushback(yylength() - position);
-      return true;
-    }
-
-    return false;
-  }
-
-  /**
-   * Push the stream back to the position before the text match
-   * and change into the given state
-   *
-   * @param text The text to match
-   * @param state The new state
-   * @return true when matched
-   */
-  private boolean pushBackAndState(String text, int state) {
-    final boolean success = pushBackTo(text);
-
-    if (success) {
-      pushStateAndBegin(state);
-    }
-
-    return success;
-  }
 %}
-
-%init{
-%init}
 
 w           =   [ \t]+
 nl          =   \r\n|\n|\r
@@ -130,14 +53,16 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 %%
 
 /*************************************************************************************************/
-/* The initial state recognizes keywords, most operators and characters that start another state */
-/*************************************************************************************************/
+
 <YYINITIAL> {
-  .  { current_line_indent = 0; indent_level = 0; yypushback(1); yybegin(XINDENT); }
+  (.|{nl})  { current_line_indent = 0; indent_level = 0; yypushback(1); yybegin(XINDENT); }
 }
 
 <YYNORMAL> {
-    {nl}     {  System.out.println("yyn -> _"); current_line_indent = 0; yybegin(XINDENT); return NEWLINE;}
+    {nl}     { current_line_indent = 0; yybegin(XINDENT); return NEWLINE;}
+
+    // Error keywords
+    "end"          { return WRONG; }
 
     /* Keywords */
     "and"          { return AND; }
@@ -145,7 +70,6 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
     "do"           { return DO; }
     "else"         { return ELSE; }
     "elseif"       { return ELSEIF; }
-    "end"          { return END; }
     "false"        { return FALSE; }
     "for"          { return FOR; }
     "function"     { return FUNCTION; }
@@ -171,7 +95,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
     "switch"       { return SWITCH; }
 
 
-    {luadoc}       { yypushback(1); /* TODO: Only pushback a newline */  return LUADOC_COMMENT; }
+    //{luadoc}       { yypushback(1); return LUADOC_COMMENT; }
 
     --\[{sep}\[    { longCommentOrStringHandler.setCurrentExtQuoteStart(yytext().toString()); yybegin( XLONGCOMMENT ); return LONGCOMMENT_BEGIN; }
     --+            { yypushback(yytext().length()); yybegin( XSHORTCOMMENT ); return advance(); }
@@ -222,23 +146,21 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
     "^"          { return EXP;}
 
     "@"          { return SELF; }
+    "!"          { return FUNCTION; }
 
     {w}          { return WS; }
 
-    .            { //stack.clear();
-                   yybegin(YYNORMAL);
-                   return WRONG; }
+    .            { yybegin(YYNORMAL); return WRONG; }
 }
 
 
 <XINDENT>
 {
-  " "      { System.out.println("_"); current_line_indent++; }
-  "\t"     { System.out.println("_"); current_line_indent++; }
-  {nl}     { System.out.println("nl"); current_line_indent = 0; return NEWLINE; /*ignoring blank line */ }
+  " "      { current_line_indent++; return WS; }
+  "\t"     { current_line_indent++; return WS; }
+  {nl}     { current_line_indent = 0; return NEWLINE; /*ignoring blank line */ }
   .        {
                    yypushback(1);
-                   //System.out.println(current_line_indent + " " + indent_level);
                    if (current_line_indent > indent_level) {
                        indent_level++;
                        yybegin(YYNORMAL);
@@ -247,8 +169,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
                        indent_level--;
                        yybegin(YYNORMAL);
                        return UNINDENT;
-                   }
-                   else {
+                   } else {
                        yybegin(YYNORMAL);
                    }
            }
@@ -256,17 +177,17 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 
 <XSTRINGQ>
 {
-  \"\"       {return STRING;}
+  \"\"       { return STRING; }
   \"         { yybegin(YYNORMAL); return STRING; }
-  \\[abfnrt] {return STRING;}
-  \\\n       {return STRING;}
-  \\\"       {return STRING; }
-  \\'        {return STRING;}
-  \\"["      {return STRING;}
-  \\"]"      {return STRING;}
+  \\[abfnrt] { return STRING; }
+  \\\n       { return STRING; }
+  \\\"       { return STRING; }
+  \\'        { return STRING; }
+  \\"["      { return STRING; }
+  \\"]"      { return STRING; }
   \\\\       { return STRING; }
   {nl}       { yybegin(YYNORMAL); return WRONG; }
-  .          {return STRING;}
+  .          { return STRING; }
 }
 
 <XSTRINGA>
@@ -334,6 +255,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
   "["          { yybegin(YYNORMAL); return LBRACK; }
   "]"          { yybegin(YYNORMAL); return RBRACK; }
   ")"          { yybegin(YYNORMAL); return RPAREN; }
+  "}"          { yybegin(YYNORMAL); return RCURLY; }
   "+"          { yybegin(YYNORMAL); return PLUS; }
   "-"          { yybegin(YYNORMAL); return MINUS; }
   "*"          { yybegin(YYNORMAL); return MULT; }
@@ -349,32 +271,19 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
 /* An identifier has some more characters that can follow it directly */
 /**********************************************************************/
 
-//<YYNAME> {
-//  \.{QUOTE} / [^a-zA-Z0-9]    { yybegin(YYQUOTEPROPERTY);
-//                                yypushback(yylength()); }
-//
-//  "?"                         { yybegin(YYINITIAL);
-//                                return EXIST; }
-//
-//  "..."                       { yybegin(YYINITIAL);
-//                                return SPLAT; }
-//
-//  "("                         { yybegin(YYINITIAL);
-//                                return PARENTHESIS_START; }
-//}
+<YYNAME> {
+  "\""        { yybegin(XSTRINGQ); return STRING; }
+  '           { yybegin(XSTRINGA); return STRING; }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///////////////////////// Other ////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//.            { return WRONG; }
+  "("         { yybegin(YYNORMAL); return LPAREN; }
+  ";"         { yybegin(YYNORMAL); return SEMI; }
+  "\\"        { yybegin(YYNORMAL); return DOT; }
+  "!"         { yybegin(YYNORMAL); return FUNCTION; }
+}
 
 
 /*******************/
 /* Nothing matched */
 /*******************/
 
- .    {
-        //stack.clear();
-        //yybegin(YYNORMAL);
-        return WRONG;
-      }
+ .    { return WRONG; }

@@ -31,9 +31,12 @@ import com.intellij.psi.codeStyle.FileTypeIndentOptionsProvider;
  * Time: 1:25:33 AM
  */
 public class MoonIndentOptionsProvider implements FileTypeIndentOptionsProvider {
+
   public CodeStyleSettings.IndentOptions createIndentOptions() {
     final CodeStyleSettings.IndentOptions indentOptions = new CodeStyleSettings.IndentOptions();
     indentOptions.INDENT_SIZE = 2;
+    indentOptions.USE_TAB_CHARACTER = true;
+
     return indentOptions;
   }
 
