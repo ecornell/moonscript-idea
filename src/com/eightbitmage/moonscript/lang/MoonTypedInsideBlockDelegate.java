@@ -28,12 +28,6 @@ import com.intellij.psi.PsiDocumentManager;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiFile;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: 1/30/11
- * Time: 6:45 AM
- */
 public class MoonTypedInsideBlockDelegate extends TypedHandlerDelegate {
     boolean preserveParen = false;
 

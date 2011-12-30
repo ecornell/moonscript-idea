@@ -30,12 +30,6 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Max
- * Date: 04.07.2009
- * Time: 1:03:43
- */
 public class MoonFileType extends LanguageFileType {
     public static final MoonFileType MOON_FILE_TYPE = new MoonFileType();
 

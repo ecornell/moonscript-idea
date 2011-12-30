@@ -19,12 +19,6 @@ package com.eightbitmage.moonscript.lang.psi.symbols;
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: 2/4/11
- * Time: 5:52 PM
- */
 public interface MoonLocal extends MoonIdentifier {
     @Nullable
     PsiElement getAliasElement();

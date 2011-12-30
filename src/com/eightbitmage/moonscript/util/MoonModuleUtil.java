@@ -29,10 +29,6 @@ import com.intellij.openapi.roots.OrderRootType;
 import com.intellij.openapi.vfs.VirtualFile;
 import org.jetbrains.annotations.Nullable;
 
-/**
- * @author Maxim.Manuylov
- *         Date: 29.04.2010
- */
 public class MoonModuleUtil {
     public static boolean isMoonSdk(@Nullable final Sdk sdk) {
         return sdk != null && sdk.getSdkType() instanceof MoonSdkType;
@@ -40,6 +36,7 @@ public class MoonModuleUtil {
 
     public static boolean isMoonModule(@Nullable final Module module) {
         //return module != null && MoonModuleType.ID.equals(module.getModuleType().getId());
+        //todo: broken with IDEA 11
         System.out.println(module.getName());
         return module != null;
     }

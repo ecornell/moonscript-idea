@@ -36,12 +36,6 @@ import java.util.List;
 import static com.eightbitmage.moonscript.lang.lexer.MoonTokenTypes.LONGCOMMENT;
 import static com.eightbitmage.moonscript.lang.parser.MoonElementTypes.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Apr 10, 2010
- * Time: 2:54:53 PM
- */
 public class MoonFoldingBuilder implements FoldingBuilder, DumbAware {
     @NotNull
     @Override
@@ -54,7 +48,6 @@ public class MoonFoldingBuilder implements FoldingBuilder, DumbAware {
 
         return descriptors.toArray(new FoldingDescriptor[descriptors.size()]);
     }
-
 
     private void appendDescriptors(final ASTNode node, final Document document, final List<FoldingDescriptor> descriptors) {
         if (node == null) return;

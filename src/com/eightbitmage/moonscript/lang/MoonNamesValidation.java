@@ -21,12 +21,6 @@ import com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory;
 import com.intellij.lang.refactoring.NamesValidator;
 import com.intellij.openapi.project.Project;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Aug 1, 2010
- * Time: 10:43:40 PM
- */
 public class MoonNamesValidation implements NamesValidator {
     public boolean isIdentifier(final String name, final Project project) {
         return MoonPsiElementFactory.getInstance(project).createReferenceNameFromText(name) != null;

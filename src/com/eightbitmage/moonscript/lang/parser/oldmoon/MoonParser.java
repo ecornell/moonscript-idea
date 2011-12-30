@@ -1410,7 +1410,7 @@ public class MoonParser implements PsiParser, MoonElementTypes {
     }
 
 
-    void ifstat(int line) {
+    void  ifstat(int line) {
         PsiBuilder.Marker mark = builder.mark();
 
         /* ifstat -> IF cond THEN block {ELSEIF cond THEN block} [ELSE block]

@@ -25,27 +25,19 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 /**
- * JFlex options.
- *
- * @author Alexey Efimov
+ * MoonScript options.
  */
 public final class MoonSettingsForm implements PersistentStateComponent<MoonSettings> {
     @NonNls
-    private static final String JFLEX_ENABLED_COMPILATION_KEY = "JFlex.EnabledCompilation";
+    private static final String MOON_ENABLED_COMPILATION_KEY = "Moon.EnabledCompilation";
     @NonNls
-    private static final String JFLEX_HOME_KEY = "JFlex.Home";
+    private static final String MOON_HOME_KEY = "Moon.Home";
     @NonNls
-    private static final String JFLEX_SKELETON_KEY = "JFlex.Skeleton";
-    @NonNls
-    private static final String JFLEX_OPTIONS_KEY = "JFlex.Options";
-    @NonNls
-    private static final String JFLEX_ENABLED_EMBED_JAVA_KEY = "JFlex.EnabledEmbedJava";
+    private static final String MOON_OPTIONS_KEY = "Moon.Options";
 
-    private ComponentWithBrowseButton<TextFieldWithStoredHistory> jFlexHomeTextField;
-    private ComponentWithBrowseButton<TextFieldWithStoredHistory> skeletonPathTextField;
+    private ComponentWithBrowseButton<TextFieldWithStoredHistory> moonHomeTextField;
     private JPanel formComponent;
     private TextFieldWithStoredHistory commandLineOptionsTextField;
-    private JCheckBox enabledEmbedJavaCheckBox;
     private JCheckBox enabledCompilationCheckBox;
 
     private final MoonSettings settings = new MoonSettings();
@@ -54,23 +46,17 @@ public final class MoonSettingsForm implements PersistentStateComponent<MoonSett
         $$$setupUI$$$();
         FileChooserDescriptor folderDescriptor = FileChooserDescriptorFactory.createSingleFolderDescriptor();
         FileChooserDescriptor fileDescriptor = FileChooserDescriptorFactory.createSingleLocalFileDescriptor();
-
-        jFlexHomeTextField.addBrowseFolderListener(MoonBundle.message("select.jflex.home"), MoonBundle.message("please.select.jflex.folder"), null, folderDescriptor, new HistoryAccessor());
-        skeletonPathTextField.addBrowseFolderListener(MoonBundle.message("select.skeleton.file"), MoonBundle.message("please.select.jflex.skeleton.file"), null, fileDescriptor, new HistoryAccessor());
+        moonHomeTextField.addBrowseFolderListener(MoonBundle.message("select.moon.home"), MoonBundle.message("please.select.moon.folder"), null, folderDescriptor, new HistoryAccessor());
 
         loadState(settings);
     }
 
     private void createUIComponents() {
-        enabledCompilationCheckBox = new StateRestoringCheckBox(JFLEX_ENABLED_COMPILATION_KEY, true);
-        TextFieldWithStoredHistory jflexHomeHistory = createHistoryTextField(JFLEX_HOME_KEY, MoonSettings.getDefaultJFlexHome());
-        jFlexHomeTextField = new ComponentWithBrowseButton<TextFieldWithStoredHistory>(jflexHomeHistory, null);
-        fixButton(jflexHomeHistory, jFlexHomeTextField);
-        TextFieldWithStoredHistory skeletonPathHistory = createHistoryTextField(JFLEX_SKELETON_KEY, MoonSettings.getDefaultSkeletonPath(MoonSettings.getDefaultJFlexHome()));
-        skeletonPathTextField = new ComponentWithBrowseButton<TextFieldWithStoredHistory>(skeletonPathHistory, null);
-        fixButton(skeletonPathHistory, skeletonPathTextField);
-        commandLineOptionsTextField = createHistoryTextField(JFLEX_OPTIONS_KEY, MoonSettings.DEFAULT_OPTIONS_CHARAT_NOBAK);
-        enabledEmbedJavaCheckBox = new StateRestoringCheckBox(JFLEX_ENABLED_EMBED_JAVA_KEY, true);
+        enabledCompilationCheckBox = new StateRestoringCheckBox(MOON_ENABLED_COMPILATION_KEY, true);
+        TextFieldWithStoredHistory moonHomeHistory = createHistoryTextField(MOON_HOME_KEY, MoonSettings.getDefaultMoonScriptHome());
+        moonHomeTextField = new ComponentWithBrowseButton<TextFieldWithStoredHistory>(moonHomeHistory, null);
+        fixButton(moonHomeHistory, moonHomeTextField);
+         commandLineOptionsTextField = createHistoryTextField(MOON_OPTIONS_KEY, MoonSettings.DEFAULT_OPTIONS);
     }
 
     private void fixButton(final TextFieldWithStoredHistory historyField, ComponentWithBrowseButton<TextFieldWithStoredHistory> control) {
@@ -113,10 +99,8 @@ public final class MoonSettingsForm implements PersistentStateComponent<MoonSett
 
     public boolean isModified(MoonSettings state) {
         return enabledCompilationCheckBox.isSelected() != state.ENABLED_COMPILATION ||
-            !jFlexHomeTextField.getChildComponent().getText().equals(state.MOON_HOME) ||
-            !skeletonPathTextField.getChildComponent().getText().equals(state.SKELETON_PATH) ||
-            !commandLineOptionsTextField.getText().equals(state.COMMAND_LINE_OPTIONS) ||
-            enabledEmbedJavaCheckBox.isSelected() != state.ENABLED_EMBED_JAVA;
+            !moonHomeTextField.getChildComponent().getText().equals(state.MOON_HOME) ||
+            !commandLineOptionsTextField.getText().equals(state.COMMAND_LINE_OPTIONS);
     }
 
     /**
@@ -135,20 +119,16 @@ public final class MoonSettingsForm implements PersistentStateComponent<MoonSett
         formComponent.add(label1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
         formComponent.add(spacer1, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
-        formComponent.add(jFlexHomeTextField, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        formComponent.add(moonHomeTextField, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label2 = new JLabel();
         this.$$$loadLabelText$$$(label2, ResourceBundle.getBundle("org/intellij/lang/jflex/util/JFlexBundle").getString("skeleton.file"));
         formComponent.add(label2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        formComponent.add(skeletonPathTextField, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label3 = new JLabel();
         this.$$$loadLabelText$$$(label3, ResourceBundle.getBundle("org/intellij/lang/jflex/util/JFlexBundle").getString("command.line.options"));
         formComponent.add(label3, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         formComponent.add(commandLineOptionsTextField, new GridConstraints(2, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        this.$$$loadButtonText$$$(enabledEmbedJavaCheckBox, ResourceBundle.getBundle("org/intellij/lang/jflex/util/JFlexBundle").getString("enabled.embed.java.code.support"));
-        formComponent.add(enabledEmbedJavaCheckBox, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        label1.setLabelFor(jFlexHomeTextField);
-        label2.setLabelFor(skeletonPathTextField);
-        label3.setLabelFor(commandLineOptionsTextField);
+        label1.setLabelFor(moonHomeTextField);
+         label3.setLabelFor(commandLineOptionsTextField);
     }
 
     /**
@@ -216,6 +196,7 @@ public final class MoonSettingsForm implements PersistentStateComponent<MoonSett
         return formComponent;
     }
 
+
     /**
      * Fixed text component. Enabling is valid now.
      */
@@ -244,26 +225,23 @@ public final class MoonSettingsForm implements PersistentStateComponent<MoonSett
     public final MoonSettings getState() {
         if (validate()) {
             settings.ENABLED_COMPILATION = enabledCompilationCheckBox.isSelected();
-            settings.MOON_HOME = jFlexHomeTextField.getChildComponent().getText();
-            settings.SKELETON_PATH = skeletonPathTextField.getChildComponent().getText();
+            settings.MOON_HOME = moonHomeTextField.getChildComponent().getText();
             settings.COMMAND_LINE_OPTIONS = commandLineOptionsTextField.getText();
-            settings.ENABLED_EMBED_JAVA = enabledEmbedJavaCheckBox.isSelected();
         }
         return settings;
     }
 
     private boolean validate() {
         if (enabledCompilationCheckBox.isSelected()) {
-            String text = jFlexHomeTextField.getChildComponent().getText();
+            String text = moonHomeTextField.getChildComponent().getText();
             if (StringUtil.isEmptyOrSpaces(text)) {
-                Messages.showWarningDialog(jFlexHomeTextField, MoonBundle.message("please.enter.path.to.jflex.home.directory"), MoonBundle.message("moon"));
-                jFlexHomeTextField.requestFocus();
+                Messages.showWarningDialog(moonHomeTextField, MoonBundle.message("please.enter.path.to.jflex.home.directory"), MoonBundle.message("moon"));
+                moonHomeTextField.requestFocus();
                 return false;
             }
 
             // All fine add to history
-            jFlexHomeTextField.getChildComponent().addCurrentTextToHistory();
-            skeletonPathTextField.getChildComponent().addCurrentTextToHistory();
+            moonHomeTextField.getChildComponent().addCurrentTextToHistory();
             commandLineOptionsTextField.addCurrentTextToHistory();
         }
         return true;
@@ -272,10 +250,8 @@ public final class MoonSettingsForm implements PersistentStateComponent<MoonSett
     public final void loadState(MoonSettings state) {
         settings.loadState(state);
         enabledCompilationCheckBox.setSelected(state.ENABLED_COMPILATION);
-        setTextWithHistory(jFlexHomeTextField.getChildComponent(), state.MOON_HOME);
-        setTextWithHistory(skeletonPathTextField.getChildComponent(), state.SKELETON_PATH);
+        setTextWithHistory(moonHomeTextField.getChildComponent(), state.MOON_HOME);
         setTextWithHistory(commandLineOptionsTextField, state.COMMAND_LINE_OPTIONS);
-        enabledEmbedJavaCheckBox.setSelected(state.ENABLED_EMBED_JAVA);
     }
 
     private static void setTextWithHistory(TextFieldWithStoredHistory component, String text) {

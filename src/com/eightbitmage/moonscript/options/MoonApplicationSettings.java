@@ -22,13 +22,6 @@ import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
 import com.intellij.util.xmlb.XmlSerializerUtil;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Sep 19, 2010
- * Time: 5:33:53 PM
- */
-
 @State(
         name = "MoonApplicationSettings",
         storages = {
@@ -37,6 +30,7 @@ import com.intellij.util.xmlb.XmlSerializerUtil;
         }
 )
 public class MoonApplicationSettings implements PersistentStateComponent<MoonApplicationSettings> {
+
     public boolean INCLUDE_ALL_FIELDS_IN_COMPLETIONS = false;
     public boolean RESOLVE_ALIASED_IDENTIFIERS = false;
     public boolean SHOW_TAIL_CALLS_IN_GUTTER = true;

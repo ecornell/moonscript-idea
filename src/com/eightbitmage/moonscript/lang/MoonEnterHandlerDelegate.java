@@ -33,16 +33,11 @@ import com.intellij.psi.codeStyle.CodeStyleManager;
 import com.intellij.util.IncorrectOperationException;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: 1/24/11
- * Time: 1:43 AM
- */
 public class MoonEnterHandlerDelegate implements EnterHandlerDelegate {
     @Override
     public Result preprocessEnter(PsiFile file, Editor editor, Ref<Integer> caretOffsetRef, Ref<Integer> caretAdvance,
                                   DataContext dataContext, EditorActionHandler originalHandler) {
+
         if (! (file instanceof MoonPsiFile))
             return Result.Continue;
 

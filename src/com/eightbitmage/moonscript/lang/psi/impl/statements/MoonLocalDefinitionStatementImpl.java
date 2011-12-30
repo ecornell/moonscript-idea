@@ -42,14 +42,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Sep 6, 2010
- * Time: 10:00:19 AM
- */
 public class MoonLocalDefinitionStatementImpl extends MoonStatementElementImpl implements MoonLocalDefinitionStatement,
         MoonStatementElement, MoonAssignmentStatement {
+
     public MoonLocalDefinitionStatementImpl(ASTNode node) {
         super(node);
 

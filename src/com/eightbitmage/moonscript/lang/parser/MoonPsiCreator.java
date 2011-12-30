@@ -34,15 +34,10 @@ import com.eightbitmage.moonscript.lang.psi.impl.symbols.*;
 
 import static com.eightbitmage.moonscript.lang.parser.MoonElementTypes.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Apr 14, 2010
- * Time: 6:56:50 PM
- */
 public class MoonPsiCreator {
 
     public static PsiElement createElement(ASTNode node) {
+
         IElementType elem = node.getElementType();
 
         if (elem instanceof MoonElementType.PsiCreator) {

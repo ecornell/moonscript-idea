@@ -20,16 +20,10 @@ import com.intellij.openapi.fileTypes.FileTypeConsumer;
 import com.intellij.openapi.fileTypes.FileTypeFactory;
 import org.jetbrains.annotations.NotNull;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Apr 26, 2010
- * Time: 3:39:01 PM
- */
 public class MoonFileTypeLoader extends FileTypeFactory {
     public void createFileTypes(@NotNull FileTypeConsumer consumer) {
         consumer.consume(MoonFileType.MOON_FILE_TYPE, MoonFileType.DEFAULT_EXTENSION);
-        consumer.consume(MoonFileType.MOON_FILE_TYPE, "docmoon");
-        consumer.consume(MoonFileType.MOON_FILE_TYPE, "wmoon");
+        //consumer.consume(MoonFileType.MOON_FILE_TYPE, "docmoon");
+        //consumer.consume(MoonFileType.MOON_FILE_TYPE, "wmoon");
     }
 }

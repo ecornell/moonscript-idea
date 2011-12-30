@@ -36,9 +36,6 @@
             <implementation-class>com.eightbitmage.moonscript.sdk.KahluaSdk</implementation-class>
             <interface-class>com.intellij.openapi.projectRoots.Sdk</interface-class>
         </component>
-        <component>
-            <implementation-class>com.eightbitmage.moonscript.options.MoonOptionsPanel</implementation-class>
-        </component>
         <!--<component>-->
             <!--<implementation-class>com.eightbitmage.moonscript.editor.inspections.InspectionProvider</implementation-class>-->
         <!--</component>-->
@@ -79,6 +76,8 @@
     <!--<helpset file="IDMoonHelp.jar" path="/Moon.hs" />-->
 
     <extensions defaultExtensionNs="com.intellij">
+        <applicationConfigurable implementation="com.eightbitmage.moonscript.options.MoonConfigurable"/>
+
         <!-- Error reporter-->
         <!--<errorHandler implementation="com.sylvanaar.idea.errorreporting.BugzReport"/>-->
         <!--<errorHandler implementation="com.sylvanaar.idea.errorreporting.YouTrackBugReporter"/>-->
@@ -93,7 +92,7 @@
                     <!--factoryClass="com.eightbitmage.moonscript.KahluaInterpreterWindowFactory"/>-->
 
         <!-- Application Configuration -->
-        <applicationService serviceImplementation="com.eightbitmage.moonscript.options.MoonApplicationSettings" />
+        <!--<applicationService serviceImplementation="com.eightbitmage.moonscript.options.MoonApplicationSettings" />-->
 
         <!-- Project Configuration -->
         <!--<projectConfigurable  instance="com.eightbitmage.moonscript.settings.MoonProjectSettingsConfigurable" />-->

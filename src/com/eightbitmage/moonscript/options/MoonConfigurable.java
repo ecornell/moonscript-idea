@@ -10,11 +10,10 @@ import org.jetbrains.annotations.Nullable;
 import javax.swing.*;
 
 /**
- * Configurable for JFlex.
- *
- * @author Alexey Efimov
+ * Configurable for MoonScript.
  */
 public final class MoonConfigurable implements Configurable {
+
     private MoonSettingsForm settingsForm;
 
     @Nls

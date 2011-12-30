@@ -20,12 +20,6 @@ import com.intellij.openapi.util.IconLoader;
 
 import javax.swing.*;
 
-/**
- * Created by IntelliJ IDEA.
- * User: jon
- * Date: Apr 3, 2010
- * Time: 2:30:48 AM
- */
 public interface MoonIcons {
 	final String PATH = "/icons/";
 

@@ -27,12 +27,6 @@ import se.krka.kahlua.j2se.J2SEPlatform;
 import se.krka.kahlua.vm.KahluaTable;
 import se.krka.kahlua.vm.Platform;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: May 7, 2010
- * Time: 8:02:20 PM
- */
 public class KahluaInterpreterWindowFactory implements ToolWindowFactory {
     public static KahluaInterpreter INSTANCE = null;
     public static ToolWindow WINDOW = null;

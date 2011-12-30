@@ -42,12 +42,6 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: Sep 19, 2010
- * Time: 4:29:54 PM
- */
 public class KahluaInterpreter extends JPanel {
 
     private final KahluaThread thread;

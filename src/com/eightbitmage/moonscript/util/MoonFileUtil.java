@@ -29,10 +29,6 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 
-/**
- * @author Maxim.Manuylov
- *         Date: 07.04.2010
- */
 public class MoonFileUtil {
     @NotNull
     public static String getPathToDisplay(@NotNull final VirtualFile file) {

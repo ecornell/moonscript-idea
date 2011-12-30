@@ -16,12 +16,6 @@
 
 package com.eightbitmage.moonscript.lang.psi.types;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Jon S Akhtar
- * Date: 1/29/11
- * Time: 6:59 PM
- */
 public final class MoonType {
     public static final MoonType BOOLEAN = new MoonType("BOOLEAN");
     public static final MoonType NUMBER = new MoonType("NUMBER");

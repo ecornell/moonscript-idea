@@ -24,12 +24,6 @@ import java.lang.ref.Reference;
 import java.lang.ref.SoftReference;
 import java.util.ResourceBundle;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Max
- * Date: 26.07.2009
- * Time: 14:30:36
- */
 public class MoonBundle {
 
     private static Reference<ResourceBundle> ourBundle;

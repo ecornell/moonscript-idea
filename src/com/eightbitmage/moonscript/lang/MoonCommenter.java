@@ -25,12 +25,6 @@ import com.intellij.psi.PsiComment;
 import com.intellij.psi.PsiElement;
 import com.intellij.psi.tree.IElementType;
 
-/**
- * Created by IntelliJ IDEA.
- * User: Max
- * Date: 04.07.2009
- * Time: 14:12:45
- */
 public class MoonCommenter implements CodeDocumentationAwareCommenterEx {
 
     public String getLineCommentPrefix() {

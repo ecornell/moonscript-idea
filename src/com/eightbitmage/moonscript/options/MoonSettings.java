@@ -14,28 +14,27 @@ import org.jetbrains.annotations.NotNull;
 import java.io.File;
 
 /**
- * Options of JFlex.
- *
- * @author Alexey Efimov
+ * Options of MoonScript.
  */
-@State(name = "MoonSettings", storages = {@Storage(id = "moon", file = "$APP_CONFIG$/moon.xml")})
+@State(
+        name = "MoonSettings",
+        storages = {
+                @Storage(id = "moon", file = "$APP_CONFIG$/moon.xml")
+        }
+)
+
 public final class MoonSettings implements PersistentStateComponent<MoonSettings>, ExportableApplicationComponent {
+
     @NonNls
-    static final String TOOLS_DIR = "tools";
-    @NonNls
-    static final String IDEA_FLEX_SKELETON = "idea-flex.skeleton";
-    @NonNls
-    static final String DEFAULT_OPTIONS_CHARAT_NOBAK = "--charat --nobak";
+    static final String DEFAULT_OPTIONS = "";
 
     public static MoonSettings getInstance() {
         return ApplicationManager.getApplication().getComponent(MoonSettings.class);
     }
 
     public boolean ENABLED_COMPILATION = true;
-    public String MOON_HOME = getDefaultJFlexHome();
-    public String SKELETON_PATH = getDefaultSkeletonPath(MOON_HOME);
-    public String COMMAND_LINE_OPTIONS = DEFAULT_OPTIONS_CHARAT_NOBAK;
-    public boolean ENABLED_EMBED_JAVA = true;
+    public String MOON_HOME = getDefaultMoonScriptHome();
+    public String COMMAND_LINE_OPTIONS = DEFAULT_OPTIONS;
 
     public MoonSettings getState() {
         return this;
@@ -69,11 +68,8 @@ public final class MoonSettings implements PersistentStateComponent<MoonSettings
 
     }
 
-    public static String getDefaultSkeletonPath(String jFlexHome) {
-        return new File(jFlexHome, IDEA_FLEX_SKELETON).getPath();
-    }
 
-    public static String getDefaultJFlexHome() {
+    public static String getDefaultMoonScriptHome() {
         //return new File(new File(PathManager.getHomePath(), TOOLS_DIR), "moon").getPath();
         return new File("C:\\Dev\\Lua\\MoonScript\\moonc") .getPath();
     }
