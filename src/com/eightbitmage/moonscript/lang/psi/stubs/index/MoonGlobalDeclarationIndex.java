@@ -28,7 +28,7 @@ import com.intellij.psi.stubs.StubIndexKey;
 */
 public class MoonGlobalDeclarationIndex extends StringStubIndexExtension<MoonDeclarationExpression> {
   public static final StubIndexKey<String, MoonDeclarationExpression> KEY =
-          StubIndexKey.createIndexKey("lua.global.name");
+          StubIndexKey.createIndexKey("moon.global.name");
 
   private static final MoonGlobalDeclarationIndex OUR_INSTANCE = new MoonGlobalDeclarationIndex();
 

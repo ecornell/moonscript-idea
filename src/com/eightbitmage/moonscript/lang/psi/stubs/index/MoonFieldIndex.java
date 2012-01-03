@@ -27,7 +27,7 @@ import com.intellij.psi.stubs.StubIndexKey;
  * Time: 5:05 AM
  */
 public class MoonFieldIndex extends StringStubIndexExtension<MoonFieldIdentifier> {
-    public static final StubIndexKey<String, MoonFieldIdentifier> KEY = StubIndexKey.createIndexKey("lua.field.name");
+    public static final StubIndexKey<String, MoonFieldIdentifier> KEY = StubIndexKey.createIndexKey("moon.field.name");
 
     private static final MoonFieldIndex OUR_INSTANCE = new MoonFieldIndex();
 

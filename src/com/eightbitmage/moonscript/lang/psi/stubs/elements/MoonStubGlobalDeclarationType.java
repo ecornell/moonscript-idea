@@ -75,7 +75,7 @@ public class MoonStubGlobalDeclarationType extends MoonStubElementType<MoonGloba
 
     @Override
     public String getExternalId() {
-        return "lua.GLOBAL_DEF";
+        return "moon.GLOBAL_DEF";
     }
 
     @Override

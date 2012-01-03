@@ -27,7 +27,7 @@ import java.util.Collection;
 
 
 public class MoonFullScriptNameIndex extends IntStubIndexExtension<MoonPsiFile> {
-    public static final StubIndexKey<Integer, MoonPsiFile> KEY = StubIndexKey.createIndexKey("lua.script.fqn");
+    public static final StubIndexKey<Integer, MoonPsiFile> KEY = StubIndexKey.createIndexKey("moon.script.fqn");
 
     private static final MoonFullScriptNameIndex OUR_INSTANCE = new MoonFullScriptNameIndex();
 

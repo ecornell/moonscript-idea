@@ -61,7 +61,7 @@ public class MoonStubCompoundIdentifierType
 
     @Override
     public String getExternalId() {
-        return "lua.COMPOUND_ID";
+        return "moon.COMPOUND_ID";
     }
 
     @Override

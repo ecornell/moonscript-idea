@@ -1,7 +1,7 @@
 <idea-plugin url="http://bitbucket.org/ecornell/moonscript-idea/" version="2">
     <name>Moon</name>
     <id>Moon</id>
-    <version>.1</version>
+    <version>.1a</version>
     <idea-version since-build="99.18" until-build="111.9999" />
     <category>Custom Languages</category>
     <vendor url="http://bitbucket.org/ecornell/moonscript-idea" email="elijah.cornell@gmail.com">elijah.cornell</vendor>
@@ -27,15 +27,15 @@
 
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
-    <depends>com.intellij.modules.xdebugger</depends>
+    <!--<depends>com.intellij.modules.xdebugger</depends>-->
     
     <!--<depends optional="true" config-file="Moon-copyright.xml">com.intellij.copyright</depends>-->
 
     <application-components>
-        <component>
-            <implementation-class>com.eightbitmage.moonscript.sdk.KahluaSdk</implementation-class>
-            <interface-class>com.intellij.openapi.projectRoots.Sdk</interface-class>
-        </component>
+        <!--<component>-->
+            <!--<implementation-class>com.eightbitmage.moonscript.sdk.KahluaSdk</implementation-class>-->
+            <!--<interface-class>com.intellij.openapi.projectRoots.Sdk</interface-class>-->
+        <!--</component>-->
         <!--<component>-->
             <!--<implementation-class>com.eightbitmage.moonscript.editor.inspections.InspectionProvider</implementation-class>-->
         <!--</component>-->
@@ -103,10 +103,7 @@
 
         <!-- Script Running -->
         <configurationType id="Moon" implementation="com.eightbitmage.moonscript.run.MoonConfigurationType"/>
-
-
         <configurationProducer id="Moon" implementation="com.eightbitmage.moonscript.run.MoonRunConfigurationProducer" />
-
         <programRunner implementation="com.eightbitmage.moonscript.run.MoonRunner" />
 
         <!-- Script Debugging -->
@@ -129,7 +126,6 @@
 
         <projectService serviceInterface="com.eightbitmage.moonscript.lang.psi.MoonPsiElementFactory"
                     serviceImplementation="com.eightbitmage.moonscript.lang.psi.impl.MoonPsiElementFactoryImpl"/>
-
 
         <projectService serviceImplementation="com.eightbitmage.moonscript.lang.psi.MoonPsiManager" />
 

@@ -67,7 +67,7 @@ public class MoonFieldStubType
 
     @Override
     public String getExternalId() {
-        return "lua.FIELD";
+        return "moon.FIELD";
     }
 
     @Override

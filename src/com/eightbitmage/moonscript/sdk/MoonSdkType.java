@@ -82,10 +82,10 @@ public class MoonSdkType extends SdkType {
     }
 
     public boolean isValidSdkHome(@NotNull final String path) {
-        final File lua = getTopLevelExecutable(path);
+        final File moon = getTopLevelExecutable(path);
        // final File luac = getByteCodeCompilerExecutable(path);
 
-        return lua.canExecute();// && luac.canExecute();
+        return moon.canExecute();// && luac.canExecute();
     }
 
     @NotNull
