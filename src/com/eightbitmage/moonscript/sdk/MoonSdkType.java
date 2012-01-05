@@ -44,7 +44,7 @@ public class MoonSdkType extends SdkType {
     }
 
     public MoonSdkType() {
-        super("Lua SDK");
+        super("Moon SDK");
     }
 
     @NotNull
@@ -73,7 +73,7 @@ public class MoonSdkType extends SdkType {
     @Nullable
     public String suggestHomePath() {
         if (SystemInfo.isWindows) {
-            return "C:\\Lua";
+            return "C:\\Lua\\moonscript";
         }
         else if (SystemInfo.isLinux) {
             return "/usr/bin";
@@ -90,30 +90,30 @@ public class MoonSdkType extends SdkType {
 
     @NotNull
     public static File getTopLevelExecutable(@NotNull final String sdkHome) {
-        File executable = getExecutable(sdkHome, "lua");
+        File executable = getExecutable(sdkHome, "moon");
         if (executable.canExecute())
             return executable;
 
-        executable = getExecutable(sdkHome, "lua5.1");
-		if (executable.canExecute())
-            return executable;
-
-		executable = getExecutable(sdkHome, "luajit");
-        if (executable.canExecute())
-            return executable;
-
-        executable = getExecutable(sdkHome, "murgalua");
+//        executable = getExecutable(sdkHome, "lua5.1");
+//		if (executable.canExecute())
+//            return executable;
+//
+//		executable = getExecutable(sdkHome, "luajit");
+//        if (executable.canExecute())
+//            return executable;
+//
+//        executable = getExecutable(sdkHome, "murgalua");
         
         return executable;
     }
 
     @NotNull
     public static File getByteCodeCompilerExecutable(@NotNull final String sdkHome) {
-        File executable = getExecutable(sdkHome, "luac");
+        File executable = getExecutable(sdkHome, "moonc");
         if (executable.canExecute())
             return executable;
 
-        executable = getExecutable(sdkHome, "luac5.1");
+//        executable = getExecutable(sdkHome, "luac5.1");
 
         return executable;
     }
@@ -156,20 +156,20 @@ public class MoonSdkType extends SdkType {
 
     @NonNls
     public String getPresentableName() {
-        return "Lua SDK";
+        return "Moon SDK";
     }
 
     public void setupSdkPaths(@NotNull final Sdk sdk) {
-        final SdkModificator[] sdkModificatorHolder = new SdkModificator[] { null };
-
-        final SdkModificator sdkModificator = sdk.getSdkModificator();
-
-        sdkModificator.addRoot(StdLibrary.getStdFileLocation(), OrderRootType.CLASSES);
-        sdkModificator.addRoot(StdLibrary.getStdFileLocation(), OrderRootType.SOURCES);
-
-        sdkModificatorHolder[0] = sdkModificator;
-
-        if (sdkModificatorHolder[0] != null) sdkModificatorHolder[0].commitChanges();
+//        final SdkModificator[] sdkModificatorHolder = new SdkModificator[] { null };
+//
+//        final SdkModificator sdkModificator = sdk.getSdkModificator();
+//
+//        sdkModificator.addRoot(StdLibrary.getStdFileLocation(), OrderRootType.CLASSES);
+//        sdkModificator.addRoot(StdLibrary.getStdFileLocation(), OrderRootType.SOURCES);
+//
+//        sdkModificatorHolder[0] = sdkModificator;
+//
+//        if (sdkModificatorHolder[0] != null) sdkModificatorHolder[0].commitChanges();
     }
 
     @NotNull

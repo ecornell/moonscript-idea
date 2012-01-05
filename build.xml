@@ -48,7 +48,6 @@
         <mkdir dir="target/junit-ideax"/>
         <mkdir dir="target/test-ideax-classes"/>
         <mkdir dir="target/test-ideax-reports"/>
-        <mkdir dir="target/junit-maia"/>
         <mkdir dir="target/moonscript-idea"/>
         <mkdir dir="target/jar"/>
     </target>
@@ -63,17 +62,17 @@
 
     <!-- Generate the tokens from the MoonScript resources for testing the plugin -->
 
-    <target name="generate-original-tokens" depends="init"
-            description="Generate the MoonScript tokens within resources/moonscript-script">
-        <apply executable="/usr/local/bin/node">
-            <arg value="/usr/local/share/npm/bin/moon"/>
-            <arg value="-t"/>
-            <fileset dir="resources/moonscript-script" includes="*.moon"/>
-            <redirector>
-                <outputmapper type="glob" from="*.moonscript" to="resources/moonscript-script/*.tokens"/>
-            </redirector>
-        </apply>
-    </target>
+    <!--<target name="generate-original-tokens" depends="init"-->
+            <!--description="Generate the MoonScript tokens within resources/moonscript-script">-->
+        <!--<apply executable="/usr/local/bin/node">-->
+            <!--<arg value="/usr/local/share/npm/bin/moon"/>-->
+            <!--<arg value="-t"/>-->
+            <!--<fileset dir="resources/moonscript-script" includes="*.moon"/>-->
+            <!--<redirector>-->
+                <!--<outputmapper type="glob" from="*.moonscript" to="resources/moonscript-script/*.tokens"/>-->
+            <!--</redirector>-->
+        <!--</apply>-->
+    <!--</target>-->
 
     <!-- Generate the lexer class -->
 
@@ -126,12 +125,12 @@
     </target>
 
 
-    <!-- Install plugin to IntelliJ IDEA 10 CE -->
+    <!-- Install plugin to IntelliJ IDEA 11 CE -->
 
-    <target name="install-idea-10" depends="jar" description="Install the plugin to IntelliJ IDEA 10 CE">
-        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea10CE"/>
-        <delete dir="${user.home}/Library/Application Support/IntelliJIdea10CE" includes="moonscript-idea*.jar"/>
-        <copy todir="${user.home}/Library/Application Support/IntelliJIdea10CE">
+    <target name="install-idea-11" depends="jar" description="Install the plugin to IntelliJ IDEA 11 CE">
+        <mkdir dir="${user.home}/Library/Application Support/IntelliJIdea11CE"/>
+        <delete dir="${user.home}/Library/Application Support/IntelliJIdea11CE" includes="moonscript-idea*.jar"/>
+        <copy todir="${user.home}/Library/Application Support/IntelliJIdea11CE">
             <fileset dir="${basedir}/target/jar" includes="*.jar"/>
         </copy>
     </target>

@@ -55,7 +55,7 @@
 
     <actions>
         <action id="Moon.NewMoonScript" class="com.eightbitmage.moonscript.actions.NewMoonFileAction"
-                text="Moon Script" description="Create new Moon script file">
+                text="MoonScript" description="Create new MoonScript file">
             <add-to-group group-id="NewGroup" relative-to-action="NewFile" anchor="after"/>
         </action>
         <!--<action id="trigger.exception" class="com.sylvanaar.idea.errorreporting.TriggerExceptionAction" text="Trigger Exception">-->

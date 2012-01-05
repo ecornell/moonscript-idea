@@ -39,11 +39,11 @@ public class MoonConfigurationType implements ConfigurationType {
     };
   }
     public String getDisplayName() {
-        return "Lua Script";
+        return "MoonScript";
     }
 
     public String getConfigurationTypeDescription() {
-        return "Lua run configuration";
+        return "MoonScript run configuration";
     }
 
     public Icon getIcon() {

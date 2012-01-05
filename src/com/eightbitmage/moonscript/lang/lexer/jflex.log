@@ -1,7 +1,13 @@
 Reading skeleton file "idea-flex.skeleton".
-Reading "lua.flex"
-Constructing NFA : 535 states in NFA
+Reading "moon.flex"
+
+Warning : Macro "luadoc" has been declared but never used.
+
+Warning : Macro "nonl" has been declared but never used.
+
+Warning : Macro "nobrknl" has been declared but never used.
+Constructing NFA : 626 states in NFA
 Converting NFA to DFA : 
-..........................................................................................................................................................................................................
-216 states before minimization, 163 states in minimized DFA
-Writing code to "_LuaLexer.java"
+.............................................................................................................................................................................................................................................................
+275 states before minimization, 221 states in minimized DFA
+Writing code to "_MoonLexer.java"

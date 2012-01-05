@@ -29,8 +29,8 @@ import java.util.List;
  * Time: 12:48:42 PM
  */
 public class MoonInterpreterDetection {
-    private static final List<String> guessLocations = Arrays.asList("/bin/Lua", "/usr/bin/Lua",
-            "/usr/local/bin/Lua");
+    private static final List<String> guessLocations = Arrays.asList("/bin/moon", "/usr/bin/moon",
+            "/usr/local/bin/moon","c:\\lua\\moonscript\\moon");
 
     public MoonInterpreterDetection() {
     }

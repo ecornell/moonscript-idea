@@ -43,7 +43,7 @@ public class MoonCommonOptionsForm implements CommonMoonRunConfigurationParams {
 
     public MoonCommonOptionsForm(MoonRunConfiguration moonRunConfiguration) {
         this.moonRunConfiguration = moonRunConfiguration;
-        luaInterpreterEdit.addBrowseFolderListener("Select Lua Interpreter", "", moonRunConfiguration.getProject(), BrowseFilesListener.SINGLE_FILE_DESCRIPTOR);
+        luaInterpreterEdit.addBrowseFolderListener("Select Moon Interpreter", "", moonRunConfiguration.getProject(), BrowseFilesListener.SINGLE_FILE_DESCRIPTOR);
         workingDirEdit.addBrowseFolderListener("Select Working Directory", "", moonRunConfiguration.getProject(), BrowseFilesListener.SINGLE_DIRECTORY_DESCRIPTOR);
 
         kahluaCheckBox.addPropertyChangeListener(new PropertyChangeListener() {

@@ -280,6 +280,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
   ";"         { yybegin(YYNORMAL); return SEMI; }
   "\\"        { yybegin(YYNORMAL); return DOT; }
   "!"         { yybegin(YYNORMAL); return FUNCTION; }
+  "="         { yybegin(YYNORMAL); return ASSIGN; }
 }
 
 
