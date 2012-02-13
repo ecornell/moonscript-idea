@@ -76,6 +76,7 @@ luadoc      =   ---[^\r\n]*{nl}([ \t]*--({nobrknl}{nonl}*{nl}|{nonl}{nl}|{nl}))*
     "->"           { return FUNCTION; }
     "=>"           { return FUNCTION; }
     "class"        { return CLASS; }
+    "extends"      { return EXTENDS; }
     "if"           { return IF; }
     "in"           { return IN; }
     "local"        { return LOCAL; }

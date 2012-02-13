@@ -35,7 +35,7 @@ import java.util.List;
 public class MoonLibraryPresentationProvider extends LibraryPresentationProvider<MoonLibraryProperties> {
 
     protected MoonLibraryPresentationProvider() {
-        super(new LibraryKind<MoonLibraryProperties>(MoonLibraryType.LUA_LIBRARY_TYPE_ID));
+        super(new LibraryKind<MoonLibraryProperties>(MoonLibraryType.MOON_LIBRARY_TYPE_ID));
     }
 
     @Override

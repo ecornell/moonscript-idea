@@ -136,7 +136,7 @@
         <!-- Lang extensions -->
         <!--<lang.formatter language="Moon" implementationClass="com.eightbitmage.moonscript.lang.formatter.MoonFormattingModelBuilder"/>-->
         <fileTypeIndentOptionsProvider id="Moon" implementation="com.eightbitmage.moonscript.lang.formatter.MoonIndentOptionsProvider"/>
-        <!--<lang.braceMatcher language="Moon" implementationClass="com.eightbitmage.moonscript.lang.MoonBraceMatcher"/>-->
+        <lang.braceMatcher language="Moon" implementationClass="com.eightbitmage.moonscript.lang.MoonBraceMatcher"/>
 
         <!-- !! <codeStyleSettingsProvider implementation="com.eightbitmage.moonscript.lang.formatter.MoonCodeStyleSettingsProvider" />-->
 

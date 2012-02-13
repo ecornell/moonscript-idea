@@ -40,16 +40,16 @@ import javax.swing.*;
  */
 public class MoonLibraryType extends LibraryType<MoonLibraryProperties> {
 
-    public static final String LUA_LIBRARY_TYPE_ID = "Lua";
+    public static final String MOON_LIBRARY_TYPE_ID = "Moon";
 
     public MoonLibraryType() {
-        super(LibraryKind.<MoonLibraryProperties>create(LUA_LIBRARY_TYPE_ID));
+        super(LibraryKind.<MoonLibraryProperties>create(MOON_LIBRARY_TYPE_ID));
     }
 
     @NotNull
     @Override
     public String getCreateActionName() {
-        return "New Lua Library";
+        return "New MoonScript Library";
     }
 
     @Override

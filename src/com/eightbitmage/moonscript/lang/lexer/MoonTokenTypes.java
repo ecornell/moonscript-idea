@@ -159,6 +159,7 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
     IElementType END = new MoonElementType("end");
 
     IElementType CLASS = new MoonElementType("class");
+    IElementType EXTENDS = new MoonElementType("extends");
     IElementType IMPORT = new MoonElementType("import");
     IElementType EXPORT = new MoonElementType("export");
 
@@ -172,7 +173,7 @@ public interface MoonTokenTypes extends MoonDocElementTypes {
             WHILE, FOR, IN, RETURN, BREAK,
             CONTINUE, LOCAL,
             REPEAT, UNTIL, END,
-            CLASS, IMPORT, EXPORT,
+            CLASS, EXTENDS, IMPORT, EXPORT,
             SWITCH, WHEN);
 
     TokenSet BRACES = TokenSet.create(LCURLY, RCURLY);

@@ -37,7 +37,7 @@ public class MoonModuleUtil {
     public static boolean isMoonModule(@Nullable final Module module) {
         //return module != null && MoonModuleType.ID.equals(module.getModuleType().getId());
         //todo: broken with IDEA 11
-        System.out.println(module.getName());
+        //System.out.println(module.getName());
         return module != null;
     }
 

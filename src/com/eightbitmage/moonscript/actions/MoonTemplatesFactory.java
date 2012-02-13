@@ -32,7 +32,7 @@ public class MoonTemplatesFactory {
     public static final String NEW_SCRIPT_FILE_NAME = "MoonScript.moon";
     public static final String MOON_HEADER_NAME = "Moon Script File Header.moon";
 
-//    private final FileTemplateGroupDescriptor templateGroup;
+    //private final FileTemplateGroupDescriptor templateGroup;
     private static final Logger log = Logger.getInstance("Moon.TemplatesFactory");
 
 //    public MoonTemplatesFactory() {
