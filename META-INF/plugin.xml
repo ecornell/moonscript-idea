@@ -2,7 +2,7 @@
     <name>Moon</name>
     <id>Moon</id>
     <version>.1a</version>
-    <idea-version since-build="99.18" until-build="111.9999" />
+    <idea-version since-build="99.18" until-build="999.9999" />
     <category>Custom Languages</category>
     <vendor url="http://bitbucket.org/ecornell/moonscript-idea" email="elijah.cornell@gmail.com">elijah.cornell</vendor>
     
