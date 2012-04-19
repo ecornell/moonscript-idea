@@ -45,10 +45,14 @@ import java.util.*;
  * Time: 4:51 PM
  */
 public class MoonConsoleRunner extends AbstractConsoleRunnerWithHistory {
-    public MoonConsoleRunner(@NotNull Project project, @NotNull String consoleTitle,
-                             @NotNull CommandLineArgumentsProvider provider,
-                             @Nullable String workingDir) {
-        super(project, consoleTitle, provider, workingDir);
+//    public MoonConsoleRunner(@NotNull Project project, @NotNull String consoleTitle,
+//                             @NotNull CommandLineArgumentsProvider provider,
+//                             @Nullable String workingDir) {
+//        //super(project, consoleTitle, provider, workingDir);
+//    }
+
+    public MoonConsoleRunner(@NotNull Project project, @NotNull String consoleTitle, @Nullable String workingDir) {
+        super(project, consoleTitle, workingDir);
     }
 
     @Override
@@ -57,15 +61,25 @@ public class MoonConsoleRunner extends AbstractConsoleRunnerWithHistory {
     }
 
     @Override
-    protected Process createProcess(CommandLineArgumentsProvider provider) throws ExecutionException {
-        return createMoonProcess(getWorkingDir(), provider);
+    protected Process createProcess() throws ExecutionException {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
-    protected OSProcessHandler createProcessHandler(Process process, String commandLine) {
-        return new MoonConsoleProcessHandler(process, getConsoleView().getConsole(), commandLine,
-                CharsetToolkit.UTF8_CHARSET);
+    protected OSProcessHandler createProcessHandler(Process process) {
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
+
+//    @Override
+//    protected Process createProcess(CommandLineArgumentsProvider provider) throws ExecutionException {
+//        return createMoonProcess(getWorkingDir(), provider);
+//    }
+//
+//    @Override
+//    protected OSProcessHandler createProcessHandler(Process process, String commandLine) {
+//        return new MoonConsoleProcessHandler(process, getConsoleView().getConsole(), commandLine,
+//                CharsetToolkit.UTF8_CHARSET);
+//    }
 
     @NotNull
     @Override
@@ -76,7 +90,8 @@ public class MoonConsoleRunner extends AbstractConsoleRunnerWithHistory {
 
     public static void run(Project project, Sdk sdk, String consoleTitle, String projectRoot,
                            String statements2execute[]) {
-        MoonConsoleRunner runner = new MoonConsoleRunner(project, consoleTitle, new MyCommandLineArgumentsProvider(sdk), projectRoot);
+        // MoonConsoleRunner runner = new MoonConsoleRunner(project, consoleTitle, new MyCommandLineArgumentsProvider(sdk), projectRoot);
+        MoonConsoleRunner runner = new MoonConsoleRunner(project, consoleTitle, projectRoot);
 
         try {
             runner.initAndRun();
