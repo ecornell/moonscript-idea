@@ -74,7 +74,7 @@ public class MoonConsoleRunner extends AbstractConsoleRunnerWithHistory {
 //    protected Process createProcess(CommandLineArgumentsProvider provider) throws ExecutionException {
 //        return createMoonProcess(getWorkingDir(), provider);
 //    }
-//
+
 //    @Override
 //    protected OSProcessHandler createProcessHandler(Process process, String commandLine) {
 //        return new MoonConsoleProcessHandler(process, getConsoleView().getConsole(), commandLine,
@@ -90,7 +90,7 @@ public class MoonConsoleRunner extends AbstractConsoleRunnerWithHistory {
 
     public static void run(Project project, Sdk sdk, String consoleTitle, String projectRoot,
                            String statements2execute[]) {
-        // MoonConsoleRunner runner = new MoonConsoleRunner(project, consoleTitle, new MyCommandLineArgumentsProvider(sdk), projectRoot);
+        //MoonConsoleRunner runner = new MoonConsoleRunner(project, consoleTitle, new MyCommandLineArgumentsProvider(sdk), projectRoot);
         MoonConsoleRunner runner = new MoonConsoleRunner(project, consoleTitle, projectRoot);
 
         try {
