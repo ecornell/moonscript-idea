@@ -4,3 +4,5 @@ out
 src/com/eightbitmage/moonscript/lang/lexer/MoonScriptLexer.java
 moonscript-idea.iws
 build.properties
+
+moonscript-idea.zip
