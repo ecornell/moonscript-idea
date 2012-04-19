@@ -14,19 +14,6 @@ MoonScript is a plugin for IDEA
 
 The plugin can be installed via the JetBrains plugin manager from within your IDE.
 
-## MoonScript theme
-
-![MoonScript theme](https://github.com/ecornell/moonscript-idea/raw/master/resources/theme/MoonScript.png)
-
-The [MoonScript theme](
-https://github.com/ecornell/moonscript-idea/raw/master/resources/theme/MoonScript.xml) provides a dark color scheme that
-extends the fabulous [RailsCast](http://blog.bitfluent.com/post/198076049/railscasts-theme-for-rubymine) theme with fine
-grained MoonScript colors. The font on the screenshot is [Meslo LG S DZ](https://github.com/andreberg/Meslo-Font).
-
-To install the MoonScript color scheme in RubyMine 3.0.1 on Max OS X, just download MoonScript.xml to
-`~/Library/Preferences/RubyMine30/colors`, restart the IDE and select the new color scheme in your preferences.
-For other platforms the folder within the Preferences directory is different, e.g. RubyMine31, IntelliJIdea10CE or
-IntelliJIdea9, to just name a few.
 
 ## Development
 
